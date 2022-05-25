@@ -8,8 +8,9 @@ def deposit_payment(request):
         form = PaymentForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
+            messages.success(request, 'Form submission successful. You will be notified in an hour')
             return HttpResponseRedirect("/") 
     else:
         form = PaymentForm
         
-    return render(request, 'payments/upload.html', {'form':form})
+    return render(request, 'payments/upload.html', { 'form':form })
