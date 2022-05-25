@@ -10,5 +10,6 @@ from apps.payments import urls as payment_urls
 urlpatterns = [
     path('admin/', admin.site.urls),          # Django admin route
     path("", include(authentication_urls)),
+    path("", include(home_urls)),
     path("payments/", include(payment_urls))             # UI Kits Html files
 ]

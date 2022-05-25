@@ -1,13 +1,18 @@
 from django.db import models
+from django.contrib.auth import get_user_model
 
-# Create your models here.
-class Payment(models.Model):
-    email = models.EmailField()
-    amount = models.DecimalField(max_digits=10, decimal_places=4)
+from apps.base_models import TimeStamp
+
+User = get_user_model()
+
+
+class Payment(TimeStamp):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='user_payments')
+    amount = models.FloatField()
     receipt = models.ImageField(upload_to='receipts')
 
     def __repr__(self):
         return 'Payment(%s, %s)' % (self.email, self.file)
 
     def __str__ (self):
-        return self.email
+        return self.user.email
