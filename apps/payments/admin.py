@@ -1,6 +1,14 @@
 from django.contrib import admin
 
-# Register your models here.
-from .models import Payment
-# Register your models here.
-admin.site.register(Payment)
+from apps.payments.models import Payment
+
+
+class PaymentModelAdmin(admin.ModelAdmin):
+    class Meta:
+        model = Payment
+
+    list_display = ['id', 'user', 'amount', 'status', 'created_at']
+    readonly_fields = ['amount', 'receipt', 'user']
+
+
+admin.site.register(Payment, PaymentModelAdmin)
