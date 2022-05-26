@@ -4,11 +4,11 @@
 {% block stylesheets %}{% endblock stylesheets %} {% block content %}
 <link href="/static/assets/css/drag-and-drop.css" rel="stylesheet" />
 
-<script
-  type="text/javascript"
-  src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"
-></script>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
 {% include 'payments/messages.html' %}
+
+<input id="form-success" type="hidden" value="{{form_success}}" />
+
 <h1>Credit Deposit</h1>
 <div style="margin-bottom: 5%">
   <p style="font-size: 20px; font-weight: 600">
@@ -16,14 +16,14 @@
   </p>
   <div style="margin-top: 15px">
     <p style="font-size: 18px; font-weight: 700">Account Name:</p>
-    <p style="font-size: 15px">H.S Tech</p>
+    <p style="font-size: 15px">{{bank.account_name}}</p>
     <p style="font-size: 18px; font-weight: 700">Iban no:</p>
-    <p style="font-size: 15px">PK38HABB0010197901543803</p>
+    <p style="font-size: 15px">{{bank.iban}}</p>
     <p style="font-size: 18px; font-weight: 700">Account no:</p>
-    <p style="font-size: 15px">0197901543803</p>
+    <p style="font-size: 15px">{{bank.account_no}}</p>
   </div>
 </div>
-<div style="text-align: center; border: 2px solid #fff; padding: 5%">
+<div class='drag-and-drop-form' style="text-align: center; border: 2px solid #fff; padding: 5%;">
   <form class="form-contact" method="post" , enctype="multipart/form-data">
     {% csrf_token %}
 
@@ -35,90 +35,29 @@
         <div class="icon"><i class="fas fa-cloud-upload-alt"></i></div>
         <header>Drag & Drop to Upload File</header>
         <span>OR</span>
-        <button style="margin-bottom: 5%">Browse File</button>
-        <input
-          type="file"
-          class="form-control"
-          name="{{ form.receipt.name }}"
-          id="imagefile"
-          value="{{ form.receipt.value|default:'' }}"
-          hidden
-        />
+        <button type='button' style="margin-bottom: 5%">Browse File</button>
       </div>
-      <!-- <div>
-        <input
-          type="file"
-          class="form-control"
-          name="{{ form.receipt.name }}"
-          id="imagefile"
-          value="{{ form.receipt.value|default:'' }}"
-        />
-        <div class="container-fluid" id="img-card"></div>
-      </div> -->
+      <div>
+        <input type="file" class="form-control" name="{{ form.receipt.name }}" id="imagefile"
+          value="{{ form.receipt.value|default:'' }}" />
+        {% comment %} <div class="container-fluid" id="img-card"></div> {% endcomment %}
+      </div>
       <!-- <input type="button" value="Choose file" class="btn btn-primary" /> -->
     </fieldset>
     <fieldset class="form-group" style="display: flex; align-items: center">
       <div style="display: flex; align-items: center; width: 100%">
-        <label
-          style="color: #fff"
-          class="control-label"
-          for="id_{{ form.amount.name }}"
-          >{{ form.amount.label }}</label
-        >
+        <label style="color: #fff" class="control-label" for="id_{{ form.amount.name }}">{{ form.amount.label }}</label>
         <div style="justify-content: center; width: 100%; margin: 15px">
-          <input
-            style="border: 1px solid #fff"
-            type="text"
-            class="form-control"
-            name="{{ form.amount.name }}"
-            id="id_{{ form.amount.name }}"
-            value="{{ form.amount.value|default:'' }}"
-          />
+          <input style="border: 1px solid #fff" type="text" data-digit-value="" class="form-control" name="{{ form.amount.name }}"
+            id="id_{{ form.amount.name }}" value="{{ form.amount.value|default:'' }}" />
         </div>
       </div>
     </fieldset>
-    <input
-      data-toggle="modal"
-      data-target="#exampleModal"
-      type="button"
-      value="Submit"
-      class="btn btn-primary"
-    />
+    <input  type="submit" value="Submit" class="btn btn-primary" />
   </form>
 </div>
-<div
-  class="modal fade"
-  id="exampleModal"
-  tabindex="-1"
-  role="dialog"
-  aria-labelledby="exampleModalLabel"
-  aria-hidden="true"
->
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button
-          type="button"
-          class="close"
-          data-dismiss="modal"
-          aria-label="Close"
-        >
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <div style="text-align: center">
-          <img src="/static/assets/img/tick.svg" />
-          <p style="margin: 15px; font-size: 15px; font-weight: 600">
-            Your request has been submitted. you will be notified within an
-            hour.
-          </p>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
 
+{% include 'payments/success_modal.html' %}
 <!-- <form class="form-contact" method = "post", enctype="multipart/form-data">
    {% csrf_token %}
       <fieldset class="form-group">

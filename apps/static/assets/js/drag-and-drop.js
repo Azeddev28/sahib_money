@@ -1,8 +1,44 @@
+
+$(document).ready(function () {
+  console.log($("#form-success").val())
+    if ($("#form-success").val() === 'True') {
+      $("#success-modal").modal("show");
+    }
+  }
+)
+const modalClose = document.querySelector('#modal-close-btn')
+
+
+const amountField = document.querySelector('#id_amount')
+
+// amountField.addEventListener('input', function(){
+//   let digitValue = $('#id_amount').attr('data-digit-value')
+//   if(!digitValue){
+//     digitValue = this.value
+//   }
+//   let amount = parseInt(digitValue)
+//   console.log(amount)
+//   amount = digitValue.toLocaleString('en-PK', {
+//       maximumFractionDigits: 2,
+//       style: 'currency',
+//       currency: 'PKR'
+//   })
+//   console.log(amount)
+//   $('#id_amount').val(amount)
+//   $('#id_amount').attr('data-digit-value', digitValue)
+
+// })
+
+
+modalClose.addEventListener('click', function() {
+  $("#success-modal").modal("hide");
+})
+
 //selecting all required elements
 const dropArea = document.querySelector(".drag-area"),
   dragText = dropArea.querySelector("header"),
   button = dropArea.querySelector("button"),
-  input = dropArea.querySelector("input");
+  input = document.querySelector("#imagefile");
 let file; //this is a global variable and we'll use it inside multiple functions
 button.onclick = () => {
   input.click(); //if user click on the button then the input also clicked
