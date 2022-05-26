@@ -16,3 +16,11 @@ def send_refusal_email_to_user(name, email):
     email_from = settings.EMAIL_HOST_USER
     recipient_list = [email, ]
     send_mail( subject, message, email_from, recipient_list )
+
+
+def send_payment_request_email_to_admin(url):
+    subject = 'Payment Request Initiated'
+    message = f'Hi Admin, a payment <a href="{url}" target ="_blank">request</a> on Sahibmoney has been initiated.'
+    email_from = settings.EMAIL_HOST_USER
+    recipient_list = [settings.APP_ADMIN_EMAIL, ]
+    send_mail( subject, message, email_from, recipient_list )
