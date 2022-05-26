@@ -14,5 +14,5 @@ RUN pip install --no-cache-dir -r requirements.txt
 RUN python manage.py migrate
 
 # gunicorn
-CMD ["gunicorn", "--config", "gunicorn-cfg.py", "core.wsgi"]
+CMD ["gunicorn", "--config", "gunicorn-cfg.py", "config.wsgi"]
 
