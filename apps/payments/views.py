@@ -19,3 +19,6 @@ class DepositPaymentView(View):
             payment.save()
             messages.success(request, 'Form submission successful. You will be notified in an hour')
             return HttpResponseRedirect("/")
+        else:
+            messages.error(request, 'Invalid form submission.')
+            messages.error(request, form.errors)
