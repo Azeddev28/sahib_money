@@ -5,5 +5,5 @@ class PaymentForm(forms.ModelForm):
 
    class Meta:
       model = Payment
-      exclude = ['user']
+      exclude = ['user', 'status']
       

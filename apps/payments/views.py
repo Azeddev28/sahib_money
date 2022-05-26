@@ -22,3 +22,4 @@ class DepositPaymentView(View):
         else:
             messages.error(request, 'Invalid form submission.')
             messages.error(request, form.errors)
+            return HttpResponseRedirect("/")
