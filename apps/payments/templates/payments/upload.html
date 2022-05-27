@@ -1,15 +1,64 @@
-{% extends "layouts/base.html" %}
-
-{% block title %} Dashboard {% endblock %}
+{% extends "layouts/base.html" %} {% block title %} Dashboard {% endblock %}
 
 <!-- Specific Page CSS goes HERE  -->
-{% block stylesheets %}{% endblock stylesheets %}
+{% block stylesheets %}{% endblock stylesheets %} {% block content %}
+<link href="/static/assets/css/drag-and-drop.css" rel="stylesheet" />
 
-{% block content %}
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
 {% include 'payments/messages.html' %}
+
+<input id="form-success" type="hidden" value="{{form_success}}" />
+
 <h1>Credit Deposit</h1>
-<form class="form-contact" method = "post", enctype="multipart/form-data">
+<div style="margin-bottom: 5%">
+  <p style="font-size: 20px; font-weight: 600">
+    * Please deposit the amount at the following bank details
+  </p>
+  <div style="margin-top: 15px">
+    <p style="font-size: 18px; font-weight: 700">Account Name:</p>
+    <p style="font-size: 15px">{{bank.account_name}}</p>
+    <p style="font-size: 18px; font-weight: 700">Iban no:</p>
+    <p style="font-size: 15px">{{bank.iban}}</p>
+    <p style="font-size: 18px; font-weight: 700">Account no:</p>
+    <p style="font-size: 15px">{{bank.account_no}}</p>
+  </div>
+</div>
+<div class='drag-and-drop-form' style="text-align: center; border: 2px solid #fff; padding: 5%;">
+  <form class="form-contact" method="post" , enctype="multipart/form-data">
+    {% csrf_token %}
+
+    <fieldset class="form-group">
+      <!-- <label class="control-label" for="id_{{ form.receipt.name }}"
+        >{{ form.receipt.label }}</label
+      > -->
+      <div class="drag-area">
+        <div class="icon"><i class="fas fa-cloud-upload-alt"></i></div>
+        <header>Drag & Drop to Upload File</header>
+        <span>OR</span>
+        <button type='button' style="margin-bottom: 5%">Browse File</button>
+      </div>
+      <div>
+        <input type="file" class="form-control" name="{{ form.receipt.name }}" id="imagefile"
+          value="{{ form.receipt.value|default:'' }}" />
+        {% comment %} <div class="container-fluid" id="img-card"></div> {% endcomment %}
+      </div>
+      <!-- <input type="button" value="Choose file" class="btn btn-primary" /> -->
+    </fieldset>
+    <fieldset class="form-group" style="display: flex; align-items: center">
+      <div style="display: flex; align-items: center; width: 100%">
+        <label style="color: #fff" class="control-label" for="id_{{ form.amount.name }}">{{ form.amount.label }}</label>
+        <div style="justify-content: center; width: 100%; margin: 15px">
+          <input style="border: 1px solid #fff" type="text" data-digit-value="" class="form-control" name="{{ form.amount.name }}"
+            id="id_{{ form.amount.name }}" value="{{ form.amount.value|default:'' }}" />
+        </div>
+      </div>
+    </fieldset>
+    <input  type="submit" value="Submit" class="btn btn-primary" />
+  </form>
+</div>
+
+{% include 'payments/success_modal.html' %}
+<!-- <form class="form-contact" method = "post", enctype="multipart/form-data">
    {% csrf_token %}
       <fieldset class="form-group">
         <label class="control-label" for="id_{{ form.amount.name }}">{{ form.amount.label }}</label>
@@ -33,24 +82,24 @@
             <input type="button" value="Choose file"  class="btn btn-primary">
       </fieldset>
    <input type="submit" value="Submit"  class="btn btn-primary">
-</form>
+</form> -->
+<script src="/static/assets/js/drag-and-drop.js"></script>
 <script>
-   $("#imagefile").change(function(e) {
-
+  $("#imagefile").change(function (e) {
     for (var i = 0; i < e.originalEvent.srcElement.files.length; i++) {
-        
-        var file = e.originalEvent.srcElement.files[i];
-        
-        var img = document.createElement("img");
-        var reader = new FileReader();
-        reader.onloadend = function() {
-             img.src = reader.result;
-        }
-        img.style.cssText = 'height:350px;width:300px'
-        reader.readAsDataURL(file);
-        $('#img-card').empty();
-        $("#img-card").append(img);
+      var file = e.originalEvent.srcElement.files[i];
+
+      var img = document.createElement("img");
+      var reader = new FileReader();
+      reader.onloadend = function () {
+        img.src = reader.result;
+      };
+      img.style.cssText = "height:350px;width:300px";
+      reader.readAsDataURL(file);
+      $("#img-card").empty();
+      $("#img-card").append(img);
     }
-});
+  });
 </script>
+
 {% endblock %}
