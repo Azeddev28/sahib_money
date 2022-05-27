@@ -1,10 +1,9 @@
 {% extends "layouts/base.html" %} {% block title %} Dashboard {% endblock %}
 
-<!-- Specific Page CSS goes HERE  -->
 {% block stylesheets %}{% endblock stylesheets %} {% block content %}
 <link href="/static/assets/css/drag-and-drop.css" rel="stylesheet" />
 
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
 {% include 'payments/messages.html' %}
 
 <input id="form-success" type="hidden" value="{{form_success}}" />
@@ -58,48 +57,5 @@
 </div>
 
 {% include 'payments/success_modal.html' %}
-<!-- <form class="form-contact" method = "post", enctype="multipart/form-data">
-   {% csrf_token %}
-      <fieldset class="form-group">
-        <label class="control-label" for="id_{{ form.amount.name }}">{{ form.amount.label }}</label>
-          <div >
-            <input type="text" class="form-control"
-              name="{{ form.amount.name }}"
-              id="id_{{ form.amount.name }}"
-              value="{{ form.amount.value|default:'' }}" > 
-             </div>
-      </fieldset>
-
-      <fieldset class="form-group">
-        <label class="control-label" for="id_{{ form.receipt.name }}">{{ form.receipt.label }}</label>
-          <div >
-            <input type="file" class="form-control"
-              name="{{ form.receipt.name }}"
-              id="imagefile"
-              value="{{ form.receipt.value|default:'' }}" >
-            <div class="container-fluid" id="img-card"></div>
-           </div>
-            <input type="button" value="Choose file"  class="btn btn-primary">
-      </fieldset>
-   <input type="submit" value="Submit"  class="btn btn-primary">
-</form> -->
 <script src="/static/assets/js/drag-and-drop.js"></script>
-<script>
-  $("#imagefile").change(function (e) {
-    for (var i = 0; i < e.originalEvent.srcElement.files.length; i++) {
-      var file = e.originalEvent.srcElement.files[i];
-
-      var img = document.createElement("img");
-      var reader = new FileReader();
-      reader.onloadend = function () {
-        img.src = reader.result;
-      };
-      img.style.cssText = "height:350px;width:300px";
-      reader.readAsDataURL(file);
-      $("#img-card").empty();
-      $("#img-card").append(img);
-    }
-  });
-</script>
-
 {% endblock %}
