@@ -1,5 +1,6 @@
 from django.conf import settings
 from django.core.mail import send_mail
+from django.utils.html import strip_tags
 
 
 def send_approval_email_to_user(name, email):
@@ -20,7 +21,8 @@ def send_refusal_email_to_user(name, email):
 
 def send_payment_request_email_to_admin(url):
     subject = 'Payment Request Initiated'
-    message = f'Hi Admin, a payment <a href="{url}" target ="_blank">request</a> on Sahibmoney has been initiated.'
+    html_message = f'Hi Admin, a payment <a href="{url}" target ="_blank">request</a> on Sahibmoney has been initiated.'
+    plain_message = strip_tags(html_message)
     email_from = settings.EMAIL_HOST_USER
     recipient_list = [settings.APP_ADMIN_EMAIL, ]
-    send_mail( subject, message, email_from, recipient_list )
+    send_mail( subject, plain_message, email_from, recipient_list, html_message=html_message )
