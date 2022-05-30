@@ -1,0 +1,35 @@
+{% extends "layouts/base.html" %} {% block title %} Dashboard {% endblock %}
+
+{% block stylesheets %}{% endblock stylesheets %} {% block content %}
+<link href="/static/assets/css/drag-and-drop.css" rel="stylesheet" />
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
+{% include 'payments/messages.html' %}
+
+<input id="form-success" type="hidden" value="{{form_success}}" />
+
+<h1>Credit Withdraw</h1>
+<div class='drag-and-drop-form' style="text-align: center; border: 2px solid #fff; padding: 5%;">
+  <form class="form-contact" method="post" , enctype="multipart/form-data">
+    {% csrf_token %}
+    <fieldset class="form-group" style="display: flex; align-items: center">
+      <div style="display: flex; align-items: center; width: 100%">
+        <label style="color: #fff" class="control-label" for="id_{{ form.amount.name }}">{{ form.amount.label }}</label>
+        <div style="justify-content: center; width: 100%; margin: 15px">
+          <input style="border: 1px solid #fff" type="text" data-digit-value="" class="form-control" name="{{ form.amount.name }}"
+            id="id_{{ form.amount.name }}" value="{{ form.amount.value|default:'' }}" />
+        </div><br/>
+        <label style="color: #fff" class="control-label" for="id_{{ form.account_no.name }}">{{ form.account_no.label }}</label>
+        <div style="justify-content: center; width: 100%; margin: 15px">
+          <input style="border: 1px solid #fff" type="text" data-digit-value="" class="form-control" name="{{ form.account_no.name }}"
+            id="id_{{ form.account_no.name }}" value="{{ form.account_no.value|default:'' }}" />
+        </div>
+      </div>
+    </fieldset>
+    <input  type="submit" value="Submit" class="btn btn-primary" />
+  </form>
+</div>
+
+{% include 'payments/success_modal.html' %}
+<script src="/static/assets/js/drag-and-drop.js"></script>
+{% endblock %}
