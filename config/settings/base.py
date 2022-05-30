@@ -40,7 +40,8 @@ PROJECT_APPS = [
     'apps.home',
     'apps.users',
     'apps.payments',
-    'apps.banks'
+    'apps.banks',
+    'apps.wallet'
 ]
 
 INSTALLED_APPS = DJANGO_APPS + PROJECT_APPS
