@@ -10,7 +10,7 @@ User = get_user_model()
 
 class Wallet(models.Model):
     uuid = models.UUIDField(default=uuid.uuid4, editable=False)
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='user_wallet')
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='user_wallet')
     total_amount = models.FloatField()
 
 
