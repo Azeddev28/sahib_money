@@ -3,6 +3,7 @@ from django.views import View
 from django.contrib import messages
 from apps.banks.models import Bank
 from apps.wallet.models import Wallet, WalletTransaction
+from apps.wallet.services.wallet_service import WalletTransactionService
 from apps.payments.forms import PaymentForm, WithdrawalForm
 
 
@@ -21,14 +22,9 @@ class DepositPaymentView(View):
             payment.user = request.user
             payment.save()
             user_wallet, created = Wallet.objects.get_or_create(user=request.user)
-            transaction = WalletTransaction.objects.create(from_wallet=None,
-                                                           to_wallet=user_wallet,
-                                                           transaction_type=WalletTransaction.DEPOSIT,
-                                                           amount=float(form['amount'].value()),
-                                                           account_no=None
-                                                           )
-            user_wallet.total_amount += transaction.amount
-            user_wallet.save()
+            WalletTransactionService().perform_user_account_deposit(user_wallet,
+                                                                      amount=float(form['amount'].value()),
+                                                                      account_no=None)
             form = PaymentForm
             context = {
                 'form': form, 
@@ -52,23 +48,18 @@ class WithdrawPaymentView(View):
         form = WithdrawalForm(request.POST, request.FILES)
         if form.is_valid():
             user_wallet, created = Wallet.objects.get_or_create(user=request.user)
-            transaction = WalletTransaction.objects.create(from_wallet=user_wallet,
-                                                           to_wallet=None,
-                                                           transaction_type=WalletTransaction.WITHDRAW,
-                                                           amount=float(form['amount'].value()),
-                                                           account_no=form['account_no'].value()
-                                                           )
-            if user_wallet.total_amount >= transaction.amount:
-                user_wallet.total_amount -= transaction.amount
-                user_wallet.save()
-                form = WithdrawalForm
-                context = {
-                    'form': form,
-                    'form_success': True
-                }
-                return render(request, 'payments/withdraw.html', context)
+            is_succeeded = WalletTransactionService().perform_user_account_withdrawl(user_wallet,
+                                                                      amount=float(form['amount'].value()),
+                                                                      account_no=form['account_no'].value())
+            
+            form = WithdrawalForm
+            context = {
+                'form': form,
+                'form_success': True
+            }
+            return render(request, 'payments/withdraw.html', context)
 
-            else:
+            if is_succeeded is not True:
                 messages.error(request, 'Insufficient credits')
 
         messages.error(request, 'Invalid form submission.')

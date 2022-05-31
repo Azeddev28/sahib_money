@@ -2,6 +2,7 @@ from django.conf import settings
 from django.db.models.signals import pre_save, post_save
 from django.dispatch import receiver
 
+from apps.wallet.services.wallet_service import WalletTransactionService
 from apps.payments.models import Payment
 from apps.payments.utils.email_utils import send_approval_email_to_user, send_refusal_email_to_user, send_payment_request_email_to_admin
 
@@ -16,6 +17,7 @@ def send_payment_status_email(sender, instance, **kwargs):
         if prev_instance.status != Payment.APPROVED and\
             instance.status == Payment.APPROVED:
             send_approval_email_to_user(user_name, email)
+            WalletTransactionService().deposit_amount(instance.user.user_wallet, instance.amount)
         if prev_instance.status != Payment.DECLINED and\
             instance.status == Payment.DECLINED:
             send_refusal_email_to_user(user_name, email)
