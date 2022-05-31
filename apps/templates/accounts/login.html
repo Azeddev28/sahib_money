@@ -1,4 +1,5 @@
 {% extends "layouts/base.html" %}
+{% load static %}
 
 {% block title %} Login {% endblock %} 
 
@@ -14,7 +15,8 @@
               <form role="form" method="post" action="">
               
                 {% csrf_token %} 
-
+                {% if account_activated %}
+                {% endif %}
                 <div class="card-header">
                   <h5 class="title">Login</h5>
 
@@ -67,4 +69,13 @@
 {% endblock content %}
 
 <!-- Specific Page JS goes HERE  -->
-{% block javascripts %}{% endblock javascripts %}
+{% block javascripts %}
+<link href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+<script>
+    {% if account_activated %}
+      toastr.success("Account Activated!");
+    {% endif %}
+</script>
+{% endblock javascripts %}
