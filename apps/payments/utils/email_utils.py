@@ -27,6 +27,14 @@ def send_payment_request_email_to_admin(url):
     recipient_list = [settings.APP_ADMIN_EMAIL, ]
     send_mail( subject, plain_message, email_from, recipient_list, html_message=html_message )
 
+def send_withdrawal_request_email_to_admin(url):
+    subject = 'Payment Withdrawn'
+    html_message = f'Hi Admin, a payment <a href="{url}" target ="_blank">request</a> on Sahibmoney has been initiated.'
+    plain_message = strip_tags(html_message)
+    email_from = settings.EMAIL_HOST_USER
+    recipient_list = [settings.APP_ADMIN_EMAIL, ]
+    send_mail( subject, plain_message, email_from, recipient_list, html_message=html_message )
+
 def send_withdrawal_email_to_user(name, email, amount_diff, total_amount):
     subject = 'Sahibmoney Credits Withdrawn'
     message = f'Hi {name}, your payment on Sahibmoney has been withdrawn. Credits Withdrawn = {amount_diff}, Available_credits: {total_amount}'

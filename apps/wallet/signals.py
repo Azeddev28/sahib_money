@@ -15,3 +15,9 @@ def send_withdrawal_status_email(sender, instance, **kwargs):
     if prev_instance.total_amount > instance.total_amount:
         amount_diff = prev_instance.total_amount - instance.total_amount
         send_withdrawal_email_to_user(user_name, email, amount_diff, instance.total_amount)
+
+@receiver(post_save, sender=Wallet)
+def send_admin_payment_request(sender, instance, created, **kwargs):
+    if created:
+        instance_url = settings.SITE_BASE_URL #to be updated
+        send_withdrawal_request_email_to_admin(instance_url)

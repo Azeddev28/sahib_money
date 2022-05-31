@@ -20,6 +20,15 @@ class DepositPaymentView(View):
             payment = form.save(commit=False)
             payment.user = request.user
             payment.save()
+            user_wallet, created = Wallet.objects.get_or_create(user=request.user)
+            transaction = WalletTransaction.objects.create(from_wallet=None,
+                                                           to_wallet=user_wallet,
+                                                           transaction_type=WalletTransaction.DEPOSIT,
+                                                           amount=float(form['amount'].value()),
+                                                           account_no=None
+                                                           )
+            user_wallet.total_amount += transaction.amount
+            user_wallet.save()
             form = PaymentForm
             context = {
                 'form': form, 
