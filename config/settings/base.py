@@ -39,7 +39,6 @@ DJANGO_APPS = [
 PROJECT_APPS = [
     'apps.home',
     'apps.users',
-    'apps.payments',
     'apps.banks',
     'apps.wallet'
 ]

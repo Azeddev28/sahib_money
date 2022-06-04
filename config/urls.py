@@ -15,7 +15,6 @@ urlpatterns = [
     path('grappelli/', include('grappelli.urls')),
     path("", include(authentication_urls)),
     path("", include(home_urls)),
-    path("payments/", include(payment_urls))             # UI Kits Html files
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
