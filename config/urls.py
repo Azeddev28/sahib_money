@@ -8,7 +8,6 @@ from django.contrib import admin
 
 from apps.authentication import urls as authentication_urls
 from apps.home import urls as home_urls
-from apps.payments import urls as payment_urls
 
 urlpatterns = [
     path('admin/', admin.site.urls),          # Django admin route
