@@ -17,6 +17,8 @@ ROOT_DIR = BASE_DIR.parent.parent.resolve()
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = config('SECRET_KEY', default='S#perS3crEt_1122')
 
+HASHID_FIELD_SALT = "9k43o&#)4e%#84cx)*bh+1y82xbxq3du_z52sm=yjdvjv0gk#2"
+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG', default=True, cast=bool)
 
@@ -39,8 +41,8 @@ DJANGO_APPS = [
 PROJECT_APPS = [
     'apps.home',
     'apps.users',
-    'apps.banks',
-    'apps.wallet'
+    'apps.wallet',
+    'apps.third_party_auth',
 ]
 
 INSTALLED_APPS = DJANGO_APPS + PROJECT_APPS
