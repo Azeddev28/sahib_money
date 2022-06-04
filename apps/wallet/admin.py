@@ -21,14 +21,14 @@ class P2PTransactionModelAdmin(admin.ModelAdmin):
     class Meta:
         model = P2PTransaction
 
-    readonly_fields = ['wallet']
+    readonly_fields = ['wallet', 'amount', 'to_wallet']
 
 
 class WithdrawalTransactionModelAdmin(admin.ModelAdmin):
     class Meta:
         model = WithdrawalTransaction
 
-    readonly_fields = ['wallet']
+    readonly_fields = ['wallet', 'amount']
 
 
 admin.site.register(BankDetail, BankDetailModelAdmin)

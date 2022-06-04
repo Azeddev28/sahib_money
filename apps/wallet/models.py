@@ -24,7 +24,7 @@ class Transaction(TimeStampedModel):
 
 
 class P2PTransaction(Transaction):
-    receiver_wallet = models.ForeignKey(Wallet, on_delete=models.CASCADE, related_name='transaction_receiver_wallet')
+    to_wallet = models.ForeignKey(Wallet, on_delete=models.CASCADE, related_name='transaction_receiver_wallet')
 
 
 class BankDetail(models.Model):
