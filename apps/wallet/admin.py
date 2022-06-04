@@ -7,28 +7,29 @@ class BankDetailModelAdmin(admin.ModelAdmin):
     class Meta:
         model = BankDetail
 
-    fields = ['__all__']
+    list_display = ('account_no', 'iban_no', 'account_name')
 
 
 class DepositTransactionModelAdmin(admin.ModelAdmin):
     class Meta:
         model = DepositTransaction
 
-    fields = ['__all__']
+    readonly_fields = ['wallet']
 
 
 class P2PTransactionModelAdmin(admin.ModelAdmin):
     class Meta:
         model = P2PTransaction
 
-    fields = ['__all__']
+    readonly_fields = ['wallet']
 
 
 class WithdrawalTransactionModelAdmin(admin.ModelAdmin):
     class Meta:
         model = WithdrawalTransaction
 
-    fields = ['__all__']
+    readonly_fields = ['wallet']
+
 
 admin.site.register(BankDetail, BankDetailModelAdmin)
 admin.site.register(DepositTransaction, DepositTransactionModelAdmin)
