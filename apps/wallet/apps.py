@@ -6,6 +6,5 @@ class WalletConfig(AppConfig):
     name = 'apps.wallet'
 
     def ready(self):
-        pass
         # Import signals to activate signal handler.
-        # from . import signals
+        from . import signals
