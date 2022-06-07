@@ -1,9 +1,13 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, get_user_model
+from django.views import View
+
 from .forms import LoginForm, SignUpForm
 
+User = get_user_model()
 
-def login_view(request):
+
+def login_view(request, account_activated=False, *args, **kwargs):
     form = LoginForm(request.POST or None)
 
     msg = None
@@ -22,7 +26,14 @@ def login_view(request):
         else:
             msg = 'Error validating the form'
 
-    return render(request, "accounts/login.html", {"form": form, "msg": msg})
+    context = {
+        "form": form,
+        "msg": msg
+    }
+    if account_activated:
+        context['account_activated'] = True
+
+    return render(request, "accounts/login.html", context)
 
 
 def register_user(request):
@@ -32,11 +43,12 @@ def register_user(request):
     if request.method == "POST":
         form = SignUpForm(request.POST)
         if form.is_valid():
-            form.save()
+            user = form.save(commit=False)
             email = form.cleaned_data.get("email")
             raw_password = form.cleaned_data.get("password1")
-            user = authenticate(email=email, password=raw_password)
-
+            authenticate(email=email, password=raw_password)
+            user.is_active = False
+            user.save()
             msg = 'User created - please <a href="/login">login</a>.'
             success = True
 
@@ -48,3 +60,16 @@ def register_user(request):
         form = SignUpForm()
 
     return render(request, "accounts/register.html", {"form": form, "msg": msg, "success": success})
+
+
+class VerifyAccount(View):
+    def get(self, request, uuid=None, *args, **kwargs):
+        user = None
+        try:
+            user = User.objects.get(uuid=uuid)
+        except User.DoesNotExist:
+            return redirect('/login')
+
+        user.is_active = True
+        user.save()
+        return redirect('/login', account_activated=True)

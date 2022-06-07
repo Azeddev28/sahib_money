@@ -1,9 +1,12 @@
 from django.urls import path
-from .views import login_view, register_user
-from django.contrib.auth.views import LogoutView
+
+from apps.authentication.views import login_view, register_user
+from apps.authentication.bindings import verify_account_view, logout_view
+
 
 urlpatterns = [
     path('login/', login_view, name="login"),
     path('register/', register_user, name="register"),
-    path("logout/", LogoutView.as_view(), name="logout")
+    path("logout/", logout_view, name="logout"),
+    path('verify-account/<uuid:uuid>', verify_account_view, name='verify-account')
 ]
