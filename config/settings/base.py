@@ -10,10 +10,6 @@ CORE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 ROOT_DIR = BASE_DIR.parent.parent.resolve()
 
-
-
-
-
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = config('SECRET_KEY', default='S#perS3crEt_1122')
 
@@ -26,6 +22,11 @@ DEBUG = config('DEBUG', default=True, cast=bool)
 ALLOWED_HOSTS = ['localhost', '127.0.0.1', config('SERVER', default='127.0.0.1')]
 
 
+# OTP Timeout
+OTP_TIMEOUT = 60.0
+TP_TRANSACTION_TIMEOUT = 300.0
+
+TP_TARGET_URL = '/tp_transaction/api/v1/init_transaction/'
 # Application definition
 
 DJANGO_APPS = [
@@ -36,6 +37,7 @@ DJANGO_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
 ]
 
 PROJECT_APPS = [
@@ -43,8 +45,8 @@ PROJECT_APPS = [
     'apps.users',
     'apps.banks',
     'apps.wallet',
+    'apps.third_party_transaction',
     'apps.authentication',
-    'apps.third_party_auth',
 ]
 
 INSTALLED_APPS = DJANGO_APPS + PROJECT_APPS
@@ -137,6 +139,5 @@ STATICFILES_DIRS = (
 
 MEDIA_URL = "/media/"
 MEDIA_ROOT = os.path.join(ROOT_DIR, "media")
-
 #############################################################
 #############################################################

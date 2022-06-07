@@ -8,10 +8,12 @@ from django.contrib import admin
 
 from apps.authentication import urls as authentication_urls
 from apps.home import urls as home_urls
+from apps.third_party_transaction import urls as tp_transaction_urls
 
 urlpatterns = [
     path('admin/', admin.site.urls),          # Django admin route
     path('grappelli/', include('grappelli.urls')),
+    path("tp_transaction/", include(tp_transaction_urls)),
     path("", include(authentication_urls)),
     path("", include(home_urls)),
 ]
