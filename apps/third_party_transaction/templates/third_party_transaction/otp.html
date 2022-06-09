@@ -19,7 +19,10 @@
       </div>
       <input type="button" onclick="submit_transaction('{{ uuid }}')" class='btn btn-success btn-xs' value="Submit">
       <button type="button" class='btn btn-danger btn-xs' onclick="confirmDialog('{{ uuid }}', 'Cancel Transaction', 'Do you want to cancel this transaction?')">Cancel</button>
-
+      <a  class="btn btn-info" 
+          href="{% url 'regenerate_otp' uuid %}">
+          Resend
+      </a>
     </form>
 {% endblock content %}
 

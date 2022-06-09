@@ -10,7 +10,7 @@ from .authentication import MerchantAuthentication
 from .permissions import IsAuthorizedMerchant
 from apps.wallet.models import Wallet
 from apps.wallet.choices import TransactionType
-from apps.third_party_transaction.models import ThirdPartyTransaction
+from apps.third_party_transaction.models import ThirdPartyTransaction, TransactionOTP
 from apps.third_party_transaction.utils import get_decoded_transaction_details
 
 User = get_user_model()
@@ -76,3 +76,25 @@ class CancelWithdrawalTransaction(views.APIView):
     def get(self, request, format=None):
         print(request.GET.get('uuid'))
         return Response({'message': 'hello'})
+
+
+class RegenerateOTP(views.APIView):
+    authentication_classes = [authentication.SessionAuthentication]
+    permission_classes = [permissions.IsAuthenticated]
+
+    def get(self, request, format=None):
+        uuid = request.GET.get('uuid')
+
+        try:
+            transaction = ThirdPartyTransaction.objects.get(uuid=uuid)
+        except ThirdPartyTransaction.DoesNotExist:
+            return Response("Transaction does not exist",status=status.HTTP_400_BAD_REQUEST)
+
+        if transaction.is_invalid():
+            return Response("Transaction Invalid",status=status.HTTP_400_BAD_REQUEST)
+
+        transaction.otps.objects.all().delete()
+        otp = TransactionOTP.objects.create(transaction=transaction)
+        #email code
+
+        return Response({'message': 'success', 'otp': otp})
