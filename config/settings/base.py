@@ -87,6 +87,7 @@ WSGI_APPLICATION = 'config.wsgi.application'
 # AUTH USER MODEL
 
 AUTH_USER_MODEL = 'users.User'
+LOGIN_URL = '/login'
 
 
 # Password validation

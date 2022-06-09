@@ -45,7 +45,7 @@
                   <li class="nav-link"><a href="javascript:void(0)" class="nav-item dropdown-item">Another one</a></li>
                 </ul>
               </li> {% endcomment %}
-              <li class="dropdown nav-item" style="padding-top:12px">Credits: {{request.user.user_wallet.total_amount}}</li>
+              <li class="dropdown nav-item" style="padding-top:12px">Credits: {{request.user.wallet.total_amount|floatformat:2}}</li>
               <li class="dropdown nav-item">
                 <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
                   <div class="photo">
