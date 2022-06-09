@@ -2,18 +2,30 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, get_user_model
 from django.views import View
 
+from apps.authentication.decorators import authenticated_redirect
+
 from .forms import LoginForm, SignUpForm
 
 User = get_user_model()
 
 
-def login_view(request, account_activated=False, *args, **kwargs):
-    form = LoginForm(request.POST or None)
+class LoginView(View):
+    template_name = 'accounts/login.html'
 
-    msg = None
+    def get(self, request, *args, **kwargs):
+        form = LoginForm()
+        context = {
+            'form': form,
+        }
 
-    if request.method == "POST":
+        if request.session.get('account_activated'):
+            context['account_activated'] = True
+            del request.session['account_activated']
 
+        return render(request, self.template_name, context)
+
+    def post(self, request, *args, **kwargs):
+        form = LoginForm(request.POST or None)
         if form.is_valid():
             email = form.cleaned_data.get("email")
             password = form.cleaned_data.get("password")
@@ -26,16 +38,14 @@ def login_view(request, account_activated=False, *args, **kwargs):
         else:
             msg = 'Error validating the form'
 
-    context = {
-        "form": form,
-        "msg": msg
-    }
-    if account_activated:
-        context['account_activated'] = True
-
-    return render(request, "accounts/login.html", context)
+        context = {
+            "form": form,
+            "msg": msg
+        }
+        return render(request, self.template_name, context)
 
 
+@authenticated_redirect
 def register_user(request):
     msg = None
     success = False
@@ -68,8 +78,9 @@ class VerifyAccount(View):
         try:
             user = User.objects.get(uuid=uuid)
         except User.DoesNotExist:
-            return redirect('/login')
+            return redirect('login')
 
         user.is_active = True
         user.save()
-        return redirect('/login', account_activated=True)
+        request.session['account_activated'] = True
+        return redirect('login')
