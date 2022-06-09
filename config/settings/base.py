@@ -44,6 +44,7 @@ PROJECT_APPS = [
     'apps.home',
     'apps.users',
     'apps.wallet',
+    'apps.banks',
     'apps.third_party_transaction',
     'apps.authentication',
 ]

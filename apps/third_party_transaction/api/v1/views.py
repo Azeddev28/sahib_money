@@ -1,5 +1,6 @@
-from django.utils.decorators import method_decorator
 from django.contrib.auth import get_user_model
+from django.conf import settings
+from django.urls import reverse
 
 from rest_framework.response import Response
 from rest_framework import viewsets, status, views
@@ -61,9 +62,10 @@ class MerchantTransactionViewSet(viewsets.ViewSet):
             amount=requested_credits
         )
 
+        # Changing this part to return otp url
         response = {
             'message': 'Withdrawal transaction inititated',
-            'uuid': transaction.uuid
+            'otp_url': f"{settings.SITE_BASE_URL}{reverse('otp_view', args=(transaction.uuid,))}"
         }
 
         return Response(response)
@@ -107,6 +109,4 @@ class RegenerateOTP(views.APIView):
 
         transaction.otp.delete()
         TransactionOTP.objects.create(transaction=transaction)
-        #email otp code
-
         return Response({'message': 'OTP has been created'})

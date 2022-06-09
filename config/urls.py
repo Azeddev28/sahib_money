@@ -14,7 +14,7 @@ from apps.wallet import urls as wallet_urls
 urlpatterns = [
     path('admin/', admin.site.urls),          # Django admin route
     path('grappelli/', include('grappelli.urls')),
-    path("tp_transaction/", include(tp_transaction_urls)),
+    path("tp-transactions/", include(tp_transaction_urls)),
     path("", include(authentication_urls)),
     path("", include(home_urls)),
     path("wallet/", include(wallet_urls)),

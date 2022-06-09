@@ -3,6 +3,7 @@ from django.db import models
 from django.contrib.auth.models import PermissionsMixin, AbstractBaseUser
 from django.utils.translation import gettext_lazy as _
 from django.core.validators import validate_email
+from django.core.management.utils import get_random_secret_key
 from django.contrib.auth.models import UnicodeUsernameValidator
 
 from hashid_field import BigHashidAutoField
@@ -52,7 +53,8 @@ class User(AbstractBaseUser, PermissionsMixin, BaseModel):
 
 
 class MerchantAccount(BaseModel):
-    account_name = models.CharField(max_length=40)
-    merchant_secret_key = BigHashidAutoField(primary_key=True, min_length=20)
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='merchant_account_user')
+    merchant_app_key = BigHashidAutoField(primary_key=True, min_length=20)
+    merchant_secret_key = models.CharField(max_length=64, default=get_random_secret_key)
+    merchant_account_name = models.CharField(max_length=64)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='merchant_account')
     company_website = models.CharField(max_length=200)

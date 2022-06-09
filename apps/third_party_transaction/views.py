@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponseRedirect, JsonResponse
 from django.views import View
 from django.contrib.auth.mixins import LoginRequiredMixin
+from apps.services.email_service import EmailService
 
 from apps.third_party_transaction.models import ThirdPartyTransaction, TransactionOTP
 from apps.wallet.choices import TransactionStatus
@@ -25,8 +26,14 @@ class OTPView(LoginRequiredMixin, View):
             transaction_otp = transaction.otp
         except TransactionOTP.DoesNotExist:
             TransactionOTP.objects.create(transaction=transaction)
-        # user ko email men bhej do aync task men
-        return render(request, 'third_party_transaction/otp.html', {'uuid': uuid})
+
+        context = {
+            'uuid': uuid,
+            'amount': transaction.amount,
+            'requested_form': transaction.merchant_account.merchant_account_name,
+            'company_website': transaction.merchant_account.company_website
+        }
+        return render(request, 'third_party_transaction/otp.html', context)
 
 
     def post(self, request, uuid, *args, **kwargs):
@@ -51,7 +58,7 @@ class OTPView(LoginRequiredMixin, View):
             transaction.otp.delete()
             context = {
                 'success': "Transaction Verified",
-                'success_url': "/"
+                'success_url': transaction.merchant_account.company_website
             }
             return JsonResponse(context, status=200)
         else:
