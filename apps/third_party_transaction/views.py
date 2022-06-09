@@ -49,7 +49,11 @@ class OTPView(LoginRequiredMixin, View):
             transaction.status = TransactionStatus.VERIFIED
             transaction.save()
             transaction.otp.delete()
-            return redirect("/")
+            context = {
+                'success': "Transaction Verified",
+                'success_url': "/"
+            }
+            return JsonResponse(context, status=200)
         else:
             context = {'errors': "Invalid OTP"}
             return JsonResponse(context, status=400)

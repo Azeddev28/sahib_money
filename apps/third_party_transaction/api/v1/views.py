@@ -105,8 +105,8 @@ class RegenerateOTP(views.APIView):
         if transaction.is_invalid():
             return Response("Transaction Invalid",status=status.HTTP_400_BAD_REQUEST)
 
-        transaction.otps.objects.all().delete()
-        otp = TransactionOTP.objects.create(transaction=transaction)
-        #email code
+        transaction.otp.delete()
+        TransactionOTP.objects.create(transaction=transaction)
+        #email otp code
 
-        return Response({'message': 'success', 'otp': otp})
+        return Response({'message': 'OTP has been created'})
