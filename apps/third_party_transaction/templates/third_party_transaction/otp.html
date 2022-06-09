@@ -7,16 +7,32 @@
 {% block stylesheets %}{% endblock stylesheets %}
 
 {% block content %}
-      <form class="form-contact" method="post" data-id="{{transaction_uuid}}">
-        {% csrf_token %}
-        {{ form.as_p  }}
-        <input type="submit" value="Submit">
-      </form>
+    <form class="form-contact" method="post" data-id="{{transaction_uuid}}">
+      {% csrf_token %}
+      {{ form.as_p  }}
+      <button class='btn btn-danger btn-xs' onclick='cancel_transaction(uuid)'>Cancel</button>
+      <input type="submit" value="Submit">
+    </form>
 {% endblock content %}
 
 <!-- Specific Page JS goes HERE  -->
 {% block javascripts %}
 <link href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+<script type="text/javascript">
+  function cancel_transaction(){
+    $.post(
+         url : "..",
+         dataType:"html",
+         success: '..'
+        );
+        return false;
+  }
+
+  window.addEventListener('beforeunload', function(e) {
+    cancel_transaction()
+  });
+</script>
 {% endblock javascripts %}

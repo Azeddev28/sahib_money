@@ -24,7 +24,7 @@ class OTPView(View, LoginRequiredMixin):
         if not transaction_otp or transaction_otp.has_expired():
            TransactionOTP.objects.create(transaction=transaction)
         # user ko email men bhej do aync task men
-        return render(request, 'third_party_transaction/otp.html', {'form': OTPForm()})
+        return render(request, 'third_party_transaction/otp.html', {'form': OTPForm(), 'uuid': uuid})
 
 
     def post(self, request, *args, **kwargs):
