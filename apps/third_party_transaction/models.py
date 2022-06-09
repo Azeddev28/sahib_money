@@ -34,8 +34,8 @@ class ThirdPartyTransaction(Transaction):
 
 
 class TransactionOTP(TimeStampedModel):
-    otp = HashidAutoField(primary_key=True, min_length=15)
-    transaction = models.ForeignKey(ThirdPartyTransaction, on_delete=models.CASCADE, related_name='otps')
+    otp_code = HashidAutoField(primary_key=True, min_length=15)
+    transaction = models.OneToOneField(ThirdPartyTransaction, on_delete=models.CASCADE, related_name='otp')
 
     @property
     def has_expired(self):

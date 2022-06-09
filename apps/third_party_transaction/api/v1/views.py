@@ -9,7 +9,7 @@ from rest_framework import authentication, permissions
 from .authentication import MerchantAuthentication
 from .permissions import IsAuthorizedMerchant
 from apps.wallet.models import Wallet
-from apps.wallet.choices import TransactionType
+from apps.wallet.choices import TransactionType, TransactionStatus
 from apps.third_party_transaction.models import ThirdPartyTransaction
 from apps.third_party_transaction.utils import get_decoded_transaction_details
 
@@ -74,5 +74,17 @@ class CancelWithdrawalTransaction(views.APIView):
     permission_classes = [permissions.IsAuthenticated]
 
     def get(self, request, format=None):
-        print(request.GET.get('uuid'))
-        return Response({'message': 'hello'})
+        uuid = request.GET.get('uuid')
+        try:
+            transaction = ThirdPartyTransaction.objects.get(uuid=uuid)
+        except ThirdPartyTransaction.DoesNotExist:
+            return Response({'message': "Transaction does not exist"})
+
+        if transaction.is_invalid():
+            return Response({'message': "Transaction is not valid anymore"})
+
+        transaction.otp.delete()
+        transaction.status = TransactionStatus.CANCELLED
+        transaction.save()
+
+        return Response({'message': 'Transaction has been cancelled'})

@@ -20,7 +20,7 @@ class TransactionOTPAdmin(admin.ModelAdmin):
     class Meta:
         model = TransactionOTP
 
-    readonly_fields = ['transaction', 'otp', 'created']
+    readonly_fields = ['transaction', 'otp_code', 'created']
 
 admin.site.register(MerchantAccount, MerchantAccountAdmin)
 admin.site.register(ThirdPartyTransaction, ThirdPartyTransactionAdmin)

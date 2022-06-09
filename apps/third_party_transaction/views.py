@@ -21,9 +21,10 @@ class OTPView(LoginRequiredMixin, View):
         if transaction.is_invalid():
             return render(request, 'third_party_transaction/errors.html', {'errors': "Transaction is not valid anymore"})
 
-        transaction_otp = transaction.otps.order_by('-created').first()
-        if not transaction_otp or transaction_otp.has_expired:
-           TransactionOTP.objects.create(transaction=transaction)
+        try:
+            transaction_otp = transaction.otp
+        except TransactionOTP.DoesNotExist:
+            TransactionOTP.objects.create(transaction=transaction)
         # user ko email men bhej do aync task men
         return render(request, 'third_party_transaction/otp.html', {'uuid': uuid})
 
@@ -34,17 +35,21 @@ class OTPView(LoginRequiredMixin, View):
             transaction = ThirdPartyTransaction.objects.get(uuid=uuid)
         except ThirdPartyTransaction.DoesNotExist:
             context = {'errors': "Transaction does not exist"}
-            return render(request, 'third_party_transaction/errors.html', context)
+            return JsonResponse(context, status=400)
 
         if transaction.is_invalid():
-            return render(request, 'third_party_transaction/errors.html', {'errors': "Transaction is not valid anymore"})
+            context = {'errors': "Transaction is not valid anymore"}
+            return JsonResponse(context, status=400)
 
-        transaction_otp = transaction.otps.order_by('-created').first()
-        if transaction_otp and str(transaction_otp.otp) == otp:
+        if transaction.otp.has_expired:
+            context = {'errors': "Transaction otp has expired"}
+            return JsonResponse(context, status=400)
+
+        if transaction.otp and str(transaction.otp.otp_code) == otp:
             transaction.status = TransactionStatus.VERIFIED
             transaction.save()
-            transaction.otps.all().delete()
-            return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
+            transaction.otp.delete()
+            return redirect("/")
         else:
             context = {'errors': "Invalid OTP"}
             return JsonResponse(context, status=400)
