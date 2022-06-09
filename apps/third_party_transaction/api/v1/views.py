@@ -2,7 +2,9 @@ from django.utils.decorators import method_decorator
 from django.contrib.auth import get_user_model
 
 from rest_framework.response import Response
-from rest_framework import viewsets, status
+from rest_framework import viewsets, status, views
+from rest_framework.response import Response
+from rest_framework import authentication, permissions
 
 from .authentication import MerchantAuthentication
 from .permissions import IsAuthorizedMerchant
@@ -14,7 +16,7 @@ from apps.third_party_transaction.utils import get_decoded_transaction_details
 User = get_user_model()
 
 
-class TPTransactionViewSet(viewsets.ModelViewSet):
+class MerchantTransactionViewSet(viewsets.ViewSet):
     authentication_classes = [MerchantAuthentication]
     permission_classes = [IsAuthorizedMerchant]
 
@@ -44,7 +46,7 @@ class TPTransactionViewSet(viewsets.ModelViewSet):
 
         if last_transaction:
             last_transaction = ThirdPartyTransaction.objects.get(uuid=last_transaction.uuid)
-            if not last_transaction.has_expired:
+            if not last_transaction.is_invalid():
                 return Response("Another transaction is in progress",status=status.HTTP_400_BAD_REQUEST)
 
         # check if requested withdrawal credits are greater than available credits in user wallet
@@ -65,3 +67,12 @@ class TPTransactionViewSet(viewsets.ModelViewSet):
         }
 
         return Response(response)
+
+
+class CancelWithdrawalTransaction(views.APIView):
+    authentication_classes = [authentication.SessionAuthentication]
+    permission_classes = [permissions.IsAuthenticated]
+
+    def get(self, request, format=None):
+        print(request.GET.get('uuid'))
+        return Response({'message': 'hello'})

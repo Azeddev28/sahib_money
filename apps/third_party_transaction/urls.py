@@ -6,5 +6,5 @@ from apps.third_party_transaction.views import OTPView
 
 urlpatterns = [
     path('api/v1/', include(tp_transaction_api_v1)),
-    path('otp/<uuid:uuid>', OTPView.as_view(), name='otp'),
+    path('otp/<uuid:uuid>', OTPView.as_view(), name='otp_view'),
 ]
