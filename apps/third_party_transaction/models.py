@@ -22,18 +22,20 @@ class MerchantAccount(TimeStampedModel):
 class ThirdPartyTransaction(Transaction):
     merchant_account = models.ForeignKey(MerchantAccount, on_delete=models.CASCADE, related_name='merchant_transactions')
     type = models.IntegerField(choices=TransactionType.CHOICES, null=False, blank=False)
-    transaction_status = models.IntegerField(choices=TransactionStatus.CHOICES, default=TransactionStatus.UNVERIFIED)
+    status = models.IntegerField(choices=TransactionStatus.CHOICES, default=TransactionStatus.UNVERIFIED)
     payment_status = models.IntegerField(choices=PaymentStatus.CHOICES, default=PaymentStatus.WAITING_FOR_APPROVAL)
 
     @property
     def has_expired(self):
         return (datetime.now(timezone.utc) - self.created).total_seconds() > settings.TP_TRANSACTION_TIMEOUT
 
+    def is_invalid(self):
+        return self.has_expired or self.status in [TransactionStatus.CANCELLED, TransactionStatus.VERIFIED]
+
 
 class TransactionOTP(TimeStampedModel):
     otp = HashidAutoField(primary_key=True, min_length=15)
     transaction = models.ForeignKey(ThirdPartyTransaction, on_delete=models.CASCADE, related_name='otps')
-    is_verified = models.BooleanField(blank=False, default=False)
 
     @property
     def has_expired(self):
