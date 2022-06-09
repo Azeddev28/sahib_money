@@ -10,7 +10,7 @@ from django.urls import reverse
 
 @login_required(login_url="/login/")
 def index(request):
-    return redirect('/payments/deposit/')
+    return redirect('/wallet/deposit/')
 
 
 @login_required(login_url="/login/")

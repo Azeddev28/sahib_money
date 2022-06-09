@@ -1,7 +1,7 @@
 from django.urls import path
 
-from apps.authentication.views import login_view, register_user
-from apps.authentication.bindings import verify_account_view, logout_view
+from apps.authentication.views import register_user
+from apps.authentication.bindings import verify_account_view, logout_view, login_view
 
 
 urlpatterns = [
