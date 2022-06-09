@@ -9,13 +9,8 @@ from rest_framework import authentication, permissions
 from .authentication import MerchantAuthentication
 from .permissions import IsAuthorizedMerchant
 from apps.wallet.models import Wallet
-<<<<<<< HEAD
 from apps.wallet.choices import TransactionType, TransactionStatus
-from apps.third_party_transaction.models import ThirdPartyTransaction
-=======
-from apps.wallet.choices import TransactionType
 from apps.third_party_transaction.models import ThirdPartyTransaction, TransactionOTP
->>>>>>> 6d3659c904e65aaecfdb69ded4cfa92de207a539
 from apps.third_party_transaction.utils import get_decoded_transaction_details
 
 User = get_user_model()
