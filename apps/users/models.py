@@ -5,6 +5,8 @@ from django.utils.translation import gettext_lazy as _
 from django.core.validators import validate_email
 from django.contrib.auth.models import UnicodeUsernameValidator
 
+from hashid_field import BigHashidAutoField
+
 from apps.base_models import BaseModel
 from apps.users.managers import UserManager
 
@@ -47,3 +49,10 @@ class User(AbstractBaseUser, PermissionsMixin, BaseModel):
     @property
     def full_name(self):
         return f"{self.first_name} {self.last_name}"
+
+
+class MerchantAccount(BaseModel):
+    account_name = models.CharField(max_length=40)
+    merchant_secret_key = BigHashidAutoField(primary_key=True, min_length=20)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='merchant_account_user')
+    company_website = models.CharField(max_length=200)
