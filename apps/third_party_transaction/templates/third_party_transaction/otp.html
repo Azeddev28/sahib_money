@@ -1,0 +1,93 @@
+{% extends "layouts/base.html" %}
+{% load static %}
+
+{% block title %} Login {% endblock %}
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+    <form id="otp-form" class="form-contact" method="post" data-uuid="{{uuid}}">
+      {% csrf_token %}
+      <div class="row">
+        <div class="col-md-3 px-md-1">
+          <div class="form-group">
+            <label>OTP</label>
+            <input type="text" class="form-control" name="otp" required="" id="id_otp">
+          </div>
+        </div>
+      </div>
+      <input type="button" onclick="submit_transaction('{{ uuid }}')" class='btn btn-success btn-xs' value="Submit">
+      <button type="button" class='btn btn-danger btn-xs' onclick="confirmDialog('{{ uuid }}', 'Cancel Transaction', 'Do you want to cancel this transaction?')">Cancel</button>
+      <a class="btn btn-info btn-xs" onclick="resend_otp('{{ uuid }}')">Resend</a>
+    </form>
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<link href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css" rel="stylesheet" />
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+<script type="text/javascript">
+  function submit_transaction(uuid){
+    $.ajax({
+      type: "POST",
+      headers: {'X-CSRFToken': '{{ csrf_token }}'},
+      url: "{% url 'otp_view' uuid %}",
+      data: {otp: $("#id_otp").val()},
+      success: function(data) {
+        window.location.href = data.success_url
+      },
+      error: function(data){
+        console.log(data)
+      }
+    });
+  }
+
+  function resend_otp(uuid){
+    $.ajax({
+      type: "GET",
+      url: "{% url 'regenerate_otp' %}",
+      data: {"uuid": uuid},
+      success: function(data) {
+        console.log(data);
+      }
+    });
+  }
+
+  function cancel_transaction(uuid){
+    $.ajax({
+      type: "GET",
+      url: "{% url 'cancel_withdrawal_transaction' %}",
+      data: {"uuid": uuid},
+      success: function(data) {
+        console.log(data);
+      }
+    });
+  }
+  function confirmDialog(uuid, title, message, stay_on_page) {
+    $('<div></div>').appendTo('body')
+      .html('<div><p style="color: black;">' + message + '</p></div>')
+      .dialog({
+        modal: true,
+        title: title,
+        zIndex: 10000,
+        autoOpen: true,
+        width: 'auto',
+        resizable: false,
+        buttons: {
+          Yes: function() {
+            cancel_transaction(uuid)
+            window.location.href = '/'
+          },
+          No: function() {
+            $(this).dialog("close");
+          }
+        },
+        close: function(event, ui) {
+          $(this).remove();
+        }
+      });
+  };
+</script>
+{% endblock javascripts %}
