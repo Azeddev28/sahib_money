@@ -10,6 +10,10 @@ urlpatterns = [
         MerchantTransactionViewSet.as_view({"post": "init_withdrawal_transaction"}),
         name='init_withdrawal_transaction'
     ),
+    url(r'^transaction-status/$',
+        MerchantTransactionViewSet.as_view({"post": "transaction-status"}),
+        name='transaction-status'
+    ),
     url(r'^cancel-withdrawal-transaction/$',
         CancelWithdrawalTransaction.as_view(),
         name='cancel_withdrawal_transaction'

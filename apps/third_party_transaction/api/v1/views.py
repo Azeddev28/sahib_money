@@ -76,6 +76,15 @@ class MerchantTransactionViewSet(viewsets.ViewSet):
 
         return Response(response)
 
+    def transaction_status(self, request, *args, **kwargs):
+        reference = request.POST.get('transaction_reference')
+        try:
+            transaction = ThirdPartyTransaction.objects.get(reference=reference)
+        except ThirdPartyTransaction.DoesNotExist:
+            return Response({'error': "Transaction does not exist"})
+
+        return Response({'status': transaction.status})
+
 
 class CancelWithdrawalTransaction(views.APIView):
     authentication_classes = [authentication.SessionAuthentication]
