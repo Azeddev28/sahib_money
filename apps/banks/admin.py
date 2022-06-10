@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from apps.banks.models import UserBank
+from apps.banks.models import SahibMoneyBank, UserBank
 
 
 class UserBankModelAdmin(admin.ModelAdmin):
@@ -9,4 +9,13 @@ class UserBankModelAdmin(admin.ModelAdmin):
 
     list_display = ('account_no', 'iban_no', 'account_name')
 
+
+class SahibMoneyBankModelAdmin(admin.ModelAdmin):
+    class Meta:
+        model = SahibMoneyBank
+
+    list_display = ('account_no', 'iban_no', 'account_name')
+
+
 admin.site.register(UserBank, UserBankModelAdmin)
+admin.site.register(SahibMoneyBank, SahibMoneyBankModelAdmin)
