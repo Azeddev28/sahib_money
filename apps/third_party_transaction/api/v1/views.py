@@ -83,7 +83,7 @@ class MerchantTransactionViewSet(viewsets.ViewSet):
         except ThirdPartyTransaction.DoesNotExist:
             return Response({'error': "Transaction does not exist"})
 
-        return Response({'status': transaction.status})
+        return Response({'status': transaction.get_status_display()})
 
 
 class CancelWithdrawalTransaction(views.APIView):

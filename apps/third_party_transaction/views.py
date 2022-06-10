@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from django.http import HttpResponseRedirect, JsonResponse
+from django.http import JsonResponse, HttpResponseNotFound
 from django.views import View
 from django.contrib.auth.mixins import LoginRequiredMixin
 from apps.services.email_service import EmailService
@@ -13,13 +13,13 @@ class OTPView(LoginRequiredMixin, View):
         try:
             transaction = ThirdPartyTransaction.objects.get(uuid=uuid)
         except ThirdPartyTransaction.DoesNotExist:
-            return render(request, 'third_party_transaction/errors.html', {'error': "Transaction does not exist"})
+            return HttpResponseNotFound()
 
         if request.user != transaction.wallet.user:
-            return render(request, 'third_party_transaction/errors.html', {'error': "Invalid user"})
+            return HttpResponseNotFound()
 
         if transaction.is_invalid():
-            return render(request, 'third_party_transaction/errors.html', {'error': "Transaction is not valid anymore"})
+            return HttpResponseNotFound()
 
         try:
             transaction_otp = transaction.otp

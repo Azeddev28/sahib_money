@@ -7,7 +7,7 @@ class ThirdPartyTransactionAdmin(admin.ModelAdmin):
     class Meta:
         model = ThirdPartyTransaction
 
-    readonly_fields = ['uuid', 'wallet', 'merchant_account', 'type', 'status' , 'amount']
+    readonly_fields = ['uuid', 'wallet', 'merchant_account', 'type', 'status' , 'amount', 'reference']
 
 class TransactionOTPAdmin(admin.ModelAdmin):
     class Meta:

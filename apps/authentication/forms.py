@@ -60,7 +60,7 @@ class MerchantSignUpForm(forms.ModelForm):
                 "class": "form-control"
             }
         ))
-    business_name = forms.CharField(
+    merchant_account_name = forms.CharField(
         widget=forms.TextInput(
             attrs={
                 "placeholder": "Business Name",
@@ -70,4 +70,4 @@ class MerchantSignUpForm(forms.ModelForm):
 
     class Meta:
         model = MerchantAccount
-        fields = ('company_website', 'business_name')
+        fields = ('company_website', 'merchant_account_name')
