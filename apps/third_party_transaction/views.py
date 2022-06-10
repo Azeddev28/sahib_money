@@ -24,13 +24,15 @@ class OTPView(LoginRequiredMixin, View):
         try:
             transaction_otp = transaction.otp
         except TransactionOTP.DoesNotExist:
-            TransactionOTP.objects.create(transaction=transaction)
+            transaction_otp = TransactionOTP.objects.create(transaction=transaction)
 
+        otp_remaining_seconds = round(transaction_otp.remaining_seconds)
         context = {
             'uuid': uuid,
             'amount': transaction.amount,
             'requested_form': transaction.merchant_account.merchant_account_name,
-            'company_website': transaction.merchant_account.company_website
+            'company_website': transaction.merchant_account.company_website,
+            'otp_remaining_seconds': otp_remaining_seconds,
         }
         return render(request, 'third_party_transaction/otp.html', context)
 

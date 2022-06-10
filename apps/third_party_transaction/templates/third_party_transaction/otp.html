@@ -34,7 +34,7 @@
       color: white;
   }
      .otp-field {
-        display: flex; 
+        display: flex;
         align-items: center;
         width: 100%
      }
@@ -45,7 +45,7 @@
 </head>
 
 <body class="">
-  
+
   <div class="wrapper">
 
     <div class="main-panel">
@@ -83,11 +83,11 @@
                     <span class="countdown" id='countdown-timer'></span>
 
                 <input type="button" id="submit-otp" disabled onclick="submit_transaction('{{ uuid }}')" style='margin-top:5%' class='btn btn-success btn-xs float-right' value="Submit">
-                
+
               </form>
             </div>
           </div>
-          <div class='row float-right' style='margin-top: -12px'> 
+          <div class='row float-right' style='margin-top: -12px'>
             <button disabled class="btn btn-info btn-xs" style='margin-right:10px' id='resent-otp' onclick="resend_otp('{{ uuid }}')">Resend</button>
             <button type="button" class='btn btn-danger btn-xs'
                   onclick="confirmDialog('{{ uuid }}', 'Cancel Transaction', 'Do you want to cancel this transaction?')">Cancel</button>
@@ -111,8 +111,10 @@
 
   <script type="text/javascript">
     var minutes = 0, seconds = 59;
-    function startCounter(){
-      var timer2 = "1:00";
+    function startCounter(otp_remaining_seconds){
+      var remaining_seconds = (otp_remaining_seconds < 0) ? '01' : otp_remaining_seconds
+      var timer2 = "0:" + remaining_seconds;
+      console.log(timer2);
       var interval = setInterval(function() {
         var timer = timer2.split(':');
         //by parsing integer, I avoid all extra string processing
@@ -137,7 +139,8 @@
       }, 1000);
     }
     $(document).ready(function(){
-      startCounter()
+      var otp_remaining_seconds = parseInt('{{otp_remaining_seconds}}');
+      startCounter(otp_remaining_seconds)
     })
 
     $(document).on('input', '#id_otp', function(){
@@ -166,7 +169,7 @@
 
     function resend_otp(uuid) {
       $('#resent-otp').prop('disabled', true)
-      startCounter()
+      startCounter(60)
       $.ajax({
         type: "GET",
         url: "{% url 'regenerate_otp' %}",

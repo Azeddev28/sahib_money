@@ -8,9 +8,9 @@ from apps.wallet.services.wallet_transaction import WalletTransactionService
 
 
 @receiver(post_save, sender=ThirdPartyTransaction)
-def send_otp_verification_email(sender, instance:ThirdPartyTransaction, created, **kwargs):
+def deduct_amount_after_approval(sender, instance:ThirdPartyTransaction, created, **kwargs):
     if not created:
-        if instance.status == PaymentStatus.APPROVED:
+        if instance.payment_status == PaymentStatus.APPROVED:
             WalletTransactionService.deduct_amount(instance.wallet, instance.amount)
 
 

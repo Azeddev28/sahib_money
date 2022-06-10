@@ -37,3 +37,7 @@ class TransactionOTP(TimeStampedModel):
     @property
     def has_expired(self):
         return (datetime.now(timezone.utc) - self.created).total_seconds() > settings.OTP_TIMEOUT
+
+    @property
+    def remaining_seconds(self):
+        return settings.OTP_TIMEOUT - (datetime.now(timezone.utc) - self.created).total_seconds()
