@@ -11,11 +11,16 @@ from apps.wallet.choices import PaymentStatus, TransactionType, TransactionStatu
 
 User = get_user_model()
 
+
 class ThirdPartyTransaction(Transaction):
     merchant_account = models.ForeignKey(MerchantAccount, on_delete=models.CASCADE, related_name='merchant_transactions')
+    reference = models.CharField(max_length=64, null=False)
     type = models.IntegerField(choices=TransactionType.CHOICES, null=False, blank=False)
     status = models.IntegerField(choices=TransactionStatus.CHOICES, default=TransactionStatus.UNVERIFIED)
     payment_status = models.IntegerField(choices=PaymentStatus.CHOICES, default=PaymentStatus.WAITING_FOR_APPROVAL)
+
+    class Meta:
+        unique_together = ('merchant_account', 'reference',)
 
     @property
     def has_expired(self):

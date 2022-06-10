@@ -6,15 +6,15 @@ from .views import MerchantTransactionViewSet, CancelWithdrawalTransaction, Rege
 
 
 urlpatterns = [
-    url(r'^init_transaction/withdraw/$',
+    url(r'^init-transaction/withdraw/$',
         MerchantTransactionViewSet.as_view({"post": "init_withdrawal_transaction"}),
         name='init_withdrawal_transaction'
     ),
-    url(r'^cancel_withdrawal_transaction/$',
+    url(r'^cancel-withdrawal-transaction/$',
         CancelWithdrawalTransaction.as_view(),
         name='cancel_withdrawal_transaction'
     ),
-    url(r'^regenerate_otp/$',
+    url(r'^regenerate-otp/$',
         RegenerateOTP.as_view(),
         name='regenerate_otp'
     ),

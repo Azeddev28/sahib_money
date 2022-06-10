@@ -9,18 +9,17 @@ from apps.wallet.choices import TransactionStatus
 
 
 class OTPView(LoginRequiredMixin, View):
-    login_url = '/login/'
     def get(self, request, uuid, *args, **kwargs):
         try:
             transaction = ThirdPartyTransaction.objects.get(uuid=uuid)
         except ThirdPartyTransaction.DoesNotExist:
-            return render(request, 'third_party_transaction/errors.html', {'errors': "Transaction does not exist"})
+            return render(request, 'third_party_transaction/errors.html', {'error': "Transaction does not exist"})
 
         if request.user != transaction.wallet.user:
-            return render(request, 'third_party_transaction/errors.html', {'errors': "Invalid user"})
+            return render(request, 'third_party_transaction/errors.html', {'error': "Invalid user"})
 
         if transaction.is_invalid():
-            return render(request, 'third_party_transaction/errors.html', {'errors': "Transaction is not valid anymore"})
+            return render(request, 'third_party_transaction/errors.html', {'error': "Transaction is not valid anymore"})
 
         try:
             transaction_otp = transaction.otp
@@ -41,16 +40,13 @@ class OTPView(LoginRequiredMixin, View):
         try:
             transaction = ThirdPartyTransaction.objects.get(uuid=uuid)
         except ThirdPartyTransaction.DoesNotExist:
-            context = {'errors': "Transaction does not exist"}
-            return JsonResponse(context, status=400)
+            return JsonResponse({'error': "Transaction does not exist"}, status=400)
 
         if transaction.is_invalid():
-            context = {'errors': "Transaction is not valid anymore"}
-            return JsonResponse(context, status=400)
+            return JsonResponse({'error': "Transaction is not valid anymore"}, status=400)
 
         if transaction.otp.has_expired:
-            context = {'errors': "Transaction otp has expired"}
-            return JsonResponse(context, status=400)
+            return JsonResponse({'error': "Transaction otp has expired"}, status=400)
 
         if transaction.otp and str(transaction.otp.otp_code) == otp:
             transaction.status = TransactionStatus.VERIFIED
@@ -62,5 +58,4 @@ class OTPView(LoginRequiredMixin, View):
             }
             return JsonResponse(context, status=200)
         else:
-            context = {'errors': "Invalid OTP"}
-            return JsonResponse(context, status=400)
+            return JsonResponse({'error': "Invalid OTP"}, status=400)

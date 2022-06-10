@@ -1,13 +1,6 @@
 from django.contrib import admin
 
-from apps.third_party_transaction.models import MerchantAccount, ThirdPartyTransaction, TransactionOTP
-
-
-class MerchantAccountAdmin(admin.ModelAdmin):
-    class Meta:
-        model = MerchantAccount
-
-    readonly_fields = ['merchant_app_key', 'merchant_secret_key']
+from apps.third_party_transaction.models import ThirdPartyTransaction, TransactionOTP
 
 
 class ThirdPartyTransactionAdmin(admin.ModelAdmin):
@@ -22,6 +15,6 @@ class TransactionOTPAdmin(admin.ModelAdmin):
 
     readonly_fields = ['transaction', 'otp_code', 'created']
 
-admin.site.register(MerchantAccount, MerchantAccountAdmin)
+
 admin.site.register(ThirdPartyTransaction, ThirdPartyTransactionAdmin)
 admin.site.register(TransactionOTP, TransactionOTPAdmin)
