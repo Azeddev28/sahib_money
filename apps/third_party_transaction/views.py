@@ -1,8 +1,8 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render
+from django.conf import settings
 from django.http import JsonResponse, HttpResponseNotFound
 from django.views import View
 from django.contrib.auth.mixins import LoginRequiredMixin
-from apps.services.email_service import EmailService
 
 from apps.third_party_transaction.models import ThirdPartyTransaction, TransactionOTP
 from apps.wallet.choices import TransactionStatus
@@ -28,6 +28,7 @@ class OTPView(LoginRequiredMixin, View):
 
         otp_remaining_seconds = round(transaction_otp.remaining_seconds)
         context = {
+            'transaction_timeout': int(settings.TP_TRANSACTION_TIMEOUT / 60),
             'uuid': uuid,
             'amount': transaction.amount,
             'requested_form': transaction.merchant_account.merchant_account_name,
