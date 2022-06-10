@@ -1,0 +1,60 @@
+{% extends "layouts/base.html" %}
+
+{% block title %} Page User {% endblock %} 
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+<div class="row">
+  <div class="col-md-8">
+    <div class="card">
+      <div class="card-header">
+        <h5 class="title">Merchant Profile</h5>
+      </div>
+      <div class="card-body">
+        <form>
+          <div class="row">
+            <div class="col-md-9 pr-md-1">
+              <div class="form-group">
+                <label for="exampleInputEmail1">Email address</label>
+                <input type="email" style="color:white" class="form-control" value="{{ request.user.email }}">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-9 pr-md-1">
+              <div class="form-group">
+                <label for="exampleInputEmail1">Business Name</label>
+                <input type="text" style="color:white" class="form-control" value="{{ request.user.merchant_account }}">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-9 pr-md-1">
+              <div class="form-group">
+                <label>Merchant APP Key</label>
+                <span type="text" style="color:white" class="form-control" placeholder="Company">{{ request.user.merchant_account.merchant_app_key }}</span>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-9 pr-md-1">
+              <div class="form-group">
+                <label>Merchant Secret</label>
+                <span type="text" style="color:white" class="form-control" placeholder="Company">{{ request.user.merchant_account.merchant_secret_key }}</span>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}{% endblock javascripts %}

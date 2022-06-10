@@ -12,10 +12,10 @@ class IsAuthorizedMerchant(BasePermission):
     message = 'Merchant not verified'
 
     def has_permission(self, request, view):
-        target_url = request.build_absolute_uri(settings.TP_TARGET_URL)
         merchant_app_key = request.POST.get('app_key')
+        transaction_reference = request.POST.get('transaction_reference', '')
         transaction_signature = request.POST.get('transaction_signature', '')
         merchant_account = MerchantAccount.objects.get(merchant_app_key=merchant_app_key)
         merchant_secret_key = merchant_account.merchant_secret_key
-        signature = generate_signature(merchant_app_key, merchant_secret_key, target_url)
+        signature = generate_signature(transaction_reference, merchant_app_key, merchant_secret_key)
         return signature == transaction_signature

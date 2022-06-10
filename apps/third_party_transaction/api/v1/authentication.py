@@ -16,4 +16,4 @@ class MerchantAuthentication(BaseAuthentication):
         except MerchantAccount.DoesNotExist:
             raise exceptions.AuthenticationFailed('No merchant account associated with this key')
 
-        return (merchant_account.account_user, None)
+        return (merchant_account.user, None)

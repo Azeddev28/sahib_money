@@ -3,8 +3,8 @@ from django.contrib.auth import authenticate, login, get_user_model
 from django.views import View
 
 from apps.authentication.decorators import authenticated_redirect
+from apps.authentication.forms import LoginForm, SignUpForm
 
-from .forms import LoginForm, SignUpForm
 
 User = get_user_model()
 

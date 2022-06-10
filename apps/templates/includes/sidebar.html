@@ -1,5 +1,4 @@
 
-
     <div class="sidebar">
       <div class="sidebar-wrapper">
         <div class="logo">
@@ -19,6 +18,12 @@
             <a href="/">
               <i class="tim-icons icon-chart-pie-36"></i>
               <p>Dashboard</p>
+            </a>
+          </li>
+          <li class="{% if 'index' in segment %} active {% endif %}">
+            <a href="{% url 'payment-deposit' %}">
+              <i class="tim-icons icon-coins"></i>
+              <p>Deposit</p>
             </a>
           </li>
           {% comment %} <li class="{% if 'icons' in segment %} active {% endif %}">

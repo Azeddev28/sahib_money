@@ -45,7 +45,7 @@
                   <li class="nav-link"><a href="javascript:void(0)" class="nav-item dropdown-item">Another one</a></li>
                 </ul>
               </li> {% endcomment %}
-              <li class="dropdown nav-item" style="padding-top:12px">Credits: {{request.user.user_wallet.total_amount}}</li>
+              <li class="dropdown nav-item" style="padding-top:12px">Credits: {{request.user.wallet.total_amount|floatformat:2}}</li>
               <li class="dropdown nav-item">
                 <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
                   <div class="photo">
@@ -57,8 +57,8 @@
                   </p> {% endcomment %}
                 </a>
                 <ul class="dropdown-menu dropdown-navbar">
-                  {% comment %} <li class="nav-link"><a href="/page-user.html" class="nav-item dropdown-item">Profile</a></li> {% endcomment %}
-                  {% comment %} <li class="dropdown-divider"></li> {% endcomment %}
+                  <li class="nav-link"><a href="{% url 'profile' %}" class="nav-item dropdown-item">Profile</a></li>
+                  <li class="dropdown-divider"></li>
                   <li class="nav-link"><a href="{% url 'logout' %}" class="nav-item dropdown-item">Log out</a></li>
                 </ul>
               </li>

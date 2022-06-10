@@ -22,11 +22,10 @@ DEBUG = config('DEBUG', default=True, cast=bool)
 ALLOWED_HOSTS = ['localhost', '127.0.0.1', config('SERVER', default='127.0.0.1')]
 
 
-# OTP Timeout
+# Timeout in seconds
 OTP_TIMEOUT = 60.0
-TP_TRANSACTION_TIMEOUT = 300.0
+TP_TRANSACTION_TIMEOUT = 180.0
 
-TP_TARGET_URL = '/tp_transaction/api/v1/init_transaction/'
 # Application definition
 
 DJANGO_APPS = [
@@ -44,6 +43,7 @@ PROJECT_APPS = [
     'apps.home',
     'apps.users',
     'apps.wallet',
+    'apps.banks',
     'apps.third_party_transaction',
     'apps.authentication',
 ]
@@ -87,6 +87,7 @@ WSGI_APPLICATION = 'config.wsgi.application'
 # AUTH USER MODEL
 
 AUTH_USER_MODEL = 'users.User'
+LOGIN_URL = '/login'
 
 
 # Password validation
