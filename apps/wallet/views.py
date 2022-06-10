@@ -20,7 +20,7 @@ class DepositTransactionView(View):
         form = DepositForm(request.POST, request.FILES)
         if form.is_valid():
             payment = form.save(commit=False)
-            payment.wallet = request.user.user_wallet
+            payment.wallet = request.user.wallet
             payment.save()
 
             form = DepositForm()
