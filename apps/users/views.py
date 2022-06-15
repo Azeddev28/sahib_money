@@ -23,4 +23,5 @@ class ProfileDetailsView(View):
         form = MerchantAccountForm(request.POST, instance=merchant)
         if form.is_valid():
             form.save()
-            return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+            form = MerchantAccountForm(instance=merchant)
+            return render(request, self.merchant_profile_template, {'form': form})

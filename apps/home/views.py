@@ -16,7 +16,7 @@ class DashboardView(View):
 
     def get(self, request, *args, **kwargs):
         context = {
-            'transactions': Transaction.objects.all()
+            'transactions': Transaction.objects.filter(wallet__user=request.user)
         }
         return render(request, self.template_name, context)
 

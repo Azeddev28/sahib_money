@@ -14,12 +14,14 @@
         <h5 class="title">Merchant Profile</h5>
       </div>
       <div class="card-body">
-        <form>
+        <form method='POST' action='.'>
+          {% csrf_token %}
+
           <div class="row">
             <div class="col-md-9 pr-md-1">
               <div class="form-group">
                 <label for="exampleInputEmail1">Email address</label>
-                <input type="email" style="color:white" class="form-control" value="{{ request.user.email }}">
+                <input type="email" disabled style="color:white" class="form-control" value="{{ request.user.email }}">
               </div>
             </div>
           </div>
@@ -27,7 +29,7 @@
             <div class="col-md-9 pr-md-1">
               <div class="form-group">
                 <label for="exampleInputEmail1">Business Name</label>
-                <input type="text" style="color:white" class="form-control" value="{{ request.user.merchant_account }}">
+                <input type="text" disabled style="color:white" class="form-control" value="{{ request.user.merchant_account }}">
               </div>
             </div>
           </div>
@@ -47,13 +49,15 @@
               </div>
             </div>
           </div>
-        </form>
-        <form  method="post">
-          <div class="form-group">
-            {% csrf_token %}
-            {{ form }}
+          <div class="row">
+            <div class="col-md-9 pr-md-1">
+              <div class="form-group">
+                <label for="id_redirect_url">Site Redirect url:</label>
+                <input type="text" value="{{request.user.merchant_account.redirect_url}}" disbaled style="color:white" class="form-control" name="redirect_url" maxlength="200" id="id_redirect_url">
+              </div>
+            </div>
           </div>
-          <input type="submit" value="Submit">
+          <input type="submit" class="btn btn-success" value="Save">
         </form>
       </div>
     </div>
