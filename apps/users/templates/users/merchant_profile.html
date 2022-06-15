@@ -48,6 +48,13 @@
             </div>
           </div>
         </form>
+        <form  method="post">
+          <div class="form-group">
+            {% csrf_token %}
+            {{ form }}
+          </div>
+          <input type="submit" value="Submit">
+        </form>
       </div>
     </div>
   </div>
