@@ -57,7 +57,7 @@ class OTPView(LoginRequiredMixin, View):
             transaction.otp.delete()
             context = {
                 'success': "Transaction Verified",
-                'success_url': transaction.merchant_account.company_website
+                'success_url': f"{transaction.merchant_account.company_website}?ref={transaction.reference}"
             }
             return JsonResponse(context, status=200)
         else:

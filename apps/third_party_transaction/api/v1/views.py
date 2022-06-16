@@ -83,7 +83,20 @@ class MerchantTransactionViewSet(viewsets.ViewSet):
         except ThirdPartyTransaction.DoesNotExist:
             return Response({'error': "Transaction does not exist"})
 
-        return Response({'status': transaction.get_status_display()})
+        msg = None
+        if transaction.status == TransactionStatus.VERIFIED:
+            msg = 'Transaction has been verified and approved'
+        elif transaction.status == TransactionStatus.CANCELLED:
+            msg = 'Transaction has been Cancelled'
+        elif transaction.status == TransactionStatus.UNVERIFIED:
+            msg = 'Transaction has not been verified'
+
+        return Response(
+            {
+                'status': transaction.get_status_display(),
+                'msg': msg
+            }
+        )
 
 
 class CancelWithdrawalTransaction(views.APIView):

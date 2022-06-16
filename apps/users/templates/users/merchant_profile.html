@@ -36,6 +36,14 @@
           <div class="row">
             <div class="col-md-9 pr-md-1">
               <div class="form-group">
+                <label for="exampleInputEmail1">Company Website</label>
+                <input type="text" disabled style="color:white" class="form-control" value="{{ request.user.merchant_account.company_website }}">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-9 pr-md-1">
+              <div class="form-group">
                 <label>Merchant APP Key</label>
                 <span type="text" style="color:white" class="form-control" placeholder="Company">{{ request.user.merchant_account.merchant_app_key }}</span>
               </div>

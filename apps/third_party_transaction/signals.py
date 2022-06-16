@@ -3,14 +3,14 @@ from django.dispatch import receiver
 
 from apps.services.email_service import EmailService
 from apps.third_party_transaction.models import TransactionOTP, ThirdPartyTransaction
-from apps.wallet.choices import PaymentStatus
+from apps.wallet.choices import PaymentStatus, TransactionStatus
 from apps.wallet.services.wallet_transaction import WalletTransactionService
 
 
 @receiver(post_save, sender=ThirdPartyTransaction)
 def deduct_amount_after_approval(sender, instance:ThirdPartyTransaction, created, **kwargs):
     if not created:
-        if instance.payment_status == PaymentStatus.APPROVED:
+        if instance.status == TransactionStatus.VERIFIED:
             WalletTransactionService.deduct_amount(instance.wallet, instance.amount)
 
 
