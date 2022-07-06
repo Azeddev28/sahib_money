@@ -8,8 +8,8 @@ User = get_user_model()
 
 class SahibMoneyBank(BaseModel):
     account_no = models.CharField(max_length=30)
-    iban_no = models.CharField(max_length=10)
-    account_name = models.CharField(max_length=20)
+    iban_no = models.CharField(max_length=50)
+    account_name = models.CharField(max_length=50)
 
 
 class UserBank(SahibMoneyBank):
