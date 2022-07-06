@@ -38,6 +38,10 @@ class OTPView(LoginRequiredMixin, View):
         return render(request, 'third_party_transaction/otp.html', context)
 
 
+    def get_success_url(self, merchant_account, transaction_reference):
+        success_redirect_url = merchant_account.redirect_url if merchant_account.redirect_url else merchant_account.company_website
+        return f"{success_redirect_url}?ref={transaction_reference}"
+
     def post(self, request, uuid, *args, **kwargs):
         otp = request.POST.get('otp')
         try:
@@ -57,7 +61,7 @@ class OTPView(LoginRequiredMixin, View):
             transaction.otp.delete()
             context = {
                 'success': "Transaction Verified",
-                'success_url': f"{transaction.merchant_account.company_website}?ref={transaction.reference}"
+                'success_url': self.get_success_url(transaction.merchant_account, transaction.reference)
             }
             return JsonResponse(context, status=200)
         else:
