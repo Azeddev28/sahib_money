@@ -1,8 +1,7 @@
 
 $(document).ready(function () {
-  console.log($("#form-success").val())
     if ($("#form-success").val() === 'True') {
-      $("#success-modal").modal("show");
+      $("#modal-notification").modal("show");
     }
   }
 )
@@ -30,24 +29,25 @@ const amountField = document.querySelector('#id_amount')
 // })
 
 
-modalClose.addEventListener('click', function() {
-  $("#success-modal").modal("hide");
-})
+// modalClose.addEventListener('click', function() {
+//   $("#modal-notification").modal("hide");
+// })
 
 //selecting all required elements
-const dropArea = document.querySelector(".drag-area"),
+const dropArea = document.querySelector("#display-img"),
   dragText = dropArea.querySelector("header"),
   button = dropArea.querySelector("button"),
   input = document.querySelector("#imagefile");
 let file; //this is a global variable and we'll use it inside multiple functions
-button.onclick = () => {
-  input.click(); //if user click on the button then the input also clicked
-};
+// button.onclick = () => {
+//   input.click(); //if user click on the button then the input also clicked
+// };
 
 input.addEventListener("change", function () {
   //getting user select file and [0] this means if user select multiple files then we'll select only the first one
   file = this.files[0];
   dropArea.classList.add("active");
+  console.log("first")
   showFile(); //calling function
 });
 
@@ -80,8 +80,9 @@ function showFile() {
     let fileReader = new FileReader(); //creating new FileReader object
     fileReader.onload = () => {
       let fileURL = fileReader.result; //passing user file source in fileURL variable
-      let imgTag = `<img src="${fileURL}" alt="">`; //creating an img tag and passing user selected file source inside src attribute
-      dropArea.innerHTML = imgTag; //adding that created img tag inside dropArea container
+
+      let imgTag = `<img height='150' width='150' src="${fileURL}" alt="">`; //creating an img tag and passing user selected file source inside src attribute
+      dropArea.outerHTML = imgTag; //adding that created img tag inside dropArea container
     };
     fileReader.readAsDataURL(file);
   } else {

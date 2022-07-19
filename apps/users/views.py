@@ -7,7 +7,7 @@ from .models import MerchantAccount
 
 
 class ProfileDetailsView(View):
-    user_profile_template = 'users/profile.html'
+    user_profile_template = 'users/user_profile.html'
     merchant_profile_template = 'users/merchant_profile.html'
 
     def get(self, request, *args, **kwargs):
@@ -25,3 +25,10 @@ class ProfileDetailsView(View):
             form.save()
             form = MerchantAccountForm(instance=merchant)
             return render(request, self.merchant_profile_template, {'form': form})
+
+
+class ResetPassword(View):
+    template_name = 'home/page_forgot_password.html'
+
+    def get(self, request, *args, **kwargs):
+        return render(request, self.template_name, {})
