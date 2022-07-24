@@ -3,13 +3,13 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Cleanlanding Bootstrap Landing Template</title>
+  <title>Sahib Money</title>
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
   <meta content="" name="keywords">
   <meta content="" name="description">
 
   <!-- Favicons -->
-  <link href="{% static 'assets/img/landing_page/favicon.png' %}" rel="icon">
+  <link href="{% static 'assets/img/sahib_money.svg' %}" rel="icon">
   <link href="{% static 'assets/img/landing_page/apple-touch-icon.png' %}" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
@@ -22,12 +22,6 @@
   <!-- Main Stylesheet File -->
   <link href="{% static 'assets/css/landing_page.css' %}" rel="stylesheet">
 
-  <!-- =======================================================
-    Template Name: CleanLanding
-    Template URL: https://templatemag.com/cleanlanding-bootstrap-landing-template/
-    Author: TemplateMag.com
-    License: https://templatemag.com/license/
-  ======================================================= -->
 </head>
 
 <body>
@@ -36,8 +30,19 @@
       background-color: transparent;
       border-color: transparent
     }
+    .login-btn{
+      background-color: #1F2937;
+      color: white !important;
+      margin-top: 22%;
+      margin-right: 5%
+    }
+    .landing-logo {
+      width: 450px;
+      font-size: 25px ;
+    }
+
   </style>
-  <nav class="navbar navbar-default nav-props">
+  <nav class="sahib-money-nav navbar navbar-default nav-props">
     <div class="container-fluid">
       <!-- Brand and toggle get grouped for better mobile display -->
       <div class="navbar-header">
@@ -47,14 +52,14 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button> {% endcomment %}
-        <a class="navbar-brand" href="#">Sahib Money</a>
+        <a class="landing-logo" href="#"><img width="70" height="70" src="{% static 'assets/img/sahib_money.svg' %}" />Sahib Money</a>
       </div>
   
       <!-- Collect the nav links, forms, and other content for toggling -->
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 
         <ul class="nav navbar-nav navbar-right">
-          <li><a href="{% url 'login' %}">Login</a></li>
+          <li class='login-btn'><a   href="{% url 'login' %}"><span style='color:white'>Login<span></a></li>
 
         </ul>
       </div><!-- /.navbar-collapse -->

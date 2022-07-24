@@ -6,7 +6,7 @@ from apps.authentication.forms import MerchantSignUpForm, SignUpForm
 
 
 class MerchantRegisterView(View):
-    template_name = 'accounts/merchant_register.html'
+    template_name = 'authentication/merchant_register.html'
 
     def get(self, request, *args, **kwargs):
         signup_form = SignUpForm()

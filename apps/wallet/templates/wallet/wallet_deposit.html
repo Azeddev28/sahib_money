@@ -1,6 +1,6 @@
 {% extends "layouts/base.html" %}
 {% load static %}
-{% block title %} UI Modals {% endblock %}
+{% block title %} Wallet Deposit {% endblock %}
 
 <!-- Specific Page CSS goes HERE  -->
 {% block stylesheets %}{% endblock stylesheets %}
@@ -12,6 +12,8 @@
     margin-top: 4%;
   }
 </style>
+<input id="form-success" type="hidden" value="{{form_success}}" />
+
 <div class="row justify-content-center mt-4">
   <div class="col-12 col-xl-9">
     <div class="card shadow border-0 p-4 p-md-5 position-relative">
@@ -128,7 +130,7 @@
 
 <!-- Specific Page JS goes HERE  -->
 {% block javascripts %}
-<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 <script src="{% static 'assets/js/drag-and-drop.js' %}"></script>
 {% endblock javascripts %}
