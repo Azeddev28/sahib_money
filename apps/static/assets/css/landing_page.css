@@ -126,7 +126,7 @@ a:hover, a:focus {
 /* HEADER CONFIGURATION */
 
 #header {
-  background: #f2f9fe;
+  background: #f2f4f6;
   padding-top: 80px;
   padding-bottom: 80px;
   margin-bottom: 50px;
@@ -134,7 +134,7 @@ a:hover, a:focus {
 }
 
 #header h2 {
-  color: #5dca88;
+  color: #f8bd7a;
   font-size: 36px;
   line-height: 48px;
 }
@@ -236,7 +236,7 @@ a:hover, a:focus {
   z-index: 1;
   position: relative;
   border: none;
-  background: #5dca88;
+  background: #f8bd7a;
 }
 
 .btn-green2:hover {
@@ -258,7 +258,7 @@ a:hover, a:focus {
 }
 
 #f a {
-  color: #5dca88;
+  color: #f8bd7a;
 }
 
 #f a:hover {
@@ -289,7 +289,7 @@ a:hover, a:focus {
 }
 
 .contact-form .form-send button {
-  background: #5dca88;
+  background: #f8bd7a;
   border: 0;
   padding: 14px 40px;
   color: #fff;
@@ -392,7 +392,7 @@ a:hover, a:focus {
 }
 
 #copyrights a {
-  color: #5dca88;
+  color: #f8bd7a;
 }
 
 .credits {
