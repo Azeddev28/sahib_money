@@ -21,7 +21,7 @@ class DashboardView(View):
         return render(request, self.template_name, context)
 
 class HomeView(View):
-    template_name = 'home/homepage_1.html'
+    template_name = 'home/index.html'
 
     def get(self, request, *args, **kwargs):
         return render(request, self.template_name)
