@@ -133,10 +133,44 @@
   </head>
   <body>
     <style>
-      .main-top {
-        background-image: url('{% static "assets/img/main-bg.png" %}');
-        background-repeat: no-repeat, no-repeat;
+      @media (min-width: 200px) {
+        .main-top {
+          background-image: url('{% static "assets/img/img_background.png" %}');
+          background-repeat: no-repeat, no-repeat;
+        }
       }
+
+      @media (min-width: 300px) {
+        .main-top {
+          background-image: url('{% static "assets/img/img_background.png" %}');
+          background-repeat: no-repeat, no-repeat;
+        }
+      }
+
+      @media (min-width: 768px) {
+        .main-top {
+          background-image: url('{% static "assets/img/img_background.png" %}');
+          background-repeat: no-repeat, no-repeat;
+        }
+      }
+      
+      /* next size - tablet landscape and it covers desktop */
+      @media (min-width: 1024px) {
+        .main-top {
+          background-image: url('{% static "assets/img/main-bg.png" %}');
+          background-repeat: no-repeat, no-repeat;
+        }
+      }
+      
+      /* next size - larger desktops */
+      @media (min-width: 1280px) {
+        .main-top {
+          background-image: url('{% static "assets/img/main-bg.png" %}');
+          background-repeat: no-repeat, no-repeat;
+        }
+      }
+
+      
       /* Contact Form */
 
       #contact {
