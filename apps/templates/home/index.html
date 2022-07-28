@@ -20,7 +20,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <!-- Primary Meta Tags -->
-    <title>Django Volt Dashboard - Presentation | AppSeed</title>
+    <title>Sahib Money</title>
 
     <meta
       name="viewport"
@@ -81,19 +81,19 @@
     <link
       rel="apple-touch-icon"
       sizes="120x120"
-      href="{{ ASSETS_ROOT }}/img/favicon/apple-touch-icon.png"
+      href="{{ ASSETS_ROOT }}/img/sahib_money_favicon.svg"
     />
     <link
       rel="icon"
       type="image/png"
       sizes="32x32"
-      href="{{ ASSETS_ROOT }}/img/favicon/favicon-32x32.png"
+      href="{{ ASSETS_ROOT }}/img/sahib_money_favicon.svg"
     />
     <link
       rel="icon"
       type="image/png"
       sizes="16x16"
-      href="{{ ASSETS_ROOT }}/img/favicon/favicon-16x16.png"
+      href="{{ ASSETS_ROOT }}/img/sahib_money_favicon.svg"
     />
     <link
       rel="manifest"
@@ -137,6 +137,123 @@
         background-image: url('{% static "assets/img/main-bg.png" %}');
         background-repeat: no-repeat, no-repeat;
       }
+      /* Contact Form */
+
+      #contact {
+        padding: 40px 0;
+      }
+
+      #contact h2 {
+        margin-bottom: 30px;
+      }
+      ::placeholder {
+        color: grey !important
+      }
+
+      .contact-form input, .contact-form textarea {
+        padding: 10px 12px;
+        border-radius: 0;
+        box-shadow: none;
+        margin-top: 1%;
+        font-size: 14px;
+        height: auto;
+      }
+
+      .contact-form .form-send {
+        text-align: center;
+      }
+
+      .contact-form .form-send button {
+        background: #f8bd7a;
+        border: 0;
+        padding: 14px 40px;
+        color: #fff;
+        transition: 0.4s;
+        cursor: pointer;
+        border-radius: 50px;
+        font-size: 16px;
+        margin-top: 15px;
+      }
+
+      .contact-form .form-send button:hover {
+        background: #64df95;
+      }
+
+      .contact-form .validate {
+        display: none;
+        color: red;
+        margin: 0 0 15px 0;
+        font-weight: 400;
+        font-size: 13px;
+      }
+
+      .contact-form .loading {
+        display: none;
+        color: #555;
+        background: #fff;
+        text-align: center;
+        padding: 15px;
+        margin: 15px 0;
+      }
+
+      .contact-form .loading:before {
+        content: "";
+        display: inline-block;
+        border-radius: 50%;
+        width: 24px;
+        height: 24px;
+        border: 3px solid #18d26e;
+        border-top-color: #eee;
+        -webkit-animation: animate-loading 1s linear infinite;
+        animation: animate-loading 1s linear infinite;
+      }
+
+      @-webkit-keyframes animate-loading {
+        0% {
+          -webkit-transform: rotate(0deg);
+          transform: rotate(0deg);
+        }
+
+        100% {
+          -webkit-transform: rotate(360deg);
+          transform: rotate(360deg);
+        }
+      }
+
+      @keyframes animate-loading {
+        0% {
+          -webkit-transform: rotate(0deg);
+          transform: rotate(0deg);
+        }
+
+        100% {
+          -webkit-transform: rotate(360deg);
+          transform: rotate(360deg);
+        }
+      }
+
+      .contact-form .error-message {
+        display: none;
+        color: #fff;
+        background: #ed3c0d;
+        text-align: center;
+        padding: 15px;
+        font-weight: 600;
+        margin: 15px 0;
+      }
+
+      .contact-form .sent-message {
+        display: none;
+        color: #fff;
+        background: #18d26e;
+        text-align: center;
+        padding: 15px;
+        font-weight: 600;
+        margin: 15px 0;
+      }
+      .custom-container{
+        max-width: 1500px !important
+      }
     </style>
     <header class="header-global">
       <nav
@@ -145,25 +262,24 @@
         class="navbar navbar-main navbar-expand-lg navbar-theme-primary navbar-dark"
         style="position: relative; background: #fff"
       >
-        <div class="container position-relative">
+        <div class="custom-container container">
           <div
             class="row justify-content-between align-items-center"
             style="width: 100%"
           >
-            <div class="col-8 col-lg-4">
+            <div class="col-8 col-lg-2">
               <img
-                src="../../static/assets/img/images/Sahib Money new 2-01 (1).svg"
-                maxHeight="70"
-                width="100%"
+                src="{% static 'assets/img/new_logo.svg' %}"
               />
             </div>
             <div class="col-4 col-lg-4 text-end">
-              <button
+              <a
                 class="btn btn-dark px-md-4 px-lg-5"
                 style="background: #1f2937; color: #fff"
-              >
-                Logout
-              </button>
+                href="{% url 'login' %}"
+                >
+                Login
+            </a>
             </div>
           </div>
         </div>
@@ -173,7 +289,7 @@
     <main>
       <!-- Hero -->
       <section
-        class="section-header overflow-hidden pt-7 pt-lg-8 pb-9 pb-lg-12 bg-primary text-white main-top"
+        class="section-header overflow-hidden pt-7 pt-lg-8 pb-10 pb-lg-12 bg-primary text-white main-top"
         style="background-position-x: center; background-size: cover"
       >
         <div class="container">
@@ -181,9 +297,10 @@
             <div class="col-12 col-lg-6" style="color: #fff">
               <div class="row">
                 <div class="col-12 col-lg-7">
+
                   <p style="font-size: 24px">
                     <strong style="font-weight: 900; font-size: 34px"
-                      >Pay Bills Fast</strong
+                      >Transfer Credits</strong
                     >
                     from your place of comfort.
                   </p>
@@ -198,7 +315,7 @@
               </div>
               <div class="row">
                 <div class="col-12">
-                  <button
+                  <a
                     class="mb-3"
                     type="button"
                     style="
@@ -207,17 +324,19 @@
                       color: #fff;
                       padding: 12px 24px;
                     "
+                href="{% url 'login' %}"
+
                   ><i class="fa-solid fa-arrow-right-long me-2"></i>
                     Get started
-                  </button>
+                </a>
                 </div>
               </div>
               <div class="row">
                 <div class="col-12">
-                  <p style="font-size: 14px">
+                  {% comment %} <p style="font-size: 14px">
                     Please use the chat button at the bottom right if you need
                     help.
-                  </p>
+                  </p> {% endcomment %}
                 </div>
               </div>
             </div>
@@ -237,7 +356,7 @@
           </svg>
         </figure>
       </section>
-      <div class="section pt-0">
+      {% comment %} <div class="section pt-0">
         <div class="container mt-n10 mt-lg-n12 z-2">
           <div class="row justify-content-center">
             <div class="col-12">
@@ -248,7 +367,7 @@
             </div>
           </div>
         </div>
-      </div>
+      </div> {% endcomment %}
 
       <section class="section section-lg bg-soft pt-0">
         <div class="container mtb">
@@ -665,8 +784,8 @@
             <div class="col-12 text-center">
               <h2 class="h1 px-lg-5">Our Services</h2>
               <p class="lead px-lg-8">
-                You get all Bootstrap components fully customized. Besides, you
-                receive numerous plugins out of the box and ready to use.
+                Sahib Money presents unique features for Business and
+                Personal accounts.
               </p>
             </div>
           </div>
@@ -675,15 +794,11 @@
               <div class="row">
                 <div class="col-md-6 centered">
                   <img
-                    src="{% static 'assets/img/landing_page/two-phone.jpg' %}"
+                    src="{% static 'assets/img/logo_big_white.svg' %}"
                     class="img-responsive"
                   />
                 </div>
                 <div class="col-md-6 mt">
-                  <h2>
-                    Sahib Money presents unique features for Business and
-                    Personal accounts.
-                  </h2>
                   <hr />
                   <h3>While using Sahib Money one can do the following:</h3>
                   <p class="">- Perform credit transfers between members</p>
@@ -692,9 +807,9 @@
                   <p class="">
                     - Safely store money funds on electronic account
                   </p>
-                  <p class="mt">
+                  {% comment %} <p class="mt">
                     <button class="btn btn-lg btn-trans">LEARN MORE</button>
-                  </p>
+                  </p> {% endcomment %}
                 </div>
               </div>
               <!--/row -->
@@ -704,7 +819,7 @@
         </div>
       </section>
 
-      <section class="section section-lg line-bottom-soft">
+      {% comment %} <section class="section section-lg line-bottom-soft">
         <div class="container">
           <div class="row justify-content-center mb-5 mb-lg-6">
             <div class="col-12 text-center">
@@ -1043,9 +1158,9 @@
             </div>
           </div>
         </div>
-      </section>
+      </section> {% endcomment %}
 
-      <section class="section section-lg bg-gray-800">
+      {% comment %} <section class="section section-lg bg-gray-800">
         <div class="container">
           <div class="row justify-content-center text-center text-white mb-5">
             <div class="col-12">
@@ -1092,404 +1207,47 @@
             </div>
           </div>
         </div>
-      </section>
+      </section> {% endcomment %}
 
       <section class="section section-lg bg-white" id="pricing">
         <div class="container">
           <div class="row">
-            <div class="col-12 col-lg-8">
-              <h2 class="h1 fw-bold mb-3">Open source</h2>
-              <p class="lead mb-4">
-                Volt is an open source project under the MIT License.
-              </p>
-              <div class="d-flex align-items-center">
-                <a
-                  href="https://appseed.us/admin-dashboards/django-dashboard-volt"
-                  target="_blank"
-                  class="btn btn-gray-800 me-4"
-                >
-                  See Product
-                </a>
-              </div>
-            </div>
-            <div class="col-12 col-lg-4">
-              <div class="github-big-icon">
-                <svg
-                  aria-hidden="true"
-                  focusable="false"
-                  data-prefix="fab"
-                  data-icon="github"
-                  role="img"
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 496 512"
-                >
-                  <path
-                    fill="currentColor"
-                    d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"
-                  ></path>
-                </svg>
-              </div>
-            </div>
-          </div>
-          <div class="row mt-6">
-            <div class="col-12 col-md-6 col-lg-4 mb-5 mb-lg-0">
-              <div class="card shadow border-0 p-4">
-                <!-- Header -->
-                <div class="card-header bg-white border-0 pb-0">
-                  <span class="d-block">
-                    <span class="h2 text-primary fw-bold align-top"
-                      >Free Demo</span
-                    >
-                  </span>
+            <div class="col-md-offset-2">
+              <h1 class="px-lg-2">Contact Us</h1>
+              <form class="contact-form php-mail-form" role="form" action="contactform/contactform.php" method="POST">
+    
+                <div class="form-group">
+                  <input type="name" name="name" class="form-control" id="contact-name" placeholder="Your Name" data-rule="minlen:4" data-msg="Please enter at least 4 chars" >
+                  <div class="validate"></div>
                 </div>
-                <!-- End Header -->
-                <!-- Content -->
-                <div class="card-body">
-                  <ul class="list-group list-group-flush price-list">
-                    <li class="list-group-item border-0 ps-0">
-                      <strong>100</strong> Components
-                    </li>
-                    <li class="list-group-item border-0 ps-0">
-                      <strong>11</strong> Example Pages
-                    </li>
-                    <li
-                      class="list-group-item d-flex align-items-center border-0 ps-0"
-                    >
-                      <svg
-                        class="icon icon-xs text-danger me-2"
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          fill-rule="evenodd"
-                          d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z"
-                          clip-rule="evenodd"
-                        ></path>
-                      </svg>
-                      Advanced sidebar
-                    </li>
-                    <li
-                      class="list-group-item d-flex align-items-center border-0 ps-0"
-                    >
-                      <svg
-                        class="icon icon-xs text-danger me-2"
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          fill-rule="evenodd"
-                          d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z"
-                          clip-rule="evenodd"
-                        ></path>
-                      </svg>
-                      Kanban Drag and Drop
-                    </li>
-                    <li
-                      class="list-group-item d-flex align-items-center border-0 ps-0"
-                    >
-                      <svg
-                        class="icon icon-xs text-danger me-2"
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          fill-rule="evenodd"
-                          d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z"
-                          clip-rule="evenodd"
-                        ></path>
-                      </svg>
-                      MapBox
-                    </li>
-                    <li
-                      class="list-group-item d-flex align-items-center border-0 ps-0"
-                    >
-                      <svg
-                        class="icon icon-xs text-danger me-2"
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          fill-rule="evenodd"
-                          d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z"
-                          clip-rule="evenodd"
-                        ></path>
-                      </svg>
-                      Calendar
-                    </li>
-                    <li
-                      class="list-group-item d-flex align-items-center border-0 ps-0"
-                    >
-                      <svg
-                        class="icon icon-xs text-danger me-2"
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          fill-rule="evenodd"
-                          d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z"
-                          clip-rule="evenodd"
-                        ></path>
-                      </svg>
-                      SVG Map
-                    </li>
-                    <li
-                      class="list-group-item d-flex align-items-center border-0 ps-0"
-                    >
-                      <svg
-                        class="icon icon-xs text-danger me-2"
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          fill-rule="evenodd"
-                          d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z"
-                          clip-rule="evenodd"
-                        ></path>
-                      </svg>
-                      Widgets
-                    </li>
-                    <li
-                      class="list-group-item d-flex align-items-center border-0 ps-0 pb-0"
-                    >
-                      <svg
-                        class="icon icon-xs text-danger me-2"
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          fill-rule="evenodd"
-                          d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z"
-                          clip-rule="evenodd"
-                        ></path>
-                      </svg>
-                      Premium Support
-                    </li>
-                  </ul>
+                <div class="form-group">
+                  <input type="email" name="email" class="form-control" id="contact-email" placeholder="Your Email" data-rule="email" data-msg="Please enter a valid email">
+                  <div class="validate"></div>
                 </div>
-                <!-- End Content -->
-              </div>
-            </div>
-            <div class="col-12 col-md-6 col-lg-4 mb-5 mb-lg-0">
-              <div class="card shadow border-0 p-4 py-5 mt-lg-n5">
-                <!-- Header -->
-                <div class="card-header bg-white border-0 pb-0">
-                  <span class="d-block">
-                    <span class="h2 text-primary fw-bold align-top"
-                      >Pro Version</span
-                    >
-                  </span>
+                <div class="form-group">
+                  <input type="text" name="subject" class="form-control" id="contact-subject" placeholder="Subject" data-rule="minlen:4" data-msg="Please enter at least 8 chars of subject">
+                  <div class="validate"></div>
                 </div>
-                <!-- End Header -->
-                <!-- Content -->
-                <div class="card-body">
-                  <ul class="list-group list-group-flush price-list">
-                    <li class="list-group-item bg-white border-0 ps-0">
-                      <strong>1000+</strong> Components
-                    </li>
-                    <li class="list-group-item bg-white border-0 ps-0">
-                      <strong>21</strong> Example Pages
-                    </li>
-                    <li
-                      class="list-group-item d-flex align-items-center border-0 ps-0"
-                    >
-                      <svg
-                        class="icon icon-xs text-success me-2"
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          fill-rule="evenodd"
-                          d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                          clip-rule="evenodd"
-                        ></path>
-                      </svg>
-                      Advanced sidebar
-                    </li>
-                    <li
-                      class="list-group-item d-flex align-items-center border-0 ps-0"
-                    >
-                      <svg
-                        class="icon icon-xs text-success me-2"
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          fill-rule="evenodd"
-                          d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                          clip-rule="evenodd"
-                        ></path>
-                      </svg>
-                      Kanban Drag and Drop
-                    </li>
-                    <li
-                      class="list-group-item d-flex align-items-center border-0 ps-0"
-                    >
-                      <svg
-                        class="icon icon-xs text-success me-2"
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          fill-rule="evenodd"
-                          d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                          clip-rule="evenodd"
-                        ></path>
-                      </svg>
-                      MapBox
-                    </li>
-                    <li
-                      class="list-group-item d-flex align-items-center border-0 ps-0"
-                    >
-                      <svg
-                        class="icon icon-xs text-success me-2"
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          fill-rule="evenodd"
-                          d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                          clip-rule="evenodd"
-                        ></path>
-                      </svg>
-                      Calendar
-                    </li>
-                    <li
-                      class="list-group-item d-flex align-items-center border-0 ps-0"
-                    >
-                      <svg
-                        class="icon icon-xs text-success me-2"
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          fill-rule="evenodd"
-                          d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                          clip-rule="evenodd"
-                        ></path>
-                      </svg>
-                      SVG Map
-                    </li>
-                    <li
-                      class="list-group-item d-flex align-items-center border-0 ps-0"
-                    >
-                      <svg
-                        class="icon icon-xs text-success me-2"
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          fill-rule="evenodd"
-                          d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                          clip-rule="evenodd"
-                        ></path>
-                      </svg>
-                      Widgets
-                    </li>
-                    <li
-                      class="list-group-item d-flex align-items-center border-0 border-0 ps-0 pb-0"
-                    >
-                      <svg
-                        class="icon icon-xs text-success me-2"
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          fill-rule="evenodd"
-                          d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                          clip-rule="evenodd"
-                        ></path>
-                      </svg>
-                      Premium Support
-                    </li>
-                  </ul>
+    
+                <div class="form-group">
+                  <textarea class="form-control" name="message" id="contact-message" placeholder="Your Message" rows="5" data-rule="required" data-msg="Please write something for us"></textarea>
+                  <div class="validate"></div>
                 </div>
-                <a
-                  href="https://appseed.us/admin-dashboards/django-dashboard-volt-pro"
-                  target="_blank"
-                  class="btn btn-secondary d-flex align-items-center justify-content-center mb-0 mt-2"
-                  >Django Volt Pro
-                  <svg
-                    class="icon icon-xs ms-1"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z"
-                    ></path>
-                    <path
-                      d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z"
-                    ></path></svg
-                ></a>
-                <!-- End Content -->
-              </div>
-            </div>
-          </div>
-          <div class="mt-lg-6 row">
-            <div class="text-center col-12">
-              <h2 class="h5 text-gray fw-normal mb-4">
-                Available in the following technologies:
-              </h2>
-              <div>
-                <a
-                  class="me-3 card-link"
-                  href="https://themesberg.com/product/admin-dashboard/volt-bootstrap-5-dashboard"
-                  target="_blank"
-                >
-                  <img
-                    src="{{ ASSETS_ROOT }}/img/technologies/bootstrap-5-logo.svg"
-                    class="image image-sm"
-                  />
-                </a>
-                <a
-                  class="me-3 card-link"
-                  href="https://demo.themesberg.com/volt-react-dashboard/#/"
-                  target="_blank"
-                >
-                  <img
-                    src="{{ ASSETS_ROOT }}/img/technologies/react-logo.svg"
-                    class="image image-sm"
-                  />
-                </a>
-                <a
-                  class="me-3 card-link"
-                  href="https://appseed.us/admin-dashboards/flask-dashboard-volt"
-                  target="_blank"
-                >
-                  <img
-                    src="{{ ASSETS_ROOT }}/img/technologies/flask-logo.svg"
-                    class="image image-sm"
-                  />
-                </a>
-                <a
-                  class="me-3 card-link"
-                  href="https://appseed.us/admin-dashboards/django-dashboard-volt"
-                  target="_blank"
-                >
-                  <img
-                    src="{{ ASSETS_ROOT }}/img/technologies/django-logo.svg"
-                    class="image image-sm"
-                  />
-                </a>
-              </div>
+    
+                <div class="loading"></div>
+                <div class="error-message"></div>
+                <div class="sent-message">Your message has been sent. Thank you!</div>
+    
+                <div class="form-send">
+                  <button type="submit" class="btn btn-large">Send Message</button>
+                </div>
+    
+              </form>
+    
             </div>
           </div>
         </div>
-      </section>
+      </section> 
     </main>
 
     <!-- <footer class="footer bg-gray-800 text-white"> -->
@@ -1499,12 +1257,12 @@
           <div class="col-12 col-md-7 col-lg-9 d-md-flex">
             <div class="text-center text-md-start">
               <img
-                src="../../static/assets/img/images/Sahib Money logo white new 2-01.svg"
+                src="{% static 'assets/img/images/Sahib Money logo white new 2-01.svg' %}"
                 height="80"
                 width="350"
               />
               <p class="text-center text-md-start my-4" style="font-size: 14px">
-                © 2022 Moca Nova Resources. All Rights Reserved
+                © 2022 Sahib Money. All Rights Reserved
               </p>
             </div>
           </div>

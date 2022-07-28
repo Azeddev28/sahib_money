@@ -1,19 +1,15 @@
-<footer class="bg-white rounded shadow p-5 mb-4 mt-4">
+{% load static %}
+<footer class="bg-white rounded shadow mb-4 mt-4">
     <div class="row">
-        <div class="col-12 col-md-4 col-xl-6 mb-4 mb-md-0">
-            <p class="mb-0 text-center text-lg-start">
-                &copy; <a class="text-primary fw-normal" href="https://themesberg.com" target="_blank">Sahib Money</a>
-                {% comment %} - Coded by <a href="https://appseed.us" target="_blank">AppSeed</a>. {% endcomment %}
-            </p>
-        </div>
-        <div class="col-12 col-md-8 col-xl-6 text-center text-lg-start">
-            <!-- List -->
-            <ul class="list-inline list-group-flush list-group-borderless text-md-end mb-0">
-                <li class="list-inline-item px-0 px-sm-2">
-                    {% comment %} <a target="_blank" 
-                       href="https://appseed.us/admin-dashboards/django-dashboard-volt">Sahib Money Dashboard</a> {% endcomment %}
-                </li>
-            </ul>
-        </div>
+        <div class="col-12 col-md-7 col-lg-9 d-md-flex" style='padding: 5px 0px 2px 32px;'>
+            <div class="text-center text-md-start">
+              <img 
+                src="{% static 'assets/img/images/black_sahib_money_logo.svg' %}"
+              />
+              <p class="text-center text-md-start mt-3" style="font-size: 14px">
+                © 2022 Sahib Money. All Rights Reserved
+              </p>
+            </div>
+          </div>        
     </div>
 </footer>

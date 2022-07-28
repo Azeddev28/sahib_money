@@ -11,6 +11,9 @@
     float: right;
     margin-top: 4%;
   }
+  .bold-txt {
+    font-weight: 600;
+  }
 </style>
 <input id="form-success" type="hidden" value="{{form_success}}" />
 
@@ -38,15 +41,15 @@
           <h5>Bank Information:</h5>
           <div>
             <ul class="list-group simple-list">
-              <li class="list-group-item fw-normal">Account Name: {{bank.account_name}}</li>
-              <li class="list-group-item fw-normal">Account No: {{bank.account_no}}</li>
-              <li class="list-group-item fw-normal">Iban No: {{bank.iban_no}}</li>
+              <li class="list-group-item fw-normal"><strong class='bold-txt'>Account Name:</strong>   {{bank.account_name}}</li>
+              <li class="list-group-item fw-normal"><strong class='bold-txt'>Account No:</strong>    {{bank.account_no}}</li>
+              <li class="list-group-item fw-normal"><strong class='bold-txt'>Iban No:</strong>    {{bank.iban_no}}</li>
               <li class="list-group-item fw-normal"><a class="fw-bold text-primary" href="#">support@sahibmoney.com</a>
               </li>
             </ul>
           </div>
         </div>
-        <div class="col-sm col-lg-4">
+        <div class="col-sm col-lg-5">
           <dl class="row text-sm-right">
             <!-- <dt class="col-6"><strong>Invoice No.</strong> </dt>
             <dd class="col-6">00123</dd> -->
