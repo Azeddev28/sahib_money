@@ -132,17 +132,17 @@
   </head>
   <body>
     <style>
-        .main-top{
-            background-image: url('{% static "assets/img/main-bg.png" %}');
-            background-repeat: no-repeat, no-repeat;
-        }
+      .main-top {
+        background-image: url('{% static "assets/img/main-bg.png" %}');
+        background-repeat: no-repeat, no-repeat;
+      }
     </style>
     <header class="header-global">
       <nav
         id="navbar-main"
         aria-label="Primary navigation"
         class="navbar navbar-main navbar-expand-lg navbar-theme-primary pt-4 navbar-dark"
-        style="position: relative;"
+        style="position: relative"
       >
         <div class="container position-relative">
           <div class="navbar-collapse collapse me-auto" id="navbar_global">
@@ -199,8 +199,7 @@
       <!-- Hero -->
       <section
         class="section-header overflow-hidden pt-7 pt-lg-8 pb-9 pb-lg-12 bg-primary text-white main-top"
-        style="background-position-x: center;
-        background-size: cover;"
+        style="background-position-x: center; background-size: cover"
       >
         <div class="container">
           <div class="row" style="margin-bottom: 75px">
@@ -278,54 +277,101 @@
 
       <section class="section section-lg bg-soft pt-0">
         <div class="container mtb">
-            <div class="row centered">
-              <div class="col-md-4 mt">
-                <img src="{% static 'assets/img/landing_page/ico-06.png' %}" alt="" width="90" height="100">
-                <h4>Credit Deposit</h4>
-                <p>With Sahib Money you can easily transfer amount within the system.</p>
-              </div>
-              <!--/col-md-4-->
-        
-              <div class="col-md-4 mt">
-                <img src="{% static 'assets/img/landing_page/money_transfer.png' %}" alt="" width="90" height="100">
-                <h4>Withdraw Credits</h4>
-                <p>With Sahib Money you can easily withdraw credits from the system.</p>
-              </div>
-              <!--/col-md-4-->
-        
-              <div class="col-md-4 mt">
-                <img src="{% static 'assets/img/landing_page/credit_transfer.png' %}" alt="" width="90" height="100">
-                <h4>Credit Transfer</h4>
-                <p>With Sahib Money you can easily transfer credits outside the system to connected third parties.</p>
-              </div>
-              <!--/col-md-4-->
-        
-              {% comment %} <div class="col-md-4 mt">
-                <img src="{% static 'assets/img/landing_page/ico-04.png' %}" alt="" width="90">
-                <h4>RESPONSIVE</h4>
-                <p>Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when a printer took a galley.</p>
-              </div>
-              <!--/col-md-4--> {% endcomment %}
-        
-              <div class="col-md-4 mt">
-                <img src="{% static 'assets/img/landing_page/full_support.png' %}" alt="" width="90">
-                <h4>24/7 SUPPORT</h4>
-                <p>Sahib Money provides 24/7 support for queries.</p>
-              </div>
-              <!--/col-md-4-->
-        
-              {% comment %} <div class="col-md-4 mt">
-                <img src="{% static 'assets/img/landing_page/ico-06.png' %}" alt="" width="90">
-                <h4>AFFORDABLE</h4>
-                <p>Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when a printer took a galley.</p>
-              </div> {% endcomment %}
-              <!--/col-md-4-->
+          <div class="row centered justify-content-center">
+            <div class="col-md-4 mt text-center">
+              <img
+                src="{% static 'assets/img/landing_page/ico-06.png' %}"
+                alt=""
+                width="90"
+                height="100"
+              />
+              <h4>Credit Deposit</h4>
+              <p>
+                With Sahib Money you can easily transfer amount within the
+                system.
+              </p>
             </div>
-            <!--/row -->
-          </div>
-      </section> 
+            <!--/col-md-4-->
 
-      {% comment %} <section class="section section-sm pt-0">
+            <div class="col-md-4 mt text-center">
+              <img
+                src="{% static 'assets/img/landing_page/money_transfer.png' %}"
+                alt=""
+                width="90"
+                height="100"
+              />
+              <h4>Withdraw Credits</h4>
+              <p>
+                With Sahib Money you can easily withdraw credits from the
+                system.
+              </p>
+            </div>
+            <!--/col-md-4-->
+
+            <div class="col-md-4 mt text-center">
+              <img
+                src="{% static 'assets/img/landing_page/credit_transfer.png' %}"
+                alt=""
+                width="90"
+                height="100"
+              />
+              <h4>Credit Transfer</h4>
+              <p>
+                With Sahib Money you can easily transfer credits outside the
+                system to connected third parties.
+              </p>
+            </div>
+            <!--/col-md-4-->
+
+            {% comment %}
+            <div class="col-md-4 mt text-center">
+              <img
+                src="{% static 'assets/img/landing_page/ico-04.png' %}"
+                alt=""
+                width="90"
+              />
+              <h4>RESPONSIVE</h4>
+              <p>
+                Lorem Ipsum has been the industry's standard dummy text ever
+                since the 1500s, when a printer took a galley.
+              </p>
+            </div>
+            <!--/col-md-4-->
+            {% endcomment %}
+
+            <div class="col-md-4 mt-5 text-center">
+              <img
+                src="{% static 'assets/img/landing_page/full_support.png' %}"
+                alt=""
+                width="90"
+              />
+              <h4>24/7 SUPPORT</h4>
+              <p>Sahib Money provides 24/7 support for queries.</p>
+            </div>
+            <!--/col-md-4-->
+
+            {% comment %}
+            <div class="col-md-4 mt text-center">
+              <img
+                src="{% static 'assets/img/landing_page/ico-06.png' %}"
+                alt=""
+                width="90"
+              />
+              <h4>AFFORDABLE</h4>
+              <p>
+                Lorem Ipsum has been the industry's standard dummy text ever
+                since the 1500s, when a printer took a galley.
+              </p>
+            </div>
+            {% endcomment %}
+            <!--/col-md-4-->
+          </div>
+          <!--/row -->
+        </div>
+      </section>
+
+      {% comment %}
+      <section class="section section-sm pt-0">
         <div class="container">
           <div class="row justify-content-center mb-5 mb-lg-6">
             <div class="col-12 text-center">
@@ -635,7 +681,8 @@
             </div>
           </div>
         </div>
-      </section> {% endcomment %}
+      </section>
+      {% endcomment %}
 
       <section class="section section-lg bg-gray-800 text-white">
         <div class="container">
@@ -648,34 +695,37 @@
               </p>
             </div>
           </div>
-  <div id="header">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-6 centered">
-          <img src="{% static 'assets/img/landing_page/two-phone.jpg' %}" class="img-responsive">
-        </div>
-        <div class="col-md-6 mt">
-          <h2>Sahib Money presents unique features for Business and Personal accounts.</h2>
-          <hr>
-          <h3>
-
-            While using Sahib Money one can do the following:</h3>
-          <p class="">               
-             - Perform credit transfers between members</p>
-             <p class="">
-             - Transfer credits across multiple platforms</p>
-             <p class="">
-             - Make regular payments in Internet</p>
-             <p class="">
-             - Safely store money funds on electronic account</p>
-             <p class="mt"><button class="btn btn-lg btn-trans">LEARN MORE</button></p>
-        </div>
-
-      </div>
-      <!--/row -->
-    </div>
-    <!-- /.container -->
-  </div>
+          <div id="header">
+            <div class="container">
+              <div class="row">
+                <div class="col-md-6 centered">
+                  <img
+                    src="{% static 'assets/img/landing_page/two-phone.jpg' %}"
+                    class="img-responsive"
+                  />
+                </div>
+                <div class="col-md-6 mt">
+                  <h2>
+                    Sahib Money presents unique features for Business and
+                    Personal accounts.
+                  </h2>
+                  <hr />
+                  <h3>While using Sahib Money one can do the following:</h3>
+                  <p class="">- Perform credit transfers between members</p>
+                  <p class="">- Transfer credits across multiple platforms</p>
+                  <p class="">- Make regular payments in Internet</p>
+                  <p class="">
+                    - Safely store money funds on electronic account
+                  </p>
+                  <p class="mt">
+                    <button class="btn btn-lg btn-trans">LEARN MORE</button>
+                  </p>
+                </div>
+              </div>
+              <!--/row -->
+            </div>
+            <!-- /.container -->
+          </div>
         </div>
       </section>
 
@@ -1470,15 +1520,18 @@
     <!-- <footer class="footer bg-gray-800 text-white"> -->
     <footer class="footer py-4 bg-gray-800 text-white">
       <div class="container">
-        <div class="row">
+        <div class="row align-items-end">
           <div class="col-12 col-md-7 col-lg-9 d-md-flex">
-            <p class="text-center text-md-start" style="font-size: 14px">
-              © 2022 Moca Nova Resources. All Rights Reserved
-            </p>
+            <div class="text-center text-md-start">
+              <img src="../../static/assets/img/images/Sahib Money logo white new 2-01.svg" height="80" width="350"/>
+              <p class="text-center text-md-start my-4" style="font-size: 14px">
+                © 2022 Moca Nova Resources. All Rights Reserved
+              </p>
+            </div>
           </div>
 
           <div
-            class="col-12 col-md-5 col-lg-3 d-flex justify-content-between justify-content-md-around"
+            class="col-12 col-md-5 col-lg-3 d-flex justify-content-between justify-content-md-around my-md-4"
           >
             <a style="font-size: 14px">PRIVACY POLICY</a>
             <a style="font-size: 14px">TERMS OF USE</a>
