@@ -36,6 +36,7 @@
       name="keywords"
       content="bootstrap 5, bootstrap, bootstrap 5 admin dashboard, bootstrap 5 dashboard, bootstrap 5 charts, bootstrap 5 calendar, bootstrap 5 datepicker, bootstrap 5 tables, bootstrap 5 datatable, vanilla js datatable, themesberg, themesberg dashboard, themesberg admin dashboard"
     />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link
       rel="canonical"
       href="https://themesberg.com/product/admin-dashboard/volt-premium-bootstrap-5-dashboard"
@@ -141,55 +142,29 @@
       <nav
         id="navbar-main"
         aria-label="Primary navigation"
-        class="navbar navbar-main navbar-expand-lg navbar-theme-primary pt-4 navbar-dark"
-        style="position: relative"
+        class="navbar navbar-main navbar-expand-lg navbar-theme-primary navbar-dark"
+        style="position: relative; background: #fff"
       >
         <div class="container position-relative">
-          <div class="navbar-collapse collapse me-auto" id="navbar_global">
-            <div class="navbar-collapse-header">
-              <div class="row">
-                <div class="col-6 collapse-brand">
-                  <a href="/">
-                    <img
-                      src="{{ ASSETS_ROOT }}/img/brand/light.svg"
-                      alt="Volt logo"
-                    />
-                  </a>
-                </div>
-                <div class="col-6 collapse-close">
-                  <a
-                    href="#navbar_global"
-                    class="fas fa-times"
-                    data-toggle="collapse"
-                    data-target="#navbar_global"
-                    aria-controls="navbar_global"
-                    aria-expanded="false"
-                    title="close"
-                    aria-label="Toggle navigation"
-                  ></a>
-                </div>
-              </div>
+          <div
+            class="row justify-content-between align-items-center"
+            style="width: 100%"
+          >
+            <div class="col-8 col-lg-4">
+              <img
+                src="../../static/assets/img/images/Sahib Money new 2-01 (1).svg"
+                maxHeight="70"
+                width="100%"
+              />
             </div>
-            <ul
-              class="navbar-nav navbar-nav-hover align-items-lg-center"
-              style="width: 100%; justify-content: center"
-            >
-              <li class="nav-item me-2">
-                <a href="/dashboard.html" class="nav-link">Dashboard</a>
-              </li>
-              {% if user.is_superuser %}
-              <li class="nav-item me-2">
-                <a href="/admin/auth/user/" class="nav-link">Admin</a>
-              </li>
-              {% else %}
-              <li class="nav-item me-2">
-                <a href="/settings.html" class="nav-link">Settings</a>
-              </li>
-              {% endif %}
-              <li class="nav-item me-2">
-                <a href="{% url 'logout' %}" class="nav-link">Logout</a>
-              </li>
-            </ul>
+            <div class="col-4 col-lg-4 text-end">
+              <button
+                class="btn btn-dark px-md-4 px-lg-5"
+                style="background: #1f2937; color: #fff"
+              >
+                Logout
+              </button>
+            </div>
           </div>
         </div>
       </nav>
@@ -228,11 +203,11 @@
                     type="button"
                     style="
                       border: none;
-                      background-color: #fff;
-                      color: #1f2937;
+                      background: #1f2937;
+                      color: #fff;
                       padding: 12px 24px;
                     "
-                  >
+                  ><i class="fa-solid fa-arrow-right-long me-2"></i>
                     Get started
                   </button>
                 </div>
@@ -1523,7 +1498,11 @@
         <div class="row align-items-end">
           <div class="col-12 col-md-7 col-lg-9 d-md-flex">
             <div class="text-center text-md-start">
-              <img src="../../static/assets/img/images/Sahib Money logo white new 2-01.svg" height="80" width="350"/>
+              <img
+                src="../../static/assets/img/images/Sahib Money logo white new 2-01.svg"
+                height="80"
+                width="350"
+              />
               <p class="text-center text-md-start my-4" style="font-size: 14px">
                 © 2022 Moca Nova Resources. All Rights Reserved
               </p>
