@@ -53,72 +53,74 @@
           <dl class="row text-sm-right">
             <!-- <dt class="col-6"><strong>Invoice No.</strong> </dt>
             <dd class="col-6">00123</dd> -->
-            <dt class="col-6"><strong>Date Issued:</strong> </dt>
+            <dt class="col-6"><strong class='bold-txt'>Date Issued:</strong></dt>
             <dd class="col-6">{% now "j/m/Y" %}</dd>
           </dl>
         </div>
       </div>
       <form method="post" , enctype="multipart/form-data">
 
-        <div class="row">
+        <div class="container">
           {% csrf_token %}
-          <div class="col-6">
-            <div class="table-responsive">
-              <table class="table mb-0">
-                <!-- <thead class="bg-light border-top">
-                      <tr>
-                        <th scope="row" class="border-0 text-left"> Account No. </th>
-                        <th scope="row" class="border-0"> Amount </th>
-                      </tr>
-                    </thead> -->
-                <tbody>
-                  <tr>
-                    <th scope="row" class="text-left fw-bold h6"> Account No.</th>
-                    <th> <input type="text" placeholder="Account No" class="form-control"></th>
-                  </tr>
-                  <tr>
-                    <th scope="row" class="text-left fw-bold h6"> Amount</th>
-                    <th> <input type="text" name="{{ form.amount.name }}" id="id_{{ form.amount.name }}"
-                        placeholder="Amount" class="form-control"></th>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-            <!-- <div class="d-flex justify-content-end text-right mb-4 py-4">
-                  <div class="mt-4">
+          <div class='row'>
+            <div class="col-lg-6 col-sm-12 col-md-12">
+              <div class="table-responsive">
+                <table class="table mb-0">
+                  <!-- <thead class="bg-light border-top">
+                        <tr>
+                          <th scope="row" class="border-0 text-left"> Account No. </th>
+                          <th scope="row" class="border-0"> Amount </th>
+                        </tr>
+                      </thead> -->
+                  <tbody>
+                    <tr>
+                      <th scope="row" class="text-left fw-bold h6"> Account No.</th>
+                      <th> <input type="text" placeholder="Account No" class="form-control"></th>
+                    </tr>
+                    <tr>
+                      <th scope="row" class="text-left fw-bold h6"> Amount</th>
+                      <th> <input type="text" name="{{ form.amount.name }}" id="id_{{ form.amount.name }}"
+                          placeholder="Amount" class="form-control"></th>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <!-- <div class="d-flex justify-content-end text-right mb-4 py-4">
+                    <div class="mt-4">
+                    </div>
                   </div>
-                </div>
-                <h4>Payments to:</h4> <span>payment@volt.com</span> -->
-          </div>
-          <div class="col-6">
-            <div class="card card-body border-0 shadow">
-              <h2 class="h5 mb-4">Upload Payment Receipt</h2>
-              <div class="d-flex align-items-center">
-                <div class="me-3">
-                  <!-- Avatar -->
-                  <img id='display-img' height='150' width='150' src="{{ ASSETS_ROOT }}/img/receipt.png" alt="change cover">
-                </div>
-                <div class="file-field">
-                  <div class="d-flex justify-content-xl-center ms-xl-3">
-                    <div class="d-flex">
-                      <svg class="icon text-gray-500 me-2" fill="currentColor" viewBox="0 0 20 20"
-                        xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd"
-                          d="M8 4a3 3 0 00-3 3v4a5 5 0 0010 0V7a1 1 0 112 0v4a7 7 0 11-14 0V7a5 5 0 0110 0v4a3 3 0 11-6 0V7a1 1 0 012 0v4a1 1 0 102 0V7a3 3 0 00-3-3z"
-                          clip-rule="evenodd"></path>
-                      </svg>
-                      <input type="file" name="{{ form.receipt.name }}" id="imagefile">
-                      <div class="d-md-block text-left make-cursor ">
-                        <div class="fw-normal text-dark mb-1">Choose Image</div>
-                        <div class="text-gray small">JPG, GIF or PNG. Max size of 800K</div>
+                  <h4>Payments to:</h4> <span>payment@volt.com</span> -->
+            </div>
+            <div class="col-lg-6 col-sm-12 col-md-12">
+              <div class="card card-body border-0 shadow">
+                <h2 class="h5 mb-4">Upload Payment Receipt</h2>
+                <div class="d-flex align-items-center">
+                  <div class="me-3">
+                    <!-- Avatar -->
+                    <img id='display-img' height='150' width='150' src="{{ ASSETS_ROOT }}/img/receipt.png" alt="change cover">
+                  </div>
+                  <div class="file-field">
+                    <div class="d-flex justify-content-xl-center ms-xl-3">
+                      <div class="d-flex">
+                        <svg class="icon text-gray-500 me-2" fill="currentColor" viewBox="0 0 20 20"
+                          xmlns="http://www.w3.org/2000/svg">
+                          <path fill-rule="evenodd"
+                            d="M8 4a3 3 0 00-3 3v4a5 5 0 0010 0V7a1 1 0 112 0v4a7 7 0 11-14 0V7a5 5 0 0110 0v4a3 3 0 11-6 0V7a1 1 0 012 0v4a1 1 0 102 0V7a3 3 0 00-3-3z"
+                            clip-rule="evenodd"></path>
+                        </svg>
+                        <input type="file" name="{{ form.receipt.name }}" id="imagefile">
+                        <div class="d-md-block text-left make-cursor ">
+                          <div class="fw-normal text-dark mb-1">Choose Image</div>
+                          <div class="text-gray small">JPG, GIF or PNG. Max size of 800K</div>
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
-            <div class="deposit-btn">
-              <input type="submit" value="Deposit" class="btn btn-primary" />
+              <div class="deposit-btn">
+                <input type="submit" value="Deposit" class="btn btn-primary" />
+              </div>
             </div>
           </div>
         </div>

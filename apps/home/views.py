@@ -27,6 +27,13 @@ class HomeView(View):
         return render(request, self.template_name)
 
 
+class ContactUsView(View):
+    template_name = 'home/contact_us.html'
+
+    def get(self, request, *args, **kwargs):
+        return render(request, self.template_name)
+
+
 @login_required(login_url="/login/")
 def pages(request):
     context = {}
