@@ -36,7 +36,13 @@
       name="keywords"
       content="bootstrap 5, bootstrap, bootstrap 5 admin dashboard, bootstrap 5 dashboard, bootstrap 5 charts, bootstrap 5 calendar, bootstrap 5 datepicker, bootstrap 5 tables, bootstrap 5 datatable, vanilla js datatable, themesberg, themesberg dashboard, themesberg admin dashboard"
     />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css"
+      integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
     <link
       rel="canonical"
       href="https://themesberg.com/product/admin-dashboard/volt-premium-bootstrap-5-dashboard"
@@ -153,7 +159,7 @@
           background-repeat: no-repeat, no-repeat;
         }
       }
-      
+
       /* next size - tablet landscape and it covers desktop */
       @media (min-width: 1024px) {
         .main-top {
@@ -161,7 +167,7 @@
           background-repeat: no-repeat, no-repeat;
         }
       }
-      
+
       /* next size - larger desktops */
       @media (min-width: 1280px) {
         .main-top {
@@ -170,7 +176,6 @@
         }
       }
 
-      
       /* Contact Form */
 
       #contact {
@@ -181,10 +186,11 @@
         margin-bottom: 30px;
       }
       ::placeholder {
-        color: grey !important
+        color: grey !important;
       }
 
-      .contact-form input, .contact-form textarea {
+      .contact-form input,
+      .contact-form textarea {
         padding: 10px 12px;
         border-radius: 0;
         box-shadow: none;
@@ -285,8 +291,8 @@
         font-weight: 600;
         margin: 15px 0;
       }
-      .custom-container{
-        max-width: 1500px !important
+      .custom-container {
+        max-width: 1500px !important;
       }
     </style>
     <header class="header-global">
@@ -302,18 +308,16 @@
             style="width: 100%"
           >
             <div class="col-8 col-lg-2">
-              <img
-                src="{% static 'assets/img/new_logo.svg' %}"
-              />
+              <img src="{% static 'assets/img/new_logo.svg' %}" />
             </div>
             <div class="col-4 col-lg-4 text-end">
               <a
                 class="btn btn-dark px-md-4 px-lg-5"
                 style="background: #1f2937; color: #fff"
                 href="{% url 'login' %}"
-                >
+              >
                 Login
-            </a>
+              </a>
             </div>
           </div>
         </div>
@@ -323,19 +327,16 @@
     <main>
       <!-- Hero -->
       <section
-        class="section-header overflow-hidden pt-7 pt-lg-8 pb-10 pb-lg-12 bg-primary text-white main-top"
+        class="section-header overflow-hidden pt-6 pt-lg-8  bg-primary text-white main-top"
         style="background-position-x: center; background-size: cover"
       >
         <div class="container">
           <div class="row" style="margin-bottom: 75px">
             <div class="col-12 col-lg-6" style="color: #fff">
               <div class="row">
-                <div class="col-12 col-lg-7">
-
-                  <p style="font-size: 24px">
-                    <strong style="font-weight: 900; font-size: 34px"
-                      >Transfer Credits</strong
-                    >
+                <div class="col-12 col-md-8 col-lg-12">
+                  <p class="display-2">
+                    <strong style="font-weight: 900">Transfer Credits</strong>
                     from your place of comfort.
                   </p>
                 </div>
@@ -358,19 +359,20 @@
                       color: #fff;
                       padding: 12px 24px;
                     "
-                href="{% url 'login' %}"
-
-                  ><i class="fa-solid fa-arrow-right-long me-2"></i>
+                    href="{% url 'login' %}"
+                    ><i class="fa-solid fa-arrow-right-long me-2"></i>
                     Get started
-                </a>
+                  </a>
                 </div>
               </div>
               <div class="row">
                 <div class="col-12">
-                  {% comment %} <p style="font-size: 14px">
+                  {% comment %}
+                  <p style="font-size: 14px">
                     Please use the chat button at the bottom right if you need
                     help.
-                  </p> {% endcomment %}
+                  </p>
+                  {% endcomment %}
                 </div>
               </div>
             </div>
@@ -390,7 +392,8 @@
           </svg>
         </figure>
       </section>
-      {% comment %} <div class="section pt-0">
+      {% comment %}
+      <div class="section pt-0">
         <div class="container mt-n10 mt-lg-n12 z-2">
           <div class="row justify-content-center">
             <div class="col-12">
@@ -401,7 +404,8 @@
             </div>
           </div>
         </div>
-      </div> {% endcomment %}
+      </div>
+      {% endcomment %}
 
       <section class="section section-lg bg-soft pt-0">
         <div class="container mtb">
@@ -818,8 +822,8 @@
             <div class="col-12 text-center">
               <h2 class="h1 px-lg-5">Our Services</h2>
               <p class="lead px-lg-8">
-                Sahib Money presents unique features for Business and
-                Personal accounts.
+                Sahib Money presents unique features for Business and Personal
+                accounts.
               </p>
             </div>
           </div>
@@ -841,9 +845,11 @@
                   <p class="">
                     - Safely store money funds on electronic account
                   </p>
-                  {% comment %} <p class="mt">
+                  {% comment %}
+                  <p class="mt">
                     <button class="btn btn-lg btn-trans">LEARN MORE</button>
-                  </p> {% endcomment %}
+                  </p>
+                  {% endcomment %}
                 </div>
               </div>
               <!--/row -->
@@ -853,7 +859,8 @@
         </div>
       </section>
 
-      {% comment %} <section class="section section-lg line-bottom-soft">
+      {% comment %}
+      <section class="section section-lg line-bottom-soft">
         <div class="container">
           <div class="row justify-content-center mb-5 mb-lg-6">
             <div class="col-12 text-center">
@@ -1192,9 +1199,9 @@
             </div>
           </div>
         </div>
-      </section> {% endcomment %}
-
-      {% comment %} <section class="section section-lg bg-gray-800">
+      </section>
+      {% endcomment %} {% comment %}
+      <section class="section section-lg bg-gray-800">
         <div class="container">
           <div class="row justify-content-center text-center text-white mb-5">
             <div class="col-12">
@@ -1241,47 +1248,86 @@
             </div>
           </div>
         </div>
-      </section> {% endcomment %}
+      </section>
+      {% endcomment %}
 
       <section class="section section-lg bg-white" id="pricing">
         <div class="container">
           <div class="row">
             <div class="col-md-offset-2">
               <h1 class="px-lg-2">Contact Us</h1>
-              <form class="contact-form php-mail-form" role="form" action="contactform/contactform.php" method="POST">
-    
+              <form
+                class="contact-form php-mail-form"
+                role="form"
+                action="contactform/contactform.php"
+                method="POST"
+              >
                 <div class="form-group">
-                  <input type="name" name="name" class="form-control" id="contact-name" placeholder="Your Name" data-rule="minlen:4" data-msg="Please enter at least 4 chars" >
+                  <input
+                    type="name"
+                    name="name"
+                    class="form-control"
+                    id="contact-name"
+                    placeholder="Your Name"
+                    data-rule="minlen:4"
+                    data-msg="Please enter at least 4 chars"
+                  />
                   <div class="validate"></div>
                 </div>
                 <div class="form-group">
-                  <input type="email" name="email" class="form-control" id="contact-email" placeholder="Your Email" data-rule="email" data-msg="Please enter a valid email">
+                  <input
+                    type="email"
+                    name="email"
+                    class="form-control"
+                    id="contact-email"
+                    placeholder="Your Email"
+                    data-rule="email"
+                    data-msg="Please enter a valid email"
+                  />
                   <div class="validate"></div>
                 </div>
                 <div class="form-group">
-                  <input type="text" name="subject" class="form-control" id="contact-subject" placeholder="Subject" data-rule="minlen:4" data-msg="Please enter at least 8 chars of subject">
+                  <input
+                    type="text"
+                    name="subject"
+                    class="form-control"
+                    id="contact-subject"
+                    placeholder="Subject"
+                    data-rule="minlen:4"
+                    data-msg="Please enter at least 8 chars of subject"
+                  />
                   <div class="validate"></div>
                 </div>
-    
+
                 <div class="form-group">
-                  <textarea class="form-control" name="message" id="contact-message" placeholder="Your Message" rows="5" data-rule="required" data-msg="Please write something for us"></textarea>
+                  <textarea
+                    class="form-control"
+                    name="message"
+                    id="contact-message"
+                    placeholder="Your Message"
+                    rows="5"
+                    data-rule="required"
+                    data-msg="Please write something for us"
+                  ></textarea>
                   <div class="validate"></div>
                 </div>
-    
+
                 <div class="loading"></div>
                 <div class="error-message"></div>
-                <div class="sent-message">Your message has been sent. Thank you!</div>
-    
-                <div class="form-send">
-                  <button type="submit" class="btn btn-large">Send Message</button>
+                <div class="sent-message">
+                  Your message has been sent. Thank you!
                 </div>
-    
+
+                <div class="form-send">
+                  <button type="submit" class="btn btn-large">
+                    Send Message
+                  </button>
+                </div>
               </form>
-    
             </div>
           </div>
         </div>
-      </section> 
+      </section>
     </main>
 
     <!-- <footer class="footer bg-gray-800 text-white"> -->
