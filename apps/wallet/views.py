@@ -10,7 +10,7 @@ from apps.banks.models import SahibMoneyBank
 from apps.third_party_transaction.models import ThirdPartyTransaction
 from apps.wallet.choices import TransactionType
 from apps.wallet.forms import DepositForm
-from apps.wallet.models import Transaction, Wallet
+from apps.wallet.models import DepositTransaction, Transaction, Wallet
 
 User = get_user_model()
 
@@ -53,5 +53,15 @@ class TransactionListView(View):
     def get(self, request, *args, **kwargs):
         context = {
             'transactions': Transaction.objects.filter(wallet__user=request.user).order_by('-created')
+        }
+        return render(request, self.template_name, context)    
+
+
+class DepositRequestListView(View):
+    template_name = 'wallet/deposit_requests.html'
+
+    def get(self, request, *args, **kwargs):
+        context = {
+            'transactions': DepositTransaction.objects.filter(wallet__user=request.user).order_by('-created')
         }
         return render(request, self.template_name, context)    
