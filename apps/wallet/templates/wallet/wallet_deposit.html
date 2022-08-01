@@ -34,7 +34,7 @@
         </div>
       </div> {% endcomment %}
       <div class="mb-6 d-flex align-items-center justify-content-center">
-        <h2 class="h1 mb-0">Invoice</h2>
+        <h2 class="h2 mb-0">Credit Deposit</h2>
       </div>
       <div class="row justify-content-between mb-4 mb-md-5">
         <div class="col-sm">
@@ -42,8 +42,8 @@
           <div>
             <ul class="list-group simple-list">
               <li class="list-group-item fw-normal"><strong class='bold-txt'>Account Name:</strong>   {{bank.account_name}}</li>
-              <li class="list-group-item fw-normal"><strong class='bold-txt'>Account No:</strong>    {{bank.account_no}}</li>
-              <li class="list-group-item fw-normal"><strong class='bold-txt'>Iban No:</strong>    {{bank.iban_no}}</li>
+              <li class="list-group-item fw-normal"><strong class='bold-txt'>Account No:</strong>    {{bank.account_number}}</li>
+              <li class="list-group-item fw-normal"><strong class='bold-txt'>Iban No:</strong>    {{bank.iban_number}}</li>
               <li class="list-group-item fw-normal"><a class="fw-bold text-primary" href="#">support@sahibmoney.com</a>
               </li>
             </ul>
@@ -57,6 +57,9 @@
             <dd class="col-6">{% now "j/m/Y" %}</dd>
           </dl>
         </div>
+      </div>
+      <div class="deposit-btn">
+        <a class="btn btn-primary" href="{% url 'user-bank-details' %}">Add Account</a>
       </div>
       <form method="post" , enctype="multipart/form-data">
 
@@ -74,11 +77,11 @@
                       </thead> -->
                   <tbody>
                     <tr>
-                      <th scope="row" class="text-left fw-bold h6"> Account No.</th>
-                      <th> <input type="text" placeholder="Account No" class="form-control"></th>
+                      <th scope="row" class="text-left fw-bold h6">Bank Details</th>
+                      <th>{{form.bank_details}}</th>
                     </tr>
                     <tr>
-                      <th scope="row" class="text-left fw-bold h6"> Amount</th>
+                      <th scope="row" class="text-left fw-bold h6">Amount</th>
                       <th> <input type="text" name="{{ form.amount.name }}" id="id_{{ form.amount.name }}"
                           placeholder="Amount" class="form-control"></th>
                     </tr>
