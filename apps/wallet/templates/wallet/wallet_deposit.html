@@ -14,7 +14,13 @@
   .bold-txt {
     font-weight: 600;
   }
+  .custom-container {
+      max-width: 100% !important;
+      padding-right: 0px;
+      padding-left: 0px;
+  }
 </style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <input id="form-success" type="hidden" value="{{form_success}}" />
 
 <div class="row justify-content-center mt-4">
@@ -34,7 +40,7 @@
         </div>
       </div> {% endcomment %}
       <div class="mb-6 d-flex align-items-center justify-content-center">
-        <h2 class="h1 mb-0">Invoice</h2>
+        <h2 class="h2 mb-0">Credit Deposit</h2>
       </div>
       <div class="row justify-content-between mb-4 mb-md-5">
         <div class="col-sm">
@@ -42,9 +48,9 @@
           <div>
             <ul class="list-group simple-list">
               <li class="list-group-item fw-normal"><strong class='bold-txt'>Account Name:</strong>   {{bank.account_name}}</li>
-              <li class="list-group-item fw-normal"><strong class='bold-txt'>Account No:</strong>    {{bank.account_no}}</li>
-              <li class="list-group-item fw-normal"><strong class='bold-txt'>Iban No:</strong>    {{bank.iban_no}}</li>
-              <li class="list-group-item fw-normal mt-2"><a class="fw-bold text-primary" href="#">support@sahibmoney.com</a>
+              <li class="list-group-item fw-normal"><strong class='bold-txt'>Account No:</strong>    {{bank.account_number}}</li>
+              <li class="list-group-item fw-normal"><strong class='bold-txt'>Iban No:</strong>    {{bank.iban_number}}</li>
+              <li class="list-group-item fw-normal"><a class="fw-bold text-primary" href="#">support@sahibmoney.com</a>
               </li>
             </ul>
           </div>
@@ -58,9 +64,17 @@
           </dl>
         </div>
       </div>
+      <div class='container mb-3'>
+        <div class="row">
+          <div class="col-6 deposit-btn text-end">
+            <a class="btn btn-primary" href="{% url 'user-bank-details' %}"><i class="fa fa-plus"></i>  Add Account</a>
+          </div>
+        </div>
+      </div>
+
       <form method="post" , enctype="multipart/form-data">
 
-        <div class="container">
+        <div class="container custom-container">
           {% csrf_token %}
           <div class='row'>
             <div class="col-lg-6 col-sm-12 col-md-12">
@@ -74,11 +88,11 @@
                       </thead> -->
                   <tbody>
                     <tr>
-                      <th scope="row" class="text-left fw-bold h6"> Account No.</th>
-                      <th> <input type="text" placeholder="Account No" class="form-control"></th>
+                      <th scope="row" class="text-left fw-bold h6">Bank Details</th>
+                      <th>{{form.bank_details}}</th>
                     </tr>
                     <tr>
-                      <th scope="row" class="text-left fw-bold h6"> Amount</th>
+                      <th scope="row" class="text-left fw-bold h6">Amount</th>
                       <th> <input type="text" name="{{ form.amount.name }}" id="id_{{ form.amount.name }}"
                           placeholder="Amount" class="form-control"></th>
                     </tr>

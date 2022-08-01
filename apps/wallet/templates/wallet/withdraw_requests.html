@@ -16,7 +16,7 @@
   .status-col {
     border-style: solid;
     border-radius: 30px;
-    padding: 10px 5px 9px 5px;
+    padding: 5px;
     font-size: 13px;
     font-weight: 600;
     text-align: center;
@@ -30,7 +30,7 @@
   <div class="col-md-12">
     <div class="card ">
       <div class="card-header">
-        <h4 class="card-title"> Deposit Requests</h4>
+        <h4 class="card-title"> Withdraw Requests</h4>
       </div>
       <div class="card-body">
         <div class="table-responsive">
@@ -47,13 +47,10 @@
                   Account Number
                 </th>
                 <th>
-                  Amount
+                  Credits
                 </th>
                 <th>
                   Status
-                </th>
-                <th>
-                  Receipt
                 </th>
                 <th>
                   Created At
@@ -73,15 +70,12 @@
                             {{transaction.bank_details.account_number}}
                         </td>
                         <td>
-                            Rs {{transaction.amount|floatformat:2}}
+                            {{transaction.amount|floatformat:2}}
                         </td>
                         <td>
                           <p class="status-col {{transaction.get_status_display.split|join:"_"|lower}}">
                             {{transaction.get_status_display}}
                           </p>
-                        </td>
-                        <td>
-                            <a href="{{transaction.get_receipt_url}}" target="_blank">receipt</a>
                         </td>
                         <td>
                             {{transaction.created}}
