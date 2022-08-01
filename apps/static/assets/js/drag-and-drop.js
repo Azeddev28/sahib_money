@@ -5,6 +5,12 @@ $(document).ready(function () {
     }
   }
 )
+
+$(document).on('click', '#modal-close', function(){
+  $("#modal-notification").modal("hide");
+
+})
+
 const modalClose = document.querySelector('#modal-close-btn')
 
 

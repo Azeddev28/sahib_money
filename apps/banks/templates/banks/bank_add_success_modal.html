@@ -17,7 +17,17 @@
                 </div>
             </div>
             <div class="modal-footer">
-                {% comment %} <button type="button" class="btn btn-sm btn-white">Go to Inbox</button> {% endcomment %}
+                <div class="container">
+                    <div class='row'>
+                        <div class='col-6 text-end'>
+                        </div>
+                        <div class='col-6 text-end'>
+                            <button type="button" id='modal-close' data-dismiss="modal" target="modal-notification" class="btn btn-sm btn-white">Add Another</button>
+                            <a href="{% url 'deposit-transaction' %}" type="button" class="btn btn-sm btn-white">Go Back</a>
+                        </div>
+
+                    </div>
+                </div>
             </div>
         </div>
     </div>

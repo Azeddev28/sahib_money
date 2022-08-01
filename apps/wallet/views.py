@@ -16,7 +16,7 @@ class SelectBankListView(View):
     template_name = 'wallet/select_deposit_bank.html'
 
     def get(self, request, *args, **kwargs):
-        banks = SahibMoneyBank.objects.filter(is_active=True).values('account_no', 'account_name', 'iban_no')
+        banks = SahibMoneyBank.objects.filter(is_active=True).values('account_number', 'account_name', 'iban_number')
         context = {'banks': banks}
         return render(request, self.template_name, context)
     
@@ -26,7 +26,7 @@ class SelectBankListView(View):
             'account_no': request.POST.get('bank_account_no'),
             'iban_no': request.POST.get('bank_iban_no'),
         }
-        return redirect('payment-deposit')
+        return redirect('deposit-transaction')
 
 
 class DepositTransactionView(View):

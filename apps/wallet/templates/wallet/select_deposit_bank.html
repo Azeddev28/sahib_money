@@ -46,7 +46,7 @@
               <select aria-label="Default select example" class="form-select" id="select_bank">
                 <option id="blank_option" selected="">Select Bank</option>
                 {% for bank in banks %}
-                  <option id="{{account_no}}" data-iban-no="{{bank.iban_no}}" data-account-no="{{bank.account_no}}" data-account-name="{{bank.account_name}}" value="{{bank.account_no}}">{{bank.account_no}}, {{bank.account_name}}</option>
+                  <option id="{{account_no}}" data-iban-no="{{bank.iban_number}}" data-account-no="{{bank.account_number}}" data-account-name="{{bank.account_name}}" value="{{bank.account_number}}">{{bank.account_number}}, {{bank.account_name}}</option>
                 {% endfor %}
               </select>
             </div>
@@ -57,9 +57,9 @@
             <h5>Bank Information:</h5>
             <div class='mt-4'>
               <ul class="list-group simple-list">
-                <li class="list-group-item fw-normal"><strong class='input-txt'>Account Name:</strong>   <input id='id_bank_account_name' name='bank_account_name' class="form-control" {{bank.account_name}} /></li>
-                <li class="list-group-item fw-normal"><strong class='input-txt'>Account No:</strong>    <input id='id_bank_account_no' name='bank_account_no' class="form-control" {{bank.account_no}} /></li>
-                <li class="list-group-item fw-normal"><strong class='input-txt'>Iban No:</strong>    <input id='id_bank_iban_no' name='bank_iban_no' class="form-control" {{bank.iban_no}} /></li>
+                <li class="list-group-item fw-normal"><strong class='input-txt'>Account Name:</strong>   <input id='id_bank_account_name' disabled name='bank_account_name' class="form-control"/></li>
+                <li class="list-group-item fw-normal"><strong class='input-txt'>Account No:</strong>    <input id='id_bank_account_no' disabled name='bank_account_no' class="form-control"  /></li>
+                <li class="list-group-item fw-normal"><strong class='input-txt'>Iban No:</strong>    <input id='id_bank_iban_no' disabled name='bank_iban_no' class="form-control" /></li>
                 <li class="list-group-item fw-normal mt-2"><a class="fw-bold text-primary" href="#">support@sahibmoney.com</a>
                 </li>
               </ul>
