@@ -8,17 +8,18 @@ from django.template import loader
 from django.urls import reverse
 from django.views import View
 
-from apps.wallet.models import Transaction
+from apps.wallet.models import DepositTransaction, Transaction
 
 
 class DashboardView(View):
-    template_name = 'home/dashboard.html'
+    template_name = 'wallet/deposit_requests.html'
 
     def get(self, request, *args, **kwargs):
         context = {
-            'transactions': Transaction.objects.filter(wallet__user=request.user)
+            'transactions': DepositTransaction.objects.filter(wallet__user=request.user).order_by('-created')
         }
-        return render(request, self.template_name, context)
+        return render(request, self.template_name, context)    
+
 
 class HomeView(View):
     template_name = 'home/index.html'

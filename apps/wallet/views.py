@@ -1,18 +1,30 @@
-from django.shortcuts import render, redirect
-from django.urls import reverse
+from django.shortcuts import redirect, render
 from django.views import View
 from django.contrib import messages
 from django.contrib.auth import get_user_model
-from django.db import IntegrityError
-from django.conf import settings
 
 from apps.banks.models import SahibMoneyBank
-from apps.third_party_transaction.models import ThirdPartyTransaction
-from apps.wallet.choices import TransactionType
 from apps.wallet.forms import DepositForm
-from apps.wallet.models import DepositTransaction, Transaction, Wallet
+from apps.wallet.models import DepositTransaction, Transaction
 
 User = get_user_model()
+
+
+class SelectBankListView(View):
+    template_name = 'wallet/select_deposit_bank.html'
+
+    def get(self, request, *args, **kwargs):
+        banks = SahibMoneyBank.objects.filter(is_active=True).values('account_no', 'account_name', 'iban_no')
+        context = {'banks': banks}
+        return render(request, self.template_name, context)
+    
+    def post(self, request, *args, **kwargs):
+        request.session['user-selected-bank'] = {
+            'account_name': request.POST.get('bank_account_name'),
+            'account_no': request.POST.get('bank_account_no'),
+            'iban_no': request.POST.get('bank_iban_no'),
+        }
+        return redirect('payment-deposit')
 
 
 class DepositTransactionView(View):
@@ -20,7 +32,8 @@ class DepositTransactionView(View):
 
     def get(self, request, *args, **kwargs):
         form = DepositForm()
-        bank = SahibMoneyBank.objects.filter(is_active=True).first()
+        print(request.session['user-selected-bank'])
+        bank = request.session['user-selected-bank']
         context = {'form': form, 'bank': bank}
         return render(request, self.template_name, context)
 
