@@ -1,6 +1,9 @@
 from django.shortcuts import render
 from django.views import View
 from django.http import HttpResponseRedirect
+from django.contrib.messages.views import SuccessMessageMixin
+from django.contrib.auth.views import PasswordResetView
+from django.urls import reverse_lazy
 
 from .forms import MerchantAccountForm
 from .models import MerchantAccount
@@ -27,11 +30,15 @@ class ProfileDetailsView(View):
             return render(request, self.merchant_profile_template, {'form': form})
 
 
-class ResetPassword(View):
+class ResetPassword(SuccessMessageMixin, PasswordResetView):
     template_name = 'home/page_forgot_password.html'
-
-    def get(self, request, *args, **kwargs):
-        return render(request, self.template_name, {})
+    email_template_name = 'home/password_reset_email.html'
+    subject_template_name = 'home/password_reset_subject.html'
+    success_message = "We've emailed you instructions for setting your password, " \
+                      "if an account exists with the email you entered. You should receive them shortly." \
+                      " If you don't receive an email, " \
+                      "please make sure you've entered the address you registered with, and check your spam folder."
+    success_url = reverse_lazy('login')
 
 
 class APIDetailsView(View):
