@@ -49,30 +49,20 @@
   <style>
     span#countdown-timer {
       margin-left: 65%;
-      margin-top: 39px !important;
-      margin-bottom: 10px;
       font-size: 16px;
       font-weight: bold;
-      color: white;
   }
      .otp-field {
         display: flex;
         align-items: center;
         width: 100%
      }
-     form#otp-form {
-      padding-left: 20%;
-    }
   </style>
 </head>
 <body>
-  <div class="wrapper">
-
-    <div class="main-panel">
-
-
-      <div class="content">
-        <div class="col-md-8">
+  <main>
+    <section class="vh-lg-100 mt-5 mt-lg-0 bg-soft d-flex align-items-center ">
+      <div class="container justify-content-center" style='width: 45%'>
           <div class="card">
             <div class="card-header">
               <h3>
@@ -85,43 +75,60 @@
             <div class="card-body">
               <form id="otp-form" class="form-contact" method="post" data-uuid="{{uuid}}">
                 {% csrf_token %}
-                    <div class='otp-field'>
-                      <label style="color: #fff" class="control-label" for="id_amount">Requested From:</label>
-                      <div style="justify-content: center; width: 50%; margin: 15px">
-                        <span style="border: 1px solid #fff"class="form-control">{{requested_form}}</span>
+                    <div class='row mt-2'>
+                      <div class='col-6 d-flex justify-content-end align-items-center'>
+                        <label  class="control-label" for="id_amount">Requested From:</label>
+                      </div>
+                      <div class='col-6'>
+                        <span class="form-control">{{requested_form}}</span>
                       </div>
                     </div>
-                    <div class='otp-field'>
-                      <label style="color: #fff" class="control-label" for="id_amount">Amount:</label>
-                      <div style="justify-content: center; width: 50%; margin-left: 67px">
-                        <span style="border: 1px solid #fff " class="form-control">{{amount}}</span>
+                    <div class='row mt-2'>
+                      <div class='col-6 d-flex justify-content-end align-items-center'>
+                        <label  class="control-label" for="id_amount">Amount:</label>
+                      </div>
+                      <div class='col-6'>
+                        <span class="form-control">{{amount}}</span>
                       </div>
                     </div>
-                    <div class='otp-field'>
-                      <label style="color: #fff; margin-top:19px" class="control-label" for="id_amount">OTP:</label>
-                      <div style="justify-content: center; width: 50%; margin-top: 15px; margin-left: 92px">
-                        <input style="border: 1px solid #fff" type="text" type="text" class="form-control" name="otp" required="" id="id_otp">
+                    <div class='row mt-2'>
+                      <div class='col-6 d-flex justify-content-end align-items-center'>
+                        <label class="control-label" for="id_amount">OTP:</label>
+                      </div>
+                      <div class='col-6'>
+                        <input type="text" type="text" class="form-control" name="otp" required="" id="id_otp">
                       </div>
                     </div>
-                    <span class="countdown" id='countdown-timer'></span>
-
-                <input type="button" id="submit-otp" disabled onclick="submit_transaction('{{ uuid }}')" style='margin-top:5%' class='btn btn-success btn-xs float-right' value="Submit">
-
+                    <div class='row mt-2'>
+                      <div class='col-6'>
+                      </div>
+                      <div class='d-flex col-6 justify-content-end'>
+                        <span class="countdown" id='countdown-timer'></span>
+                      </div>
+                    </div>
+                <div class='row mt-2'>
+                  <div class='col-6'>
+                  </div>
+                  <div class='col-6 d-flex justify-content-end'>
+                    <button id="submit-otp" style='color:white' disabled onclick="submit_transaction('{{ uuid }}')" class='btn btn-success'>Submit</button>
+                  </div>
+                </div>
               </form>
             </div>
           </div>
-          <div class='row float-right' style='margin-top: -12px'>
-            <button disabled class="btn btn-info btn-xs" style='margin-right:10px' id='resent-otp' onclick="resend_otp('{{ uuid }}')">Resend</button>
-            <button type="button" class='btn btn-danger btn-xs'
-                  onclick="confirmDialog('{{ uuid }}', 'Cancel Transaction', 'Do you want to cancel this transaction?')">Cancel</button>
+          <div class='row mt-2'>
+            <div class='col-6'>
+            </div>
+            <div class='col-6 d-flex justify-content-end'>
+              <button disabled class="btn btn-info" style='margin-right:10px' id='resent-otp' onclick="resend_otp('{{ uuid }}')">Resend</button>
+              <button type="button" class='btn btn-danger'
+              onclick="confirmDialog('{{ uuid }}', 'Cancel Transaction', 'Do you want to cancel this transaction?')">Cancel</button>
+            </div>
+
           </div>
-
-        </div>
       </div>
-
-    </div>
-
-  </div>
+    </section>
+  </main>
   <!-- Specific Page JS goes HERE  -->
   {% block javascripts %}
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
