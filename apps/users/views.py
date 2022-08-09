@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.views import View
-from django.http import HttpResponseRedirect
+from django.views.generic import TemplateView
 from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib.auth.views import PasswordResetView
 from django.urls import reverse_lazy
@@ -30,15 +30,31 @@ class ProfileDetailsView(View):
             return render(request, self.merchant_profile_template, {'form': form})
 
 
-class ResetPassword(SuccessMessageMixin, PasswordResetView):
+class ResetPassword(PasswordResetView):
     template_name = 'home/page_forgot_password.html'
-    email_template_name = 'home/password_reset_email.html'
-    subject_template_name = 'home/password_reset_subject.html'
-    success_message = "We've emailed you instructions for setting your password, " \
-                      "if an account exists with the email you entered. You should receive them shortly." \
-                      " If you don't receive an email, " \
-                      "please make sure you've entered the address you registered with, and check your spam folder."
-    success_url = reverse_lazy('login')
+    success_message = '''We've emailed you instructions for setting your password,
+                      if an account exists with the email you entered. You should receive them shortly.'''
+    success_url = reverse_lazy('reset-password')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        if context['form'].is_valid():
+            context['success_message'] = self.success_message
+        return context
+
+    def form_valid(self, form):
+        opts = {
+            'use_https': self.request.is_secure(),
+            'token_generator': self.token_generator,
+            'from_email': self.from_email,
+            'email_template_name': self.email_template_name,
+            'subject_template_name': self.subject_template_name,
+            'request': self.request,
+            'html_email_template_name': self.html_email_template_name,
+            'extra_email_context': self.extra_email_context,
+        }
+        form.save(**opts)
+        return self.render_to_response(self.get_context_data(form=form))
 
 
 class APIDetailsView(View):

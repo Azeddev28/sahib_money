@@ -1,1 +1,1 @@
-VERIFY_ACCOUNT = 'Verfy Account'
+VERIFY_ACCOUNT = 'Verify Account'

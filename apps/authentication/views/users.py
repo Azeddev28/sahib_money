@@ -45,12 +45,17 @@ class LoginView(View):
         return render(request, self.template_name, context)
 
 
-@authenticated_redirect
-def register_user(request):
-    msg = None
-    success = False
+class RegisterUserView(View):
+    template_name = 'accounts/register.html'
 
-    if request.method == "POST":
+    def get(self, request, *args, **kwargs):
+        msg = None
+        success = False
+        form = SignUpForm()
+        context = {'form': form, 'msg': msg, 'success': success}
+        return render(request, self.template_name, context)
+
+    def post(self, request, *args, **kwargs):
         form = SignUpForm(request.POST)
         if form.is_valid():
             user = form.save(commit=False)
@@ -59,17 +64,14 @@ def register_user(request):
             authenticate(email=email, password=raw_password)
             user.is_active = False
             user.save()
-            msg = 'User created - please <a href="/login">login</a>.'
+            msg = 'A verification email has been sent to your email. Please verify account in order to login.'
             success = True
-
-            # return redirect("/login/")
-
         else:
             msg = 'Form is not valid'
-    else:
-        form = SignUpForm()
+            success = False
 
-    return render(request, "accounts/register.html", {"form": form, "msg": msg, "success": success})
+        context = {'form': form, 'msg': msg, 'success': success}
+        return render(request, self.template_name, context)
 
 
 class VerifyAccount(View):
