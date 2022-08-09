@@ -145,38 +145,43 @@
 
       @media (min-width: 200px) {
         .main-top {
-          background-image: url('{% static "assets/img/img_background.png" %}');
+          background-image: url('{% static "assets/img/img_background.jpg" %}');
           background-repeat: no-repeat, no-repeat;
+          background-size: cover
         }
       }
 
       @media (min-width: 300px) {
         .main-top {
-          background-image: url('{% static "assets/img/img_background.png" %}');
+          background-image: url('{% static "assets/img/img_background.jpg" %}');
           background-repeat: no-repeat, no-repeat;
+          background-size: cover
         }
       }
 
       @media (min-width: 768px) {
         .main-top {
-          background-image: url('{% static "assets/img/img_background.png" %}');
+          background-image: url('{% static "assets/img/img_background.jpg" %}');
           background-repeat: no-repeat, no-repeat;
+          background-size: cover
         }
       }
 
       /* next size - tablet landscape and it covers desktop */
       @media (min-width: 1024px) {
         .main-top {
-          background-image: url('{% static "assets/img/main-bg.png" %}');
+          background-image: url('{% static "assets/img/main-bg.jpg" %}');
           background-repeat: no-repeat, no-repeat;
+          background-size: cover
         }
       }
 
       /* next size - larger desktops */
       @media (min-width: 1280px) {
         .main-top {
-          background-image: url('{% static "assets/img/main-bg.png" %}');
+          background-image: url('{% static "assets/img/main-bg.jpg" %}');
           background-repeat: no-repeat, no-repeat;
+          background-size: cover
         }
       }
 
@@ -330,7 +335,7 @@
 
     <main>
       <!-- Hero -->
-      <img src="{% static 'assets/img/main-bg.png' %}" style="display: none;" />
+      <img src="{% static 'assets/img/main-bg.jpg' %}" style="display: none;" />
       <section
         class="section-header overflow-hidden pt-6 pt-lg-8  bg-primary text-white main-top"
         style="background-position-x: center; background-size: cover"
@@ -341,7 +346,7 @@
               <div class="row">
                 <div class="col-12 col-md-8 col-lg-12">
                   <p class="display-2">
-                    <strong style="font-weight: 900">Transfer Credits</strong>
+                    <strong style="font-weight: 700">Transfer Credits</strong>
                     <p class="main-para display-2">from your place of</p>
                     <p class="main-para display-2">comfort.</p>
                   </p>
@@ -824,10 +829,10 @@
             <div class="container">
               <div class="row">
                 <div class="col-md-6 centered">
-                  <img
+                  {% comment %} <img
                     src="{% static 'assets/img/logo_big_white.svg' %}"
                     class="img-responsive"
-                  />
+                  /> {% endcomment %}
                 </div>
                 <div class="col-md-6 mt">
                   <hr />
