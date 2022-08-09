@@ -12,13 +12,26 @@ from apps.wallet.models import Transaction
 
 
 class DashboardView(View):
-    template_name = 'home/transaction_history.html'
+    template_name = 'home/dashboard.html'
 
     def get(self, request, *args, **kwargs):
         context = {
             'transactions': Transaction.objects.filter(wallet__user=request.user)
         }
         return render(request, self.template_name, context)
+
+class HomeView(View):
+    template_name = 'home/index.html'
+
+    def get(self, request, *args, **kwargs):
+        return render(request, self.template_name)
+
+
+class ContactUsView(View):
+    template_name = 'home/contact_us.html'
+
+    def get(self, request, *args, **kwargs):
+        return render(request, self.template_name)
 
 
 @login_required(login_url="/login/")

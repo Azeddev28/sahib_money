@@ -9,6 +9,6 @@ def authenticated_redirect(function):
         if(not request.user.is_authenticated):
             return function(request, *args, **kwargs)
         else:
-            return redirect('/')
+            return redirect('/dashboard')
 
     return wrap

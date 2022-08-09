@@ -5,7 +5,7 @@ from django.conf import settings
 from apps.wallet.choices import PaymentStatus
 
 from apps.wallet.utils.email_utils import send_approval_email_to_user, send_refusal_email_to_user, send_payment_request_email_to_admin
-from apps.wallet.models import DepositTransaction
+from apps.wallet.models import DepositTransaction, WithdrawalTransaction, P2PTransaction
 from apps.wallet.services.wallet_transaction import WalletTransactionService
 from apps.wallet.models import Wallet
 
@@ -26,6 +26,29 @@ def handle_payment_status_update(sender, instance: DepositTransaction, **kwargs)
         if prev_instance.status != PaymentStatus.DECLINED and\
             instance.status == PaymentStatus.DECLINED:
             send_refusal_email_to_user(user_name, email)
+
+
+@receiver(pre_save, sender=WithdrawalTransaction)
+def handle_payment_status_update(sender, instance: WithdrawalTransaction, **kwargs):
+    if not instance._state.adding:
+        prev_instance = WithdrawalTransaction.objects.get(pk=instance.pk)
+        user_name = f'{instance.wallet.user.first_name or ""} {instance.wallet.user.last_name or ""}'
+        email = instance.wallet.user.email
+
+        if prev_instance.status != PaymentStatus.APPROVED and\
+            instance.status == PaymentStatus.APPROVED:
+            send_approval_email_to_user(user_name, email)
+            WalletTransactionService.deduct_amount(instance.wallet, instance.amount)
+        if prev_instance.status != PaymentStatus.DECLINED and\
+            instance.status == PaymentStatus.DECLINED:
+            send_refusal_email_to_user(user_name, email)
+
+
+@receiver(post_save, sender=P2PTransaction)
+def handle_payment_status_update(sender, instance: P2PTransaction, created, **kwargs):
+    if created:
+        WalletTransactionService.deduct_amount(instance.wallet, instance.amount)
+        WalletTransactionService.deposit_amount(instance.to_wallet, instance.amount)
 
 
 @receiver(post_save, sender=DepositTransaction)

@@ -1,0 +1,84 @@
+{% extends "layouts/base.html" %}
+
+{% block title %} {% endblock %} 
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+<style>
+  .waiting_for_approval {
+    background-color: #f8bd7a;
+  }
+  .declined {
+    background-color: #EB4747
+  }
+  .status-col {
+    border-style: solid;
+    border-radius: 30px;
+    padding: 5px;
+    font-size: 13px;
+    font-weight: 600;
+    text-align: center;
+    color: white;
+  }
+  .approved {
+    background-color: #07C646
+  }
+</style>
+<div class="row">
+  <div class="col-md-12">
+    <div class="card ">
+      <div class="card-header">
+        <h4 class="card-title"> Deposit Requests</h4>
+      </div>
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table tablesorter " id="">
+            <thead class=" text-primary">
+              <tr>
+                <th>
+                  Transaction Ref
+                </th>
+                <th>
+                    Amount
+                </th>
+                <th>
+                  Status
+                </th>
+                <th>
+                  Created At
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+                  {% for transaction in transactions %}
+                    <tr>
+                        <td>
+                            {{transaction.uuid}}
+                        </td>
+                        <td>
+                            Rs {{transaction.amount|floatformat:2}}
+                        </td>
+                        <td>
+                          <p class="status-col {{transaction.get_status_display.split|join:"_"|lower}}">
+                            {{transaction.get_status_display}}
+                          </p>
+                        </td>
+                        <td>
+                            {{transaction.created}}
+                        </td>
+                    </tr>
+                  {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}{% endblock javascripts %}

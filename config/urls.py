@@ -11,6 +11,7 @@ from apps.home import urls as home_urls
 from apps.third_party_transaction import urls as tp_transaction_urls
 from apps.wallet import urls as wallet_urls
 from apps.users import urls as user_urls
+from apps.banks import urls as bank_urls
 
 urlpatterns = [
     path('admin/', admin.site.urls),          # Django admin route
@@ -20,6 +21,7 @@ urlpatterns = [
     path("", include(home_urls)),
     path("wallet/", include(wallet_urls)),
     path("users/", include(user_urls)),
+    path("banks/", include(bank_urls)),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
