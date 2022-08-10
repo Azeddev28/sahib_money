@@ -30,8 +30,9 @@ class LoginView(View):
         if form.is_valid():
             email = form.cleaned_data.get("email")
             password = form.cleaned_data.get("password")
-            user: User = authenticate(email=email, password=password)
+            user = authenticate(email=email, password=password)
             if user is not None:
+                login(request, user)
                 ip_address = get_client_ip(request)
                 user.last_client_ip = ip_address
                 user.save()
