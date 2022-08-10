@@ -3,6 +3,10 @@ from django.urls import reverse
 from django.dispatch import receiver
 from django.contrib.auth import get_user_model
 from django.conf import settings
+from django.contrib.auth.signals import user_logged_in
+from django.dispatch import receiver
+from apps.activities.choices import ActivityTypes
+from apps.activities.models import Activity
 
 from apps.services.email_service import EmailService
 from apps.authentication.utils.constants import VERIFY_ACCOUNT
@@ -23,3 +27,12 @@ def send_verification_email(sender, instance, created, **kwargs):
             template_context=email_context,
         )
         email_service.start()
+
+
+@receiver(user_logged_in)
+def post_login(sender, user, request, **kwargs):
+    Activity.objects.create(
+        user=user,
+        action=ActivityTypes.LOGIN,
+        details=f'Login IP {user.last_client_ip}'
+    )

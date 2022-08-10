@@ -4,6 +4,7 @@ from django.views import View
 
 from apps.authentication.decorators import authenticated_redirect
 from apps.authentication.forms import LoginForm, SignUpForm
+from apps.authentication.utils.login_utils import get_client_ip
 
 
 User = get_user_model()
@@ -29,9 +30,11 @@ class LoginView(View):
         if form.is_valid():
             email = form.cleaned_data.get("email")
             password = form.cleaned_data.get("password")
-            user = authenticate(email=email, password=password)
+            user: User = authenticate(email=email, password=password)
             if user is not None:
-                login(request, user)
+                ip_address = get_client_ip(request)
+                user.last_client_ip = ip_address
+                user.save()
                 return redirect("/")
             else:
                 msg = 'Invalid credentials'

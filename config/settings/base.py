@@ -47,6 +47,7 @@ PROJECT_APPS = [
     'apps.banks',
     'apps.third_party_transaction',
     'apps.authentication',
+    'apps.activities'
 ]
 
 INSTALLED_APPS = DJANGO_APPS + PROJECT_APPS
