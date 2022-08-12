@@ -39,14 +39,14 @@
         </div> {% endcomment %}
     </div>
     <div class="row">
-        <div class="col-9 mb-4">
+        <div class="col-lg-8 col-md-6 col-sm-12 mb-4">
             <div class="card bg-yellow-100 border-0 shadow pb-10">
                 <div class="card-header d-sm-flex flex-row align-items-center flex-0">
                     <div class="d-block mb-3 mb-sm-0">
                         <div class="fs-5 fw-normal mb-2">Member Area</div>
                         <h2 class="fs-3 fw-extrabold">Welcome to your account, {{request.user}}  </h2>
                         <div class="small mt-2"> 
-                            <span class="fw-normal me-2">Your last visit:</span>                              
+                            <span class="fw-bold me-2">Your last visit:</span>                              
                             <span class="fas fa-angle-up fw-bold">{{request.user.last_login}}</span>
                             <span class="fas fa-angle-up">from</span>
                             <span class="fas fa-angle-up fw-bold">{{request.user.last_client_ip}}</span>
@@ -54,7 +54,7 @@
                             {% comment %} <span class="text-success fw-bold">10.57%</span> {% endcomment %}
                         </div>
                         <div class="small mt-2"> 
-                          <span class="fw-normal me-2">Account type:</span>                              
+                          <span class="fw-bold me-2">Account type:</span>                              
                           <span class="fas fa-angle-up fw-bold">{{request.user.account_type}}</span>                                   
                           {% comment %} <span class="text-success fw-bold">10.57%</span> {% endcomment %}
                       </div>
@@ -69,7 +69,7 @@
                 </div> {% endcomment %}
             </div>
         </div>
-        <div class="col-3 px-0 mb-4">
+        <div class="col-lg-4 justify-content-center col-md-6 col-sm-12 mb-4">
           {% include 'partials/user_profile_info_section.html' %}
         </div>
         {% comment %} <div class="col-12 col-sm-6 col-xl-4 mb-4">
