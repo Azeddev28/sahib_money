@@ -139,6 +139,10 @@
   </head>
   <body>
     <style>
+      .main-para{
+        font-weight: 200
+      }
+
       @media (min-width: 200px) {
         .main-top {
           background-image: url('{% static "assets/img/img_background.png" %}');
@@ -326,6 +330,7 @@
 
     <main>
       <!-- Hero -->
+      <img src="{% static 'assets/img/main-bg.png' %}" style="display: none;" />
       <section
         class="section-header overflow-hidden pt-6 pt-lg-8  bg-primary text-white main-top"
         style="background-position-x: center; background-size: cover"
@@ -337,7 +342,8 @@
                 <div class="col-12 col-md-8 col-lg-12">
                   <p class="display-2">
                     <strong style="font-weight: 900">Transfer Credits</strong>
-                    from your place of comfort.
+                    <p class="main-para display-2">from your place of</p>
+                    <p class="main-para display-2">comfort.</p>
                   </p>
                 </div>
               </div>
@@ -378,19 +384,6 @@
             </div>
           </div>
         </div>
-        <figure
-          class="position-absolute bottom-0 left-0 w-100 d-none d-md-block mb-n2"
-        >
-          <svg
-            class="home-pattern"
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 3000 185.4"
-          >
-            <path
-              d="M3000,0v185.4H0V0c496.4,115.6,996.4,173.4,1500,173.4S2503.6,115.6,3000,0z"
-            ></path>
-          </svg>
-        </figure>
       </section>
       {% comment %}
       <div class="section pt-0">
@@ -442,7 +435,7 @@
 
             <div class="col-md-4 mt text-center">
               <img
-                src="{% static 'assets/img/landing_page/credit_transfer.png' %}"
+                src="{% static 'assets/img/money-transfer.svg' %}"
                 alt=""
                 width="90"
                 height="100"
@@ -473,7 +466,7 @@
 
             <div class="col-md-4 mt-5 text-center">
               <img
-                src="{% static 'assets/img/landing_page/full_support.png' %}"
+                src="{% static 'assets/img/customer_service.svg' %}"
                 alt=""
                 width="90"
               />

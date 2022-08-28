@@ -1,0 +1,88 @@
+{% extends "layouts/base.html" %}
+{% load static %}
+{% block title %} Wallet Deposit {% endblock %}
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+<style>
+  .deposit-btn {
+    float: right;
+    margin-top: 4%;
+  }
+  .input-txt {
+    font-weight: 400;
+  }
+</style>
+<input id="form-success" type="hidden" value="{{form_success}}" />
+
+<div class="row justify-content-center mt-4">
+  <div class="col-12 col-xl-9">
+    <div class="card shadow border-0 p-4 p-md-5 position-relative">
+      <div class="mb-4 d-flex align-items-center justify-content-center">
+        <h2 class="h2 mb-0">Select Deposit Bank</h2>
+      </div>
+      <section class="mt-5 mt-lg-0 bg-soft d-flex align-items-center">
+        <div class="container">
+            <div class="row justify-content-center form-bg-image" data-background-lg="">
+                <div class="col-12 d-flex align-items-center justify-content-center">
+                    <div class="bg-white shadow border-0 rounded border-light p-4 p-lg-5 w-100 fmxw-500">
+                        <div class="col-sm">
+                            <h5>Select Bank:</h5>
+                            <div class="mb-4 mt-4 col-12">
+                              <select aria-label="Default select example" class="form-select" id="select_bank">
+                                <option id="blank_option" selected="">Select Bank</option>
+                                {% for bank in banks %}
+                                  <option id="{{account_no}}" data-iban-no="{{bank.iban_number}}" data-account-no="{{bank.account_number}}" data-account-name="{{bank.account_name}}" value="{{bank.account_number}}">{{bank.account_number}}, {{bank.account_name}}</option>
+                                {% endfor %}
+                              </select>
+                            </div>
+                        </div>
+                        <form method="post" id="selectBankForm" action="." enctype="multipart/form-data">
+                          {% csrf_token %}
+                          <div class="row justify-content-between mb-4 mb-md-5">
+                            <div class="col-sm">
+                              <h5>Bank Information:</h5>
+                              <div class='mt-4'>
+                                <ul class="list-group simple-list">
+                                  <li class="list-group-item fw-normal"><strong class='input-txt'>Account Name:</strong>   <input id='id_bank_account_name' disabled name='bank_account_name' class="form-control"/></li>
+                                  <li class="list-group-item fw-normal"><strong class='input-txt'>Account No:</strong>    <input id='id_bank_account_no' disabled name='bank_account_no' class="form-control"  /></li>
+                                  <li class="list-group-item fw-normal"><strong class='input-txt'>Iban No:</strong>    <input id='id_bank_iban_no' disabled name='bank_iban_no' class="form-control" /></li>
+                                  <li class="list-group-item fw-normal mt-2"><a class="fw-bold text-primary" href="#">support@sahibmoney.com</a>
+                                  </li>
+                                </ul>
+                              </div>
+                              <div class="deposit-btn">
+                                <input type="submit" value="Proceed" class="btn btn-primary">
+                              </div>
+                            </div>
+                          </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script src="{% static 'assets/js/drag-and-drop.js' %}"></script>
+<script>
+  $(document).on('change', '#select_bank', function(){
+    if($( "#select_bank option:selected" ).attr('id') === 'blank_option'){
+
+    }else{
+      $('#id_bank_account_name').val($( "#select_bank option:selected" ).data('account-name'))
+      $('#id_bank_account_no').val($( "#select_bank option:selected" ).data('account-no'))
+      $('#id_bank_iban_no').val($( "#select_bank option:selected" ).data('iban-no'))
+    }
+  })
+</script>
+{% endblock javascripts %}

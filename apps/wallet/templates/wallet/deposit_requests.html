@@ -16,7 +16,7 @@
   .status-col {
     border-style: solid;
     border-radius: 30px;
-    padding: 5px;
+    padding: 10px 5px 9px 5px;
     font-size: 13px;
     font-weight: 600;
     text-align: center;
@@ -53,10 +53,10 @@
                   Status
                 </th>
                 <th>
-                  Receipt
+                  Created At
                 </th>
                 <th>
-                  Created At
+                  Receipt
                 </th>
               </tr>
             </thead>
@@ -81,10 +81,10 @@
                           </p>
                         </td>
                         <td>
-                            <a href="{{transaction.get_receipt_url}}" target="_blank">receipt</a>
+                            {{transaction.created}}
                         </td>
                         <td>
-                            {{transaction.created}}
+                          <a href="{{transaction.get_receipt_url}}" target="_blank"><img id='display-img' height='30' width='30' src="{{ ASSETS_ROOT }}/img/receipt.png" alt="change cover"></a>
                         </td>
                     </tr>
                   {% endfor %}

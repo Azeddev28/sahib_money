@@ -4,6 +4,7 @@ from django.views import View
 
 from apps.authentication.decorators import authenticated_redirect
 from apps.authentication.forms import LoginForm, SignUpForm
+from apps.authentication.utils.login_utils import get_client_ip
 
 
 User = get_user_model()
@@ -32,6 +33,9 @@ class LoginView(View):
             user = authenticate(email=email, password=password)
             if user is not None:
                 login(request, user)
+                ip_address = get_client_ip(request)
+                user.last_client_ip = ip_address
+                user.save()
                 return redirect("/")
             else:
                 msg = 'Invalid credentials'
@@ -45,12 +49,17 @@ class LoginView(View):
         return render(request, self.template_name, context)
 
 
-@authenticated_redirect
-def register_user(request):
-    msg = None
-    success = False
+class RegisterUserView(View):
+    template_name = 'accounts/register.html'
 
-    if request.method == "POST":
+    def get(self, request, *args, **kwargs):
+        msg = None
+        success = False
+        form = SignUpForm()
+        context = {'form': form, 'msg': msg, 'success': success}
+        return render(request, self.template_name, context)
+
+    def post(self, request, *args, **kwargs):
         form = SignUpForm(request.POST)
         if form.is_valid():
             user = form.save(commit=False)
@@ -59,17 +68,14 @@ def register_user(request):
             authenticate(email=email, password=raw_password)
             user.is_active = False
             user.save()
-            msg = 'User created - please <a href="/login">login</a>.'
+            msg = 'A verification email has been sent to your email. Please verify account in order to login.'
             success = True
-
-            # return redirect("/login/")
-
         else:
             msg = 'Form is not valid'
-    else:
-        form = SignUpForm()
+            success = False
 
-    return render(request, "accounts/register.html", {"form": form, "msg": msg, "success": success})
+        context = {'form': form, 'msg': msg, 'success': success}
+        return render(request, self.template_name, context)
 
 
 class VerifyAccount(View):

@@ -7,18 +7,35 @@ from django.shortcuts import render
 from django.template import loader
 from django.urls import reverse
 from django.views import View
+from apps.activities.models import Activity
 
-from apps.wallet.models import Transaction
+from apps.wallet.models import DepositTransaction, Transaction
 
 
 class DashboardView(View):
     template_name = 'home/dashboard.html'
 
     def get(self, request, *args, **kwargs):
+        activities = Activity.objects.filter(user=request.user)
         context = {
-            'transactions': Transaction.objects.filter(wallet__user=request.user)
+            'activities': activities,
+            'transactions': DepositTransaction.objects.filter(wallet__user=request.user).order_by('-created')
         }
-        return render(request, self.template_name, context)
+        return render(request, self.template_name, context)    
+
+
+class HomeView(View):
+    template_name = 'home/index.html'
+
+    def get(self, request, *args, **kwargs):
+        return render(request, self.template_name)
+
+
+class ContactUsView(View):
+    template_name = 'home/contact_us.html'
+
+    def get(self, request, *args, **kwargs):
+        return render(request, self.template_name)
 
 class HomeView(View):
     template_name = 'home/index.html'

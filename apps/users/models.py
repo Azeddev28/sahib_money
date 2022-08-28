@@ -38,11 +38,22 @@ class User(AbstractBaseUser, PermissionsMixin, BaseModel):
     first_name = models.CharField(max_length=40, null=True, blank=True)
     last_name = models.CharField(max_length=40, null=True, blank=True)
     uuid = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
+    last_client_ip = models.CharField(max_length=100, default=None, null=True, blank=True)
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
 
     objects = UserManager()
+
+    @property
+    def credits(self):
+        return '{:.2f}'.format(round(self.wallet.total_amount, 2))
+
+    @property
+    def account_type(self):
+        if getattr(self, 'merchant_account', None):
+            return 'Business Account'
+        return 'Normal Account'
 
     def __str__(self):
         return self.email

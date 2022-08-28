@@ -7525,6 +7525,9 @@ textarea.form-control-lg {
 .fmxw-500 {
   max-width: 500px !important; }
 
+.fmxw-600 {
+    max-width: 600px !important; }  
+
 .fmxw-999 {
   max-width: 999px !important; }
 

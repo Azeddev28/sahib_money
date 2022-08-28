@@ -14,7 +14,13 @@
   .bold-txt {
     font-weight: 600;
   }
+  .custom-container {
+      max-width: 100% !important;
+      padding-right: 0px;
+      padding-left: 0px;
+  }
 </style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <input id="form-success" type="hidden" value="{{form_success}}" />
 
 <div class="row justify-content-center mt-4">
@@ -58,76 +64,89 @@
           </dl>
         </div>
       </div>
-      <div class="deposit-btn">
-        <a class="btn btn-primary" href="{% url 'user-bank-details' %}">Add Account</a>
-      </div>
-      <form method="post" , enctype="multipart/form-data">
-
-        <div class="container">
-          {% csrf_token %}
-          <div class='row'>
-            <div class="col-lg-6 col-sm-12 col-md-12">
-              <div class="table-responsive">
-                <table class="table mb-0">
-                  <!-- <thead class="bg-light border-top">
-                        <tr>
-                          <th scope="row" class="border-0 text-left"> Account No. </th>
-                          <th scope="row" class="border-0"> Amount </th>
-                        </tr>
-                      </thead> -->
-                  <tbody>
-                    <tr>
-                      <th scope="row" class="text-left fw-bold h6">Bank Details</th>
-                      <th>{{form.bank_details}}</th>
-                    </tr>
-                    <tr>
-                      <th scope="row" class="text-left fw-bold h6">Amount</th>
-                      <th> <input type="text" name="{{ form.amount.name }}" id="id_{{ form.amount.name }}"
-                          placeholder="Amount" class="form-control"></th>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-              <!-- <div class="d-flex justify-content-end text-right mb-4 py-4">
-                    <div class="mt-4">
-                    </div>
-                  </div>
-                  <h4>Payments to:</h4> <span>payment@volt.com</span> -->
+      <div class='mt-4'>
+        <div class="d-flex col-sm justify-content-center">
+          <h2 class="h2 mb-2">Sender Details</h2>
+        </div>
+        <div class='container mb-3'>
+          <div class="row">
+            <div class="col-lg-6 deposit-btn text-end d-none d-lg-block">
+              <a class="btn btn-primary" href="{% url 'user-bank-details' %}"><i class="fa fa-plus"></i>  Add Account</a>
             </div>
-            <div class="col-lg-6 col-sm-12 col-md-12">
-              <div class="card card-body border-0 shadow">
-                <h2 class="h5 mb-4">Upload Payment Receipt</h2>
-                <div class="d-flex align-items-center">
-                  <div class="me-3">
-                    <!-- Avatar -->
-                    <img id='display-img' height='150' width='150' src="{{ ASSETS_ROOT }}/img/receipt.png" alt="change cover">
-                  </div>
-                  <div class="file-field">
-                    <div class="d-flex justify-content-xl-center ms-xl-3">
-                      <div class="d-flex">
-                        <svg class="icon text-gray-500 me-2" fill="currentColor" viewBox="0 0 20 20"
-                          xmlns="http://www.w3.org/2000/svg">
-                          <path fill-rule="evenodd"
-                            d="M8 4a3 3 0 00-3 3v4a5 5 0 0010 0V7a1 1 0 112 0v4a7 7 0 11-14 0V7a5 5 0 0110 0v4a3 3 0 11-6 0V7a1 1 0 012 0v4a1 1 0 102 0V7a3 3 0 00-3-3z"
-                            clip-rule="evenodd"></path>
-                        </svg>
-                        <input type="file" name="{{ form.receipt.name }}" id="imagefile">
-                        <div class="d-md-block text-left make-cursor ">
-                          <div class="fw-normal text-dark mb-1">Choose Image</div>
-                          <div class="text-gray small">JPG, GIF or PNG. Max size of 800K</div>
+            <div class="col-lg-6 deposit-btn text-end d-lg-none d-sm-block">
+              <a class="btn btn-primary" href="{% url 'user-bank-details' %}"><i class="fa fa-plus"></i> <i class="fa fa-bank"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <form method="post" , enctype="multipart/form-data">
+
+          <div class="container custom-container">
+            {% csrf_token %}
+            <div class='row'>
+              <div class="col-lg-6 col-sm-12 col-md-12">
+                <div class="table-responsive">
+                  <table class="table mb-0">
+                    <!-- <thead class="bg-light border-top">
+                          <tr>
+                            <th scope="row" class="border-0 text-left"> Account No. </th>
+                            <th scope="row" class="border-0"> Amount </th>
+                          </tr>
+                        </thead> -->
+                    <tbody>
+                      <tr>
+                        <th scope="row" class="text-left fw-bold h6">Bank Details</th>
+                        <th>{{form.bank_details}}</th>
+                      </tr>
+                      <tr>
+                        <th scope="row" class="text-left fw-bold h6">Amount</th>
+                        <th> <input type="text" name="{{ form.amount.name }}" id="id_{{ form.amount.name }}"
+                            placeholder="Amount" class="form-control"></th>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <!-- <div class="d-flex justify-content-end text-right mb-4 py-4">
+                      <div class="mt-4">
+                      </div>
+                    </div>
+                    <h4>Payments to:</h4> <span>payment@volt.com</span> -->
+              </div>
+              <div class="col-lg-6 col-sm-12 col-md-12">
+                <div class="card card-body border-0 shadow">
+                  <h2 class="h5 mb-4">Upload Payment Receipt</h2>
+                  <div class="d-flex align-items-center">
+                    <div class="me-3">
+                      <!-- Avatar -->
+                      <img id='display-img' height='150' width='150' src="{{ ASSETS_ROOT }}/img/receipt.png" alt="receipt">
+                    </div>
+                    <div class="file-field">
+                      <div class="d-flex justify-content-xl-center ms-xl-3">
+                        <div class="d-flex">
+                          <svg class="icon text-gray-500 me-2" fill="currentColor" viewBox="0 0 20 20"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd"
+                              d="M8 4a3 3 0 00-3 3v4a5 5 0 0010 0V7a1 1 0 112 0v4a7 7 0 11-14 0V7a5 5 0 0110 0v4a3 3 0 11-6 0V7a1 1 0 012 0v4a1 1 0 102 0V7a3 3 0 00-3-3z"
+                              clip-rule="evenodd"></path>
+                          </svg>
+                          <input type="file" name="{{ form.receipt.name }}" id="imagefile">
+                          <div class="d-md-block text-left make-cursor ">
+                            <div class="fw-normal text-dark mb-1">Choose Image</div>
+                            <div class="text-gray small">JPG, GIF or PNG. Max size of 800K</div>
+                          </div>
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
-              </div>
-              <div class="deposit-btn">
-                <input type="submit" value="Deposit" class="btn btn-primary" />
+                <div class="deposit-btn">
+                  <input type="submit" value="Deposit" class="btn btn-primary" />
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      </form>
+        </form>
+      </div>
 
     </div>
   </div>

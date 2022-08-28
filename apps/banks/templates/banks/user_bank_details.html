@@ -13,14 +13,14 @@
 </style>
 <input id="form-success" type="hidden" value="{{form_success}}" />
 
-{% include 'banks/success_modal.html' %}
+{% include 'banks/bank_add_success_modal.html' %}
 <section class="mt-5 mt-lg-0 bg-soft d-flex align-items-center">
     <div class="container">
         <div class="row justify-content-center form-bg-image" data-background-lg="">
             <div class="col-12 d-flex align-items-center justify-content-center">
-                <div class="bg-white shadow border-0 rounded border-light p-4 p-lg-5 w-100 fmxw-500">
+                <div class="bg-white shadow border-0 rounded border-light p-4 p-lg-5 w-100 fmxw-600">
                     <div class="text-center text-md-center mb-4 mt-md-0">
-                        <p>Add your banking details</p>
+                        <h3>Add your banking details</h3>
                     </div>
                     <form method="post" action="" class="mt-4" autocomplete="off">
                         {% csrf_token %}

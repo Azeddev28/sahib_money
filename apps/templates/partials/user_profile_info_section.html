@@ -1,0 +1,35 @@
+<div class="card shadow border-0 text-center p-0">
+    <div class="profile-cover rounded-top"></div>
+    <div class="card-body pb-5">
+        <img src="{{ ASSETS_ROOT }}/img/default_user.png" class="avatar-xl rounded-circle mx-auto mt-n7 mb-4" alt="Neil Portrait">
+        {% if request.user.first_name and request.user.last_name %}
+            <h4 class="h3">
+                {{request.user.first_name}} {{request.user.last_name}}
+            </h4>
+        {% endif %}
+         {% comment %} <h5 class="fw-normal">
+            {{ request.user.username }}
+        </h5> {% endcomment %}
+        <div class='row d-flex mb-2'>
+            <div class='col-4 d-flex align-items-start fw-bold'>
+                Account: 
+            </div>
+            <div class='col-8 d-flex align-items-start'>
+                {{ request.user.email }}
+            </div>
+        </div>
+        <div class='row d-flex'>
+            <div class='col-4 d-flex align-items-start fw-bold'>
+                Credits: 
+            </div>
+            <div class='col-8 d-flex align-items-start'>
+                {{ request.user.credits }}
+            </div>
+        </div>
+        {% comment %} <a class="btn btn-sm btn-gray-800 d-inline-flex align-items-center me-2" href="#">
+            <svg class="icon icon-xs me-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M8 9a3 3 0 100-6 3 3 0 000 6zM8 11a6 6 0 016 6H2a6 6 0 016-6zM16 7a1 1 0 10-2 0v1h-1a1 1 0 100 2h1v1a1 1 0 102 0v-1h1a1 1 0 100-2h-1V7z"></path></svg>
+            Connect
+        </a>
+        <a class="btn btn-sm btn-secondary" href="#">Send Message</a> {% endcomment %}
+    </div>
+</div>
