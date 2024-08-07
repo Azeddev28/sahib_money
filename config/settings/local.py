@@ -13,3 +13,4 @@ DATABASES = {
 
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+SITE_BASE_URL = "http://localhost:8080"

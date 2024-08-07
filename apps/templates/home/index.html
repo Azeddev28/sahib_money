@@ -1,394 +1,1355 @@
-{% extends "layouts/base.html" %}
+<!--
 
-{% block title %} Dashboard {% endblock %} 
+=========================================================
+* Volt Free - Bootstrap 5 Dashboard
+=========================================================
 
-<!-- Specific Page CSS goes HERE  -->
-{% block stylesheets %}{% endblock stylesheets %}
+* Product Page: https://themesberg.com/product/admin-dashboard/volt-bootstrap-5-dashboard
+* Copyright 2021 Themesberg (https://www.themesberg.com)
 
-{% block content %}
+* Designed and coded by https://themesberg.com
 
-    <div class="row">
+=========================================================
 
-      <div class="col-12">
-        <div class="card card-chart">
-          <div class="card-header ">
-            <div class="row">
-              <div class="col-sm-6 text-left">
-                <h5 class="card-category">Total Shipments</h5>
-                <h2 class="card-title">Performance</h2>
+* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software. Please contact us to request a removal. Contact us if you want to remove it.
+
+-->
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <!-- Primary Meta Tags -->
+    <title>Sahib Money</title>
+
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta name="title" content="Volt - Free Bootstrap 5 Admin Dashboard" />
+    <meta name="author" content="Themesberg" />
+    <meta
+      name="description"
+      content="Volt Pro is a Premium Bootstrap 5 Admin Dashboard featuring over 800 components, 10+ plugins and 20 example pages using Vanilla JS."
+    />
+    <meta
+      name="keywords"
+      content="bootstrap 5, bootstrap, bootstrap 5 admin dashboard, bootstrap 5 dashboard, bootstrap 5 charts, bootstrap 5 calendar, bootstrap 5 datepicker, bootstrap 5 tables, bootstrap 5 datatable, vanilla js datatable, themesberg, themesberg dashboard, themesberg admin dashboard"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css"
+      integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link
+      rel="canonical"
+      href="https://themesberg.com/product/admin-dashboard/volt-premium-bootstrap-5-dashboard"
+    />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://demo.themesberg.com/volt-pro" />
+    <meta
+      property="og:title"
+      content="Volt - Free Bootstrap 5 Admin Dashboard"
+    />
+    <meta
+      property="og:description"
+      content="Volt Pro is a Premium Bootstrap 5 Admin Dashboard featuring over 800 components, 10+ plugins and 20 example pages using Vanilla JS."
+    />
+    <meta
+      property="og:image"
+      content="https://themesberg.s3.us-east-2.amazonaws.com/public/products/volt-pro-bootstrap-5-dashboard/volt-pro-preview.jpg"
+    />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta
+      property="twitter:url"
+      content="https://demo.themesberg.com/volt-pro"
+    />
+    <meta
+      property="twitter:title"
+      content="Volt - Free Bootstrap 5 Admin Dashboard"
+    />
+    <meta
+      property="twitter:description"
+      content="Volt Pro is a Premium Bootstrap 5 Admin Dashboard featuring over 800 components, 10+ plugins and 20 example pages using Vanilla JS."
+    />
+    <meta
+      property="twitter:image"
+      content="https://themesberg.s3.us-east-2.amazonaws.com/public/products/volt-pro-bootstrap-5-dashboard/volt-pro-preview.jpg"
+    />
+
+    <!-- Favicon -->
+    <link
+      rel="apple-touch-icon"
+      sizes="120x120"
+      href="{{ ASSETS_ROOT }}/img/sahib_money_favicon.svg"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="{{ ASSETS_ROOT }}/img/sahib_money_favicon.svg"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="{{ ASSETS_ROOT }}/img/sahib_money_favicon.svg"
+    />
+    <link
+      rel="manifest"
+      href="{{ ASSETS_ROOT }}/img/favicon/site.webmanifest"
+    />
+    <link
+      rel="mask-icon"
+      href="{{ ASSETS_ROOT }}/img/favicon/safari-pinned-tab.svg"
+      color="#ffffff"
+    />
+    <meta name="msapplication-TileColor" content="#ffffff" />
+    <meta name="theme-color" content="#ffffff" />
+
+    <!-- Sweet Alert -->
+    <link
+      type="text/css"
+      href="{{ ASSETS_ROOT }}/vendor/sweetalert2/dist/sweetalert2.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- Notyf -->
+    <link
+      type="text/css"
+      href="{{ ASSETS_ROOT }}/vendor/notyf/notyf.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- Volt CSS -->
+    <link
+      type="text/css"
+      href="{{ ASSETS_ROOT }}/css/volt.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="{{ ASSETS_ROOT }}/css/my_style.css" />
+
+    <!-- NOTICE: You can use the _analytics.html partial to include production code specific code & trackers -->
+  </head>
+  <body>
+    <style>
+      .main-para{
+        font-weight: 200
+      }
+
+      @media (min-width: 200px) {
+        .main-top {
+          background-image: url('{% static "assets/img/img_background.png" %}');
+          background-repeat: no-repeat, no-repeat;
+        }
+      }
+
+      @media (min-width: 300px) {
+        .main-top {
+          background-image: url('{% static "assets/img/img_background.png" %}');
+          background-repeat: no-repeat, no-repeat;
+        }
+      }
+
+      @media (min-width: 768px) {
+        .main-top {
+          background-image: url('{% static "assets/img/img_background.png" %}');
+          background-repeat: no-repeat, no-repeat;
+        }
+      }
+
+      /* next size - tablet landscape and it covers desktop */
+      @media (min-width: 1024px) {
+        .main-top {
+          background-image: url('{% static "assets/img/main-bg.png" %}');
+          background-repeat: no-repeat, no-repeat;
+        }
+      }
+
+      /* next size - larger desktops */
+      @media (min-width: 1280px) {
+        .main-top {
+          background-image: url('{% static "assets/img/main-bg.png" %}');
+          background-repeat: no-repeat, no-repeat;
+        }
+      }
+
+      /* Contact Form */
+
+      #contact {
+        padding: 40px 0;
+      }
+
+      #contact h2 {
+        margin-bottom: 30px;
+      }
+      ::placeholder {
+        color: grey !important;
+      }
+
+      .contact-form input,
+      .contact-form textarea {
+        padding: 10px 12px;
+        border-radius: 0;
+        box-shadow: none;
+        margin-top: 1%;
+        font-size: 14px;
+        height: auto;
+      }
+
+      .contact-form .form-send {
+        text-align: center;
+      }
+
+      .contact-form .form-send button {
+        background: #f8bd7a;
+        border: 0;
+        padding: 14px 40px;
+        color: #fff;
+        transition: 0.4s;
+        cursor: pointer;
+        border-radius: 50px;
+        font-size: 16px;
+        margin-top: 15px;
+      }
+
+      .contact-form .form-send button:hover {
+        background: #64df95;
+      }
+
+      .contact-form .validate {
+        display: none;
+        color: red;
+        margin: 0 0 15px 0;
+        font-weight: 400;
+        font-size: 13px;
+      }
+
+      .contact-form .loading {
+        display: none;
+        color: #555;
+        background: #fff;
+        text-align: center;
+        padding: 15px;
+        margin: 15px 0;
+      }
+
+      .contact-form .loading:before {
+        content: "";
+        display: inline-block;
+        border-radius: 50%;
+        width: 24px;
+        height: 24px;
+        border: 3px solid #18d26e;
+        border-top-color: #eee;
+        -webkit-animation: animate-loading 1s linear infinite;
+        animation: animate-loading 1s linear infinite;
+      }
+
+      @-webkit-keyframes animate-loading {
+        0% {
+          -webkit-transform: rotate(0deg);
+          transform: rotate(0deg);
+        }
+
+        100% {
+          -webkit-transform: rotate(360deg);
+          transform: rotate(360deg);
+        }
+      }
+
+      @keyframes animate-loading {
+        0% {
+          -webkit-transform: rotate(0deg);
+          transform: rotate(0deg);
+        }
+
+        100% {
+          -webkit-transform: rotate(360deg);
+          transform: rotate(360deg);
+        }
+      }
+
+      .contact-form .error-message {
+        display: none;
+        color: #fff;
+        background: #ed3c0d;
+        text-align: center;
+        padding: 15px;
+        font-weight: 600;
+        margin: 15px 0;
+      }
+
+      .contact-form .sent-message {
+        display: none;
+        color: #fff;
+        background: #18d26e;
+        text-align: center;
+        padding: 15px;
+        font-weight: 600;
+        margin: 15px 0;
+      }
+      .custom-container {
+        max-width: 1500px !important;
+      }
+    </style>
+    <header class="header-global">
+      <nav
+        id="navbar-main"
+        aria-label="Primary navigation"
+        class="navbar navbar-main navbar-expand-lg navbar-theme-primary navbar-dark"
+        style="position: relative; background: #fff"
+      >
+        <div class="custom-container container">
+          <div
+            class="row justify-content-between align-items-center"
+            style="width: 100%"
+          >
+            <div class="col-8 col-lg-2">
+              <img src="{% static 'assets/img/new_logo.svg' %}" />
+            </div>
+            <div class="col-4 col-lg-4 text-end">
+              <a
+                class="btn btn-dark px-md-4 px-lg-5"
+                style="background: #1f2937; color: #fff"
+                href="{% url 'login' %}"
+              >
+                Login
+              </a>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <!-- Hero -->
+      <img src="{% static 'assets/img/main-bg.png' %}" style="display: none;" />
+      <section
+        class="section-header overflow-hidden pt-6 pt-lg-8  bg-primary text-white main-top"
+        style="background-position-x: center; background-size: cover"
+      >
+        <div class="container">
+          <div class="row" style="margin-bottom: 75px">
+            <div class="col-12 col-lg-6" style="color: #fff">
+              <div class="row">
+                <div class="col-12 col-md-8 col-lg-12">
+                  <p class="display-2">
+                    <strong style="font-weight: 900">Transfer Credits</strong>
+                    <p class="main-para display-2">from your place of</p>
+                    <p class="main-para display-2">comfort.</p>
+                  </p>
+                </div>
               </div>
-              <div class="col-sm-6">
-                <div class="btn-group btn-group-toggle float-right" data-toggle="buttons">
-                  <label class="btn btn-sm btn-primary btn-simple active" id="0">
-                    <input type="radio" name="options" checked>
-                    <span class="d-none d-sm-block d-md-block d-lg-block d-xl-block">Accounts</span>
-                    <span class="d-block d-sm-none">
-                      <i class="tim-icons icon-single-02"></i>
-                    </span>
-                  </label>
-                  <label class="btn btn-sm btn-primary btn-simple" id="1">
-                    <input type="radio" class="d-none d-sm-none" name="options">
-                    <span class="d-none d-sm-block d-md-block d-lg-block d-xl-block">Purchases</span>
-                    <span class="d-block d-sm-none">
-                      <i class="tim-icons icon-gift-2"></i>
-                    </span>
-                  </label>
-                  <label class="btn btn-sm btn-primary btn-simple" id="2">
-                    <input type="radio" class="d-none" name="options">
-                    <span class="d-none d-sm-block d-md-block d-lg-block d-xl-block">Sessions</span>
-                    <span class="d-block d-sm-none">
-                      <i class="tim-icons icon-tap-02"></i>
-                    </span>
-                  </label>
+              <div class="row">
+                <div class="col-12">
+                  <p style="font-size: 14px">
+                    It takes less than 1 minute to get started
+                  </p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-12">
+                  <a
+                    class="mb-3"
+                    type="button"
+                    style="
+                      border: none;
+                      background: #1f2937;
+                      color: #fff;
+                      padding: 12px 24px;
+                    "
+                    href="{% url 'login' %}"
+                    ><i class="fa-solid fa-arrow-right-long me-2"></i>
+                    Get started
+                  </a>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-12">
+                  {% comment %}
+                  <p style="font-size: 14px">
+                    Please use the chat button at the bottom right if you need
+                    help.
+                  </p>
+                  {% endcomment %}
                 </div>
               </div>
             </div>
           </div>
-          <div class="card-body">
-            <div class="chart-area">
-              <canvas id="chartBig1"></canvas>
+        </div>
+      </section>
+      {% comment %}
+      <div class="section pt-0">
+        <div class="container mt-n10 mt-lg-n12 z-2">
+          <div class="row justify-content-center">
+            <div class="col-12">
+              <img
+                src="{{ ASSETS_ROOT }}/img/mockup-presentation.png"
+                alt="Mockup presentation"
+              />
             </div>
           </div>
         </div>
       </div>
+      {% endcomment %}
 
-    </div>
-    <div class="row">
-      <div class="col-lg-4">
-        <div class="card card-chart">
-          <div class="card-header">
-            <h5 class="card-category">Total Shipments</h5>
-            <h3 class="card-title"><i class="tim-icons icon-bell-55 text-primary"></i> 763,215</h3>
+      <section class="section section-lg bg-soft pt-0">
+        <div class="container mtb">
+          <div class="row centered justify-content-center">
+            <div class="col-md-4 mt text-center">
+              <img
+                src="{% static 'assets/img/landing_page/ico-06.png' %}"
+                alt=""
+                width="90"
+                height="100"
+              />
+              <h4>Credit Deposit</h4>
+              <p>
+                With Sahib Money you can easily transfer amount within the
+                system.
+              </p>
+            </div>
+            <!--/col-md-4-->
+
+            <div class="col-md-4 mt text-center">
+              <img
+                src="{% static 'assets/img/landing_page/money_transfer.png' %}"
+                alt=""
+                width="90"
+                height="100"
+              />
+              <h4>Withdraw Credits</h4>
+              <p>
+                With Sahib Money you can easily withdraw credits from the
+                system.
+              </p>
+            </div>
+            <!--/col-md-4-->
+
+            <div class="col-md-4 mt text-center">
+              <img
+                src="{% static 'assets/img/money-transfer.svg' %}"
+                alt=""
+                width="90"
+                height="100"
+              />
+              <h4>Credit Transfer</h4>
+              <p>
+                With Sahib Money you can easily transfer credits outside the
+                system to connected third parties.
+              </p>
+            </div>
+            <!--/col-md-4-->
+
+            {% comment %}
+            <div class="col-md-4 mt text-center">
+              <img
+                src="{% static 'assets/img/landing_page/ico-04.png' %}"
+                alt=""
+                width="90"
+              />
+              <h4>RESPONSIVE</h4>
+              <p>
+                Lorem Ipsum has been the industry's standard dummy text ever
+                since the 1500s, when a printer took a galley.
+              </p>
+            </div>
+            <!--/col-md-4-->
+            {% endcomment %}
+
+            <div class="col-md-4 mt-5 text-center">
+              <img
+                src="{% static 'assets/img/customer_service.svg' %}"
+                alt=""
+                width="90"
+              />
+              <h4>24/7 SUPPORT</h4>
+              <p>Sahib Money provides 24/7 support for queries.</p>
+            </div>
+            <!--/col-md-4-->
+
+            {% comment %}
+            <div class="col-md-4 mt text-center">
+              <img
+                src="{% static 'assets/img/landing_page/ico-06.png' %}"
+                alt=""
+                width="90"
+              />
+              <h4>AFFORDABLE</h4>
+              <p>
+                Lorem Ipsum has been the industry's standard dummy text ever
+                since the 1500s, when a printer took a galley.
+              </p>
+            </div>
+            {% endcomment %}
+            <!--/col-md-4-->
           </div>
-          <div class="card-body">
-            <div class="chart-area">
-              <canvas id="chartLinePurple"></canvas>
+          <!--/row -->
+        </div>
+      </section>
+
+      {% comment %}
+      <section class="section section-sm pt-0">
+        <div class="container">
+          <div class="row justify-content-center mb-5 mb-lg-6">
+            <div class="col-12 text-center">
+              <h2 class="h1 px-lg-5">10 hand-crafted pages</h2>
+              <p class="lead px-lg-10">
+                Every page from Volt has been carefully built to provide all the
+                necessary pages your startup will require
+              </p>
+            </div>
+          </div>
+          <div class="row mb-5">
+            <div class="col-6 mb-5">
+              <a href="/dashboard.html" class="page-preview scale-up-2">
+                <img
+                  class="shadow-lg rounded scale"
+                  src="{{ ASSETS_ROOT }}/img/pages/overview.jpg"
+                  alt="Dashboard page preview"
+                />
+                <div class="text-center show-on-hover rounded-bottom">
+                  <h6
+                    class="m-0 text-center d-inline-flex align-items-center text-white"
+                  >
+                    Overview
+                    <svg
+                      class="icon icon-xs ms-1"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z"
+                      ></path>
+                      <path
+                        d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z"
+                      ></path>
+                    </svg>
+                  </h6>
+                </div>
+              </a>
+            </div>
+            <div class="col-6 mb-5">
+              <a href="/transactions.html" class="page-preview scale-up-2">
+                <img
+                  class="shadow-lg rounded scale"
+                  src="{{ ASSETS_ROOT }}/img/pages/transactions.jpg"
+                  alt="Transactions page preview"
+                />
+                <div class="text-center show-on-hover rounded-bottom">
+                  <h6
+                    class="m-0 text-center d-inline-flex align-items-center text-white"
+                  >
+                    Transactions
+                    <svg
+                      class="icon icon-xs ms-1"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z"
+                      ></path>
+                      <path
+                        d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z"
+                      ></path>
+                    </svg>
+                  </h6>
+                </div>
+              </a>
+            </div>
+            <div class="col-6 mb-5">
+              <a href="/settings.html" class="page-preview scale-up-2">
+                <img
+                  class="shadow-lg rounded scale"
+                  src="{{ ASSETS_ROOT }}/img/pages/settings.jpg"
+                  alt="Settings page preview"
+                />
+                <div class="text-center show-on-hover rounded-bottom">
+                  <h6
+                    class="m-0 text-center d-inline-flex align-items-center text-white"
+                  >
+                    Settings
+                    <svg
+                      class="icon icon-xs ms-1"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z"
+                      ></path>
+                      <path
+                        d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z"
+                      ></path>
+                    </svg>
+                  </h6>
+                </div>
+              </a>
+            </div>
+            <div class="col-6 mb-5">
+              <a href="/page-sign-in.html" class="page-preview scale-up-2">
+                <img
+                  class="shadow-lg rounded scale"
+                  src="{{ ASSETS_ROOT }}/img/pages/sign-in.jpg"
+                  alt="Sign In page preview"
+                />
+                <div class="text-center show-on-hover rounded-bottom">
+                  <h6
+                    class="m-0 text-center d-inline-flex align-items-center text-white"
+                  >
+                    Sign In
+                    <svg
+                      class="icon icon-xs ms-1"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z"
+                      ></path>
+                      <path
+                        d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z"
+                      ></path>
+                    </svg>
+                  </h6>
+                </div>
+              </a>
+            </div>
+            <div class="col-6 mb-5">
+              <a href="/page-sign-up.html" class="page-preview scale-up-2">
+                <img
+                  class="shadow-lg rounded scale"
+                  src="{{ ASSETS_ROOT }}/img/pages/sign-up.jpg"
+                  alt="Sign Up page preview"
+                />
+                <div class="text-center show-on-hover rounded-bottom">
+                  <h6
+                    class="m-0 text-center d-inline-flex align-items-center text-white"
+                  >
+                    Sign Up
+                    <svg
+                      class="icon icon-xs ms-1"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z"
+                      ></path>
+                      <path
+                        d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z"
+                      ></path>
+                    </svg>
+                  </h6>
+                </div>
+              </a>
+            </div>
+            <div class="col-6 mb-5">
+              <a href="/page-lock.html" class="page-preview scale-up-2">
+                <img
+                  class="shadow-lg rounded scale"
+                  src="{{ ASSETS_ROOT }}/img/pages/lock.jpg"
+                  alt="Lock page preview"
+                />
+                <div class="text-center show-on-hover rounded-bottom">
+                  <h6
+                    class="m-0 text-center d-inline-flex align-items-center text-white"
+                  >
+                    Lock
+                    <svg
+                      class="icon icon-xs ms-1"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z"
+                      ></path>
+                      <path
+                        d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z"
+                      ></path>
+                    </svg>
+                  </h6>
+                </div>
+              </a>
+            </div>
+            <div class="col-6 mb-5">
+              <a
+                href="/page-forgot-password.html"
+                class="page-preview scale-up-2"
+              >
+                <img
+                  class="shadow-lg rounded scale"
+                  src="{{ ASSETS_ROOT }}/img/pages/forgot-password.jpg"
+                  alt="Forgot password preview"
+                />
+                <div class="text-center show-on-hover rounded-bottom">
+                  <h6
+                    class="m-0 text-center d-inline-flex align-items-center text-white"
+                  >
+                    Forgot password
+                    <svg
+                      class="icon icon-xs ms-1"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z"
+                      ></path>
+                      <path
+                        d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z"
+                      ></path>
+                    </svg>
+                  </h6>
+                </div>
+              </a>
+            </div>
+            <div class="col-6 mb-5">
+              <a
+                href="/page-reset-password.html"
+                class="page-preview scale-up-2"
+              >
+                <img
+                  class="shadow-lg rounded scale"
+                  src="{{ ASSETS_ROOT }}/img/pages/reset-password.jpg"
+                  alt="Reset password preview"
+                />
+                <div class="text-center show-on-hover rounded-bottom">
+                  <h6
+                    class="m-0 text-center d-inline-flex align-items-center text-white"
+                  >
+                    Reset password
+                    <svg
+                      class="icon icon-xs ms-1"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z"
+                      ></path>
+                      <path
+                        d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z"
+                      ></path>
+                    </svg>
+                  </h6>
+                </div>
+              </a>
+            </div>
+            <div class="col-6 mb-5">
+              <a href="/page-404.html" class="page-preview scale-up-2">
+                <img
+                  class="shadow-lg rounded scale"
+                  src="{{ ASSETS_ROOT }}/img/pages/404.jpg"
+                  alt="404 error preview"
+                />
+                <div class="text-center show-on-hover rounded-bottom">
+                  <h6
+                    class="m-0 text-center d-inline-flex align-items-center text-white"
+                  >
+                    404
+                    <svg
+                      class="icon icon-xs ms-1"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z"
+                      ></path>
+                      <path
+                        d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z"
+                      ></path>
+                    </svg>
+                  </h6>
+                </div>
+              </a>
+            </div>
+            <div class="col-6 mb-5">
+              <a href="/page-500.html" class="page-preview scale-up-2">
+                <img
+                  class="shadow-lg rounded scale"
+                  src="{{ ASSETS_ROOT }}/img/pages/500.jpg"
+                  alt="500 error preview"
+                />
+                <div class="text-center show-on-hover rounded-bottom">
+                  <h6
+                    class="m-0 text-center d-inline-flex align-items-center text-white"
+                  >
+                    500
+                    <svg
+                      class="icon icon-xs ms-1"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z"
+                      ></path>
+                      <path
+                        d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z"
+                      ></path>
+                    </svg>
+                  </h6>
+                </div>
+              </a>
             </div>
           </div>
         </div>
-      </div>
-      <div class="col-lg-4">
-        <div class="card card-chart">
-          <div class="card-header">
-            <h5 class="card-category">Daily Sales</h5>
-            <h3 class="card-title"><i class="tim-icons icon-delivery-fast text-info"></i> 3,500€</h3>
-          </div>
-          <div class="card-body">
-            <div class="chart-area">
-              <canvas id="CountryChart"></canvas>
+      </section>
+      {% endcomment %}
+
+      <section class="section section-lg bg-gray-800 text-white">
+        <div class="container">
+          <div class="row justify-content-center mb-5 mb-lg-6">
+            <div class="col-12 text-center">
+              <h2 class="h1 px-lg-5">Our Services</h2>
+              <p class="lead px-lg-8">
+                Sahib Money presents unique features for Business and Personal
+                accounts.
+              </p>
             </div>
           </div>
-        </div>
-      </div>
-      <div class="col-lg-4">
-        <div class="card card-chart">
-          <div class="card-header">
-            <h5 class="card-category">Completed Tasks</h5>
-            <h3 class="card-title"><i class="tim-icons icon-send text-success"></i> 12,100K</h3>
+          <div id="header">
+            <div class="container">
+              <div class="row">
+                <div class="col-md-6 centered">
+                  <img
+                    src="{% static 'assets/img/logo_big_white.svg' %}"
+                    class="img-responsive"
+                  />
+                </div>
+                <div class="col-md-6 mt">
+                  <hr />
+                  <h3>While using Sahib Money one can do the following:</h3>
+                  <p class="">- Perform credit transfers between members</p>
+                  <p class="">- Transfer credits across multiple platforms</p>
+                  <p class="">- Make regular payments in Internet</p>
+                  <p class="">
+                    - Safely store money funds on electronic account
+                  </p>
+                  {% comment %}
+                  <p class="mt">
+                    <button class="btn btn-lg btn-trans">LEARN MORE</button>
+                  </p>
+                  {% endcomment %}
+                </div>
+              </div>
+              <!--/row -->
+            </div>
+            <!-- /.container -->
           </div>
-          <div class="card-body">
-            <div class="chart-area">
-              <canvas id="chartLineGreen"></canvas>
+        </div>
+      </section>
+
+      {% comment %}
+      <section class="section section-lg line-bottom-soft">
+        <div class="container">
+          <div class="row justify-content-center mb-5 mb-lg-6">
+            <div class="col-12 text-center">
+              <h2 class="h1 px-lg-5">What's inside?</h2>
+              <p class="lead px-lg-8">
+                We have carefully crafted the perfect folder structure to ensure
+                that finding the files you're looking for are easily reachable
+                and well organized.
+              </p>
             </div>
           </div>
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-lg-6 col-md-12">
-        <div class="card card-tasks">
-          <div class="card-header ">
-            <h6 class="title d-inline">Tasks(5)</h6>
-            <p class="card-category d-inline">today</p>
-            <div class="dropdown">
-              <button type="button" class="btn btn-link dropdown-toggle btn-icon" data-toggle="dropdown">
-                <i class="tim-icons icon-settings-gear-63"></i>
-              </button>
-              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
-                <a class="dropdown-item" href="#pablo">Action</a>
-                <a class="dropdown-item" href="#pablo">Another action</a>
-                <a class="dropdown-item" href="#pablo">Something else</a>
+          <div class="row d-flex align-items-center">
+            <div class="col-12 col-lg-6 mb-4">
+              <div class="d-none d-lg-block mt-5">
+                <h4>You need only HTML, CSS and Javascript?</h4>
+                <p class="lead mb-4">
+                  Don't worry, we got you covered. We have a folder called
+                  <code class="text-danger">html&css</code> which includes only
+                  the basic HTML5, CSS3 and Javascript technologies.
+                </p>
+                <a
+                  href="https://themesberg.com/docs/volt-bootstrap-5-dashboard/getting-started/file-structure/"
+                  target="_blank"
+                  class="btn btn-secondary d-inline-flex align-items-center"
+                >
+                  <svg
+                    class="icon icon-xs me-2"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-3a1 1 0 00-.867.5 1 1 0 11-1.731-1A3 3 0 0113 8a3.001 3.001 0 01-2 2.83V11a1 1 0 11-2 0v-1a1 1 0 011-1 1 1 0 100-2zm0 8a1 1 0 100-2 1 1 0 000 2z"
+                      clip-rule="evenodd"
+                    ></path>
+                  </svg>
+                  Docs
+                </a>
               </div>
             </div>
-          </div>
-          <div class="card-body ">
-            <div class="table-full-width table-responsive">
-              <table class="table">
-                <tbody>
-                  <tr>
-                    <td>
-                      <div class="form-check">
-                        <label class="form-check-label">
-                          <input class="form-check-input" type="checkbox" value="">
-                          <span class="form-check-sign">
-                            <span class="check"></span>
-                          </span>
-                        </label>
-                      </div>
-                    </td>
-                    <td>
-                      <p class="title">Update the Documentation</p>
-                      <p class="text-muted">Dwuamish Head, Seattle, WA 8:47 AM</p>
-                    </td>
-                    <td class="td-actions text-right">
-                      <button type="button" rel="tooltip" title="" class="btn btn-link" data-original-title="Edit Task">
-                        <i class="tim-icons icon-pencil"></i>
-                      </button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <div class="form-check">
-                        <label class="form-check-label">
-                          <input class="form-check-input" type="checkbox" value="" checked="">
-                          <span class="form-check-sign">
-                            <span class="check"></span>
-                          </span>
-                        </label>
-                      </div>
-                    </td>
-                    <td>
-                      <p class="title">GDPR Compliance</p>
-                      <p class="text-muted">The GDPR is a regulation that requires businesses to protect the personal data and privacy of Europe citizens for transactions that occur within EU member states.</p>
-                    </td>
-                    <td class="td-actions text-right">
-                      <button type="button" rel="tooltip" title="" class="btn btn-link" data-original-title="Edit Task">
-                        <i class="tim-icons icon-pencil"></i>
-                      </button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <div class="form-check">
-                        <label class="form-check-label">
-                          <input class="form-check-input" type="checkbox" value="">
-                          <span class="form-check-sign">
-                            <span class="check"></span>
-                          </span>
-                        </label>
-                      </div>
-                    </td>
-                    <td>
-                      <p class="title">Solve the issues</p>
-                      <p class="text-muted">Fifty percent of all respondents said they would be more likely to shop at a company </p>
-                    </td>
-                    <td class="td-actions text-right">
-                      <button type="button" rel="tooltip" title="" class="btn btn-link" data-original-title="Edit Task">
-                        <i class="tim-icons icon-pencil"></i>
-                      </button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <div class="form-check">
-                        <label class="form-check-label">
-                          <input class="form-check-input" type="checkbox" value="">
-                          <span class="form-check-sign">
-                            <span class="check"></span>
-                          </span>
-                        </label>
-                      </div>
-                    </td>
-                    <td>
-                      <p class="title">Release v2.0.0</p>
-                      <p class="text-muted">Ra Ave SW, Seattle, WA 98116, SUA 11:19 AM</p>
-                    </td>
-                    <td class="td-actions text-right">
-                      <button type="button" rel="tooltip" title="" class="btn btn-link" data-original-title="Edit Task">
-                        <i class="tim-icons icon-pencil"></i>
-                      </button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <div class="form-check">
-                        <label class="form-check-label">
-                          <input class="form-check-input" type="checkbox" value="">
-                          <span class="form-check-sign">
-                            <span class="check"></span>
-                          </span>
-                        </label>
-                      </div>
-                    </td>
-                    <td>
-                      <p class="title">Export the processed files</p>
-                      <p class="text-muted">The report also shows that consumers will not easily forgive a company once a breach exposing their personal data occurs. </p>
-                    </td>
-                    <td class="td-actions text-right">
-                      <button type="button" rel="tooltip" title="" class="btn btn-link" data-original-title="Edit Task">
-                        <i class="tim-icons icon-pencil"></i>
-                      </button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <div class="form-check">
-                        <label class="form-check-label">
-                          <input class="form-check-input" type="checkbox" value="">
-                          <span class="form-check-sign">
-                            <span class="check"></span>
-                          </span>
-                        </label>
-                      </div>
-                    </td>
-                    <td>
-                      <p class="title">Arival at export process</p>
-                      <p class="text-muted">Capitol Hill, Seattle, WA 12:34 AM</p>
-                    </td>
-                    <td class="td-actions text-right">
-                      <button type="button" rel="tooltip" title="" class="btn btn-link" data-original-title="Edit Task">
-                        <i class="tim-icons icon-pencil"></i>
-                      </button>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
+            <div
+              class="col-12 col-lg-6 order-lg-first d-flex justify-content-center"
+            >
+              <ul class="d-block fmw-100 list-unstyled folder-structure">
+                <li
+                  data-bs-toggle="tooltip"
+                  data-bs-placement="left"
+                  title="Main folder that you will be working with"
+                >
+                  <svg
+                    class="icon icon-sm me-2"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M2 6a2 2 0 012-2h5l2 2h5a2 2 0 012 2v6a2 2 0 01-2 2H4a2 2 0 01-2-2V6z"
+                    ></path>
+                  </svg>
+                  src
+                </li>
+                <li>
+                  <ul class="list-unstyled ps-4">
+                    <li
+                      class="d-flex align-items-center mb-1"
+                      data-bs-toggle="tooltip"
+                      data-bs-placement="left"
+                      title="CSS, Images, Fonts and Javascript"
+                    >
+                      <svg
+                        class="icon icon-sm me-2"
+                        fill="currentColor"
+                        viewBox="0 0 20 20"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M2 6a2 2 0 012-2h5l2 2h5a2 2 0 012 2v6a2 2 0 01-2 2H4a2 2 0 01-2-2V6z"
+                        ></path>
+                      </svg>
+                      assets
+                    </li>
+                    <li
+                      class="d-flex align-items-center mb-1"
+                      data-bs-toggle="tooltip"
+                      data-bs-placement="left"
+                      title="HTML templates"
+                    >
+                      <svg
+                        class="icon icon-sm me-2"
+                        fill="currentColor"
+                        viewBox="0 0 20 20"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M2 6a2 2 0 012-2h5l2 2h5a2 2 0 012 2v6a2 2 0 01-2 2H4a2 2 0 01-2-2V6z"
+                        ></path>
+                      </svg>
+                      pages
+                    </li>
+                    <li
+                      class="d-flex align-items-center mb-1"
+                      data-bs-toggle="tooltip"
+                      data-bs-placement="left"
+                      title="Partials are HTML snippets that are included in multiple pages, such as the menu or footer"
+                    >
+                      <svg
+                        class="icon icon-sm me-2"
+                        fill="currentColor"
+                        viewBox="0 0 20 20"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M2 6a2 2 0 012-2h5l2 2h5a2 2 0 012 2v6a2 2 0 01-2 2H4a2 2 0 01-2-2V6z"
+                        ></path>
+                      </svg>
+                      partials
+                    </li>
+                    <li
+                      class="d-flex align-items-center mb-1"
+                      data-bs-toggle="tooltip"
+                      data-bs-placement="left"
+                      title="Sass source files"
+                    >
+                      <svg
+                        class="icon icon-sm me-2"
+                        fill="currentColor"
+                        viewBox="0 0 20 20"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M2 6a2 2 0 012-2h5l2 2h5a2 2 0 012 2v6a2 2 0 01-2 2H4a2 2 0 01-2-2V6z"
+                        ></path>
+                      </svg>
+                      scss
+                    </li>
+                    <li
+                      class="d-flex align-items-center mb-1"
+                      data-bs-toggle="tooltip"
+                      data-bs-placement="left"
+                      title="The page you're looking at right now. Call it inception."
+                    >
+                      <svg
+                        class="icon icon-sm me-2 text-warning"
+                        aria-hidden="true"
+                        focusable="false"
+                        data-prefix="fab"
+                        data-icon="html5"
+                        role="img"
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 384 512"
+                      >
+                        <path
+                          fill="currentColor"
+                          d="M0 32l34.9 395.8L191.5 480l157.6-52.2L384 32H0zm308.2 127.9H124.4l4.1 49.4h175.6l-13.6 148.4-97.9 27v.3h-1.1l-98.7-27.3-6-75.8h47.7L138 320l53.5 14.5 53.7-14.5 6-62.2H84.3L71.5 112.2h241.1l-4.4 47.7z"
+                        ></path>
+                      </svg>
+                      index.html
+                    </li>
+                  </ul>
+                </li>
+                <li
+                  class="d-flex align-items-center mb-1"
+                  data-bs-toggle="tooltip"
+                  data-bs-placement="left"
+                  title="Rocket with only HTML, CSS and Javascript"
+                >
+                  <svg
+                    class="icon icon-sm me-2"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M2 6a2 2 0 012-2h5l2 2h5a2 2 0 012 2v6a2 2 0 01-2 2H4a2 2 0 01-2-2V6z"
+                    ></path>
+                  </svg>
+                  html&css
+                </li>
+                <li
+                  class="d-flex align-items-center mb-1"
+                  data-bs-toggle="tooltip"
+                  data-bs-placement="left"
+                  title="Temporary folder that is created when serving files with BrowserSync"
+                >
+                  <svg
+                    class="icon icon-sm me-2"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M2 6a2 2 0 012-2h5l2 2h5a2 2 0 012 2v6a2 2 0 01-2 2H4a2 2 0 01-2-2V6z"
+                    ></path>
+                  </svg>
+                  .temp
+                </li>
+                <li
+                  class="d-flex align-items-center mb-1"
+                  data-bs-toggle="tooltip"
+                  data-bs-placement="left"
+                  title="Minified version of the project"
+                >
+                  <svg
+                    class="icon icon-sm me-2"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M2 6a2 2 0 012-2h5l2 2h5a2 2 0 012 2v6a2 2 0 01-2 2H4a2 2 0 01-2-2V6z"
+                    ></path>
+                  </svg>
+                  dist
+                </li>
+                <li
+                  class="d-flex align-items-center mb-1"
+                  data-bs-toggle="tooltip"
+                  data-bs-placement="left"
+                  title="Project dependencies from package.json"
+                >
+                  <svg
+                    class="icon icon-sm me-2"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M2 6a2 2 0 012-2h5l2 2h5a2 2 0 012 2v6a2 2 0 01-2 2H4a2 2 0 01-2-2V6z"
+                    ></path>
+                  </svg>
+                  node_modules
+                </li>
+                <li
+                  class="d-flex align-items-center mb-1"
+                  data-bs-toggle="tooltip"
+                  data-bs-placement="left"
+                  title="Development workflow commands. We have them well documented."
+                >
+                  <svg
+                    class="icon icon-sm me-2 text-warning"
+                    aria-hidden="true"
+                    focusable="false"
+                    data-prefix="fab"
+                    data-icon="js-square"
+                    class="svg-inline--fa fa-js-square fa-w-14"
+                    role="img"
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 448 512"
+                  >
+                    <path
+                      fill="currentColor"
+                      d="M400 32H48C21.5 32 0 53.5 0 80v352c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V80c0-26.5-21.5-48-48-48zM243.8 381.4c0 43.6-25.6 63.5-62.9 63.5-33.7 0-53.2-17.4-63.2-38.5l34.3-20.7c6.6 11.7 12.6 21.6 27.1 21.6 13.8 0 22.6-5.4 22.6-26.5V237.7h42.1v143.7zm99.6 63.5c-39.1 0-64.4-18.6-76.7-43l34.3-19.8c9 14.7 20.8 25.6 41.5 25.6 17.4 0 28.6-8.7 28.6-20.8 0-14.4-11.4-19.5-30.7-28l-10.5-4.5c-30.4-12.9-50.5-29.2-50.5-63.5 0-31.6 24.1-55.6 61.6-55.6 26.8 0 46 9.3 59.8 33.7L368 290c-7.2-12.9-15-18-27.1-18-12.3 0-20.1 7.8-20.1 18 0 12.6 7.8 17.7 25.9 25.6l10.5 4.5c35.8 15.3 55.9 31 55.9 66.2 0 37.8-29.8 58.6-69.7 58.6z"
+                    ></path>
+                  </svg>
+                  gulpfile.js
+                </li>
+                <li
+                  class="d-flex align-items-center mb-1"
+                  data-bs-toggle="tooltip"
+                  data-bs-placement="left"
+                  title="Project details and dependencies."
+                >
+                  <svg
+                    class="icon icon-sm me-2 text-success"
+                    aria-hidden="true"
+                    focusable="false"
+                    data-prefix="fas"
+                    data-icon="file-code"
+                    role="img"
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 384 512"
+                  >
+                    <path
+                      fill="currentColor"
+                      d="M384 121.941V128H256V0h6.059c6.365 0 12.47 2.529 16.971 7.029l97.941 97.941A24.005 24.005 0 0 1 384 121.941zM248 160c-13.2 0-24-10.8-24-24V0H24C10.745 0 0 10.745 0 24v464c0 13.255 10.745 24 24 24h336c13.255 0 24-10.745 24-24V160H248zM123.206 400.505a5.4 5.4 0 0 1-7.633.246l-64.866-60.812a5.4 5.4 0 0 1 0-7.879l64.866-60.812a5.4 5.4 0 0 1 7.633.246l19.579 20.885a5.4 5.4 0 0 1-.372 7.747L101.65 336l40.763 35.874a5.4 5.4 0 0 1 .372 7.747l-19.579 20.884zm51.295 50.479l-27.453-7.97a5.402 5.402 0 0 1-3.681-6.692l61.44-211.626a5.402 5.402 0 0 1 6.692-3.681l27.452 7.97a5.4 5.4 0 0 1 3.68 6.692l-61.44 211.626a5.397 5.397 0 0 1-6.69 3.681zm160.792-111.045l-64.866 60.812a5.4 5.4 0 0 1-7.633-.246l-19.58-20.885a5.4 5.4 0 0 1 .372-7.747L284.35 336l-40.763-35.874a5.4 5.4 0 0 1-.372-7.747l19.58-20.885a5.4 5.4 0 0 1 7.633-.246l64.866 60.812a5.4 5.4 0 0 1-.001 7.879z"
+                    ></path>
+                  </svg>
+                  package.json
+                </li>
+                <li
+                  class="d-flex align-items-center mb-1"
+                  data-bs-toggle="tooltip"
+                  data-bs-placement="left"
+                  title="No project can miss a README :)"
+                >
+                  <svg
+                    class="icon icon-sm me-2 text-success"
+                    aria-hidden="true"
+                    focusable="false"
+                    data-prefix="fas"
+                    data-icon="file-code"
+                    role="img"
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 384 512"
+                  >
+                    <path
+                      fill="currentColor"
+                      d="M384 121.941V128H256V0h6.059c6.365 0 12.47 2.529 16.971 7.029l97.941 97.941A24.005 24.005 0 0 1 384 121.941zM248 160c-13.2 0-24-10.8-24-24V0H24C10.745 0 0 10.745 0 24v464c0 13.255 10.745 24 24 24h336c13.255 0 24-10.745 24-24V160H248zM123.206 400.505a5.4 5.4 0 0 1-7.633.246l-64.866-60.812a5.4 5.4 0 0 1 0-7.879l64.866-60.812a5.4 5.4 0 0 1 7.633.246l19.579 20.885a5.4 5.4 0 0 1-.372 7.747L101.65 336l40.763 35.874a5.4 5.4 0 0 1 .372 7.747l-19.579 20.884zm51.295 50.479l-27.453-7.97a5.402 5.402 0 0 1-3.681-6.692l61.44-211.626a5.402 5.402 0 0 1 6.692-3.681l27.452 7.97a5.4 5.4 0 0 1 3.68 6.692l-61.44 211.626a5.397 5.397 0 0 1-6.69 3.681zm160.792-111.045l-64.866 60.812a5.4 5.4 0 0 1-7.633-.246l-19.58-20.885a5.4 5.4 0 0 1 .372-7.747L284.35 336l-40.763-35.874a5.4 5.4 0 0 1-.372-7.747l19.58-20.885a5.4 5.4 0 0 1 7.633-.246l64.866 60.812a5.4 5.4 0 0 1-.001 7.879z"
+                    ></path>
+                  </svg>
+                  README.md
+                </li>
+                <li
+                  class="d-flex align-items-center mb-1"
+                  data-bs-toggle="tooltip"
+                  data-bs-placement="left"
+                  title="This file ensures that generated files and folder are ignored by Git. (eg. node_modules)"
+                >
+                  <svg
+                    class="icon icon-sm me-2 text-success"
+                    aria-hidden="true"
+                    focusable="false"
+                    data-prefix="fas"
+                    data-icon="file-code"
+                    role="img"
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 384 512"
+                  >
+                    <path
+                      fill="currentColor"
+                      d="M384 121.941V128H256V0h6.059c6.365 0 12.47 2.529 16.971 7.029l97.941 97.941A24.005 24.005 0 0 1 384 121.941zM248 160c-13.2 0-24-10.8-24-24V0H24C10.745 0 0 10.745 0 24v464c0 13.255 10.745 24 24 24h336c13.255 0 24-10.745 24-24V160H248zM123.206 400.505a5.4 5.4 0 0 1-7.633.246l-64.866-60.812a5.4 5.4 0 0 1 0-7.879l64.866-60.812a5.4 5.4 0 0 1 7.633.246l19.579 20.885a5.4 5.4 0 0 1-.372 7.747L101.65 336l40.763 35.874a5.4 5.4 0 0 1 .372 7.747l-19.579 20.884zm51.295 50.479l-27.453-7.97a5.402 5.402 0 0 1-3.681-6.692l61.44-211.626a5.402 5.402 0 0 1 6.692-3.681l27.452 7.97a5.4 5.4 0 0 1 3.68 6.692l-61.44 211.626a5.397 5.397 0 0 1-6.69 3.681zm160.792-111.045l-64.866 60.812a5.4 5.4 0 0 1-7.633-.246l-19.58-20.885a5.4 5.4 0 0 1 .372-7.747L284.35 336l-40.763-35.874a5.4 5.4 0 0 1-.372-7.747l19.58-20.885a5.4 5.4 0 0 1 7.633-.246l64.866 60.812a5.4 5.4 0 0 1-.001 7.879z"
+                    ></path>
+                  </svg>
+                  .gitignore
+                </li>
+              </ul>
+            </div>
+            <div class="col-12 mt-5 d-lg-none">
+              <h5>You need only HTML, CSS and Javascript?</h5>
+              <p>
+                Don't worry, we got you covered. We have a folder called
+                <code class="text-danger">html&css</code> which includes only
+                the basic HTML5, CSS3 and Javascript technologies.
+              </p>
             </div>
           </div>
         </div>
-      </div>
-      <div class="col-lg-6 col-md-12">
-        <div class="card ">
-          <div class="card-header">
-            <h4 class="card-title"> Simple Table</h4>
+      </section>
+      {% endcomment %} {% comment %}
+      <section class="section section-lg bg-gray-800">
+        <div class="container">
+          <div class="row justify-content-center text-center text-white mb-5">
+            <div class="col-12">
+              <h2 class="h1 fw-light mb-3">
+                Less <span class="fw-bold">work</span>, more
+                <span class="fw-bold">flow</span>.
+              </h2>
+              <p class="lead px-lg-8">
+                Boost productivity with BrowserSync. Sass changes are reflected
+                instantly and pages scroll and refresh on devices as you work.
+              </p>
+            </div>
           </div>
-          <div class="card-body">
-            <div class="table-responsive">
-              <table class="table tablesorter " id="">
-                <thead class=" text-primary">
-                  <tr>
-                    <th>
-                      Name
-                    </th>
-                    <th>
-                      Country
-                    </th>
-                    <th>
-                      City
-                    </th>
-                    <th class="text-center">
-                      Salary
-                    </th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>
-                      Dakota Rice
-                    </td>
-                    <td>
-                      Niger
-                    </td>
-                    <td>
-                      Oud-Turnhout
-                    </td>
-                    <td class="text-center">
-                      $36,738
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      Minerva Hooper
-                    </td>
-                    <td>
-                      Curaçao
-                    </td>
-                    <td>
-                      Sinaai-Waas
-                    </td>
-                    <td class="text-center">
-                      $23,789
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      Sage Rodriguez
-                    </td>
-                    <td>
-                      Netherlands
-                    </td>
-                    <td>
-                      Baileux
-                    </td>
-                    <td class="text-center">
-                      $56,142
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      Philip Chaney
-                    </td>
-                    <td>
-                      Korea, South
-                    </td>
-                    <td>
-                      Overland Park
-                    </td>
-                    <td class="text-center">
-                      $38,735
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      Doris Greene
-                    </td>
-                    <td>
-                      Malawi
-                    </td>
-                    <td>
-                      Feldkirchen in Kärnten
-                    </td>
-                    <td class="text-center">
-                      $63,542
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      Mason Porter
-                    </td>
-                    <td>
-                      Chile
-                    </td>
-                    <td>
-                      Gloucester
-                    </td>
-                    <td class="text-center">
-                      $78,615
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      Jon Porter
-                    </td>
-                    <td>
-                      Portugal
-                    </td>
-                    <td>
-                      Gloucester
-                    </td>
-                    <td class="text-center">
-                      $98,615
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
+          <div class="row justify-content-center mb-6">
+            <div class="col-md-10 col-xl-9">
+              <div class="position-relative">
+                <div class="rounded bg-white p-4 text-dark mb-2">
+                  <div class="mb-3">
+                    <div class="fw-bold">&gt; $ npm install</div>
+                    <div class="text-gray">Everything’s installed!</div>
+                  </div>
+                  <div class="mb-3">
+                    <div class="fw-bold">&gt; $ gulp</div>
+                    <div class="text-gray">SCSS watching</div>
+                    <div class="text-gray">LiveReload started</div>
+                    <div class="text-gray">Opening localhost:3000</div>
+                  </div>
+                  <div>
+                    <div class="fw-bold">&gt; $ that's it?</div>
+                    <div class="text-gray">It's that simple!</div>
+                  </div>
+                </div>
+              </div>
+              <p class="mt-4 text-white text-center">
+                Looks unfamiliar? Don’t worry! Our
+                <a
+                  class="text-white text-decoration-underline fw-bolder"
+                  href="https://themesberg.com/docs/rocket/getting-started/overview/"
+                  target="_blank"
+                  >documentation</a
+                >
+                has got you covered.
+              </p>
             </div>
           </div>
         </div>
+      </section>
+      {% endcomment %}
+
+      <section class="section section-lg bg-white" id="pricing">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-offset-2">
+              <h1 class="px-lg-2">Contact Us</h1>
+              <form
+                class="contact-form php-mail-form"
+                role="form"
+                action="contactform/contactform.php"
+                method="POST"
+              >
+                <div class="form-group">
+                  <input
+                    type="name"
+                    name="name"
+                    class="form-control"
+                    id="contact-name"
+                    placeholder="Your Name"
+                    data-rule="minlen:4"
+                    data-msg="Please enter at least 4 chars"
+                  />
+                  <div class="validate"></div>
+                </div>
+                <div class="form-group">
+                  <input
+                    type="email"
+                    name="email"
+                    class="form-control"
+                    id="contact-email"
+                    placeholder="Your Email"
+                    data-rule="email"
+                    data-msg="Please enter a valid email"
+                  />
+                  <div class="validate"></div>
+                </div>
+                <div class="form-group">
+                  <input
+                    type="text"
+                    name="subject"
+                    class="form-control"
+                    id="contact-subject"
+                    placeholder="Subject"
+                    data-rule="minlen:4"
+                    data-msg="Please enter at least 8 chars of subject"
+                  />
+                  <div class="validate"></div>
+                </div>
+
+                <div class="form-group">
+                  <textarea
+                    class="form-control"
+                    name="message"
+                    id="contact-message"
+                    placeholder="Your Message"
+                    rows="5"
+                    data-rule="required"
+                    data-msg="Please write something for us"
+                  ></textarea>
+                  <div class="validate"></div>
+                </div>
+
+                <div class="loading"></div>
+                <div class="error-message"></div>
+                <div class="sent-message">
+                  Your message has been sent. Thank you!
+                </div>
+
+                <div class="form-send">
+                  <button type="submit" class="btn btn-large">
+                    Send Message
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- <footer class="footer bg-gray-800 text-white"> -->
+    <footer class="footer py-4 bg-gray-800 text-white">
+      <div class="container">
+        <div class="row align-items-end">
+          <div class="col-12 col-md-7 col-lg-9 d-md-flex">
+            <div class="text-center text-md-start">
+              <img
+                src="{% static 'assets/img/images/Sahib Money logo white new 2-01.svg' %}"
+                height="80"
+                width="350"
+              />
+              <p class="text-center text-md-start my-4" style="font-size: 14px">
+                © 2022 Sahib Money. All Rights Reserved
+              </p>
+            </div>
+          </div>
+
+          <div
+            class="col-12 col-md-5 col-lg-3 d-flex justify-content-between justify-content-md-around my-md-4"
+          >
+            <a style="font-size: 14px">PRIVACY POLICY</a>
+            <a style="font-size: 14px">TERMS OF USE</a>
+          </div>
+        </div>
       </div>
-    </div>
+    </footer>
 
-{% endblock content %}
-
-<!-- Specific Page JS goes HERE  -->
-{% block javascripts %}
-
-  <script>
-    $(document).ready(function() {
-      // Javascript method's body can be found in assets/js/demos.js
-      demo.initDashboardPageCharts();
-
-    });
-  </script>
-
-{% endblock javascripts %}
+    {% include 'includes/scripts.html' %}
+  </body>
+</html>

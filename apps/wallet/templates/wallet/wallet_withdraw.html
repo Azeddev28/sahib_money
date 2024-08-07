@@ -1,0 +1,81 @@
+{% extends "layouts/base.html" %}
+{% load static %}
+{% block title %} Wallet Withdraw {% endblock %}
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+<style>
+    .deposit-btn {
+      float: right;
+      margin-top: 4%;
+    }
+    .bold-txt {
+      font-weight: 600;
+    }
+    .text-error {
+        color: maroon;
+    }
+  </style>
+<input id="form-success" type="hidden" value="{{form_success}}" />
+
+<div class="row justify-content-center mt-4">
+  <div class="col-12 col-xl-9">
+    <div class="card shadow border-0 p-4 p-md-5 position-relative">
+      <div class="mb-4 d-flex align-items-center justify-content-center">
+        <h2 class="h2 mb-0">Credit Withdraw</h2>
+      </div>
+      <section class="mt-5 mt-lg-0 bg-soft d-flex align-items-center">
+        <div class="container">
+            <div class="row justify-content-center form-bg-image" data-background-lg="">
+                <div class="col-12 d-flex align-items-center justify-content-center">
+                    <div class="bg-white shadow border-0 rounded border-light p-4 p-lg-5 w-100 fmxw-500">
+                        <div class="col-sm">
+                            <h5>Available Credits: {{ available_credits }}</h5>
+                        </div>
+                        <form method="post" action="" class="mt-4" autocomplete="off">
+                            {% csrf_token %}
+
+                            <div class="form-group mb-4">
+                                <label>Bank Account</label>
+                                <div class="input-group">
+                                    {{ form.bank_details }}
+                                </div>
+                            </div>
+                            <div class="withdraw-btn mb-4">
+                                <a class="btn btn-primary" href="{% url 'user-bank-details' %}">Add Account</a>
+                            </div>
+                            <div class="form-group mb-4">
+                                <label>Amount</label>
+                                <div class="input-group">
+                                    <input type="text" autocomplete="off"  name="amount" placeholder="Credits to withdraw" class="form-control" required="true" id="id_amount"/>
+                                </div>
+                            </div>
+                            <div class="d-grid">
+                                <button type="submit" name="add_bank_account" class="btn btn-gray-800">Withdraw</button>
+                            </div>
+                            <span class="text-error">
+                                {% for field, error in form.errors.items %}
+                                    {{ error | striptags }}
+                                {% endfor %}
+                            </span>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>
+{% include 'wallet/success_modal.html' %}
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script src="{% static 'assets/js/drag-and-drop.js' %}"></script>
+{% endblock javascripts %}
